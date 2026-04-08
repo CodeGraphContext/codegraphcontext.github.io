@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../concepts/how_it_works/">
+        <link rel="prev" href="../guides/mcp_guide/">
       
       
-        <link rel="next" href="../concepts/the_graph/">
+        <link rel="next" href="../guides/visualization/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>System Architecture - CodeGraphContext</title>
+        <title>Agent skill (AI assistants) - CodeGraphContext</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#system-architecture" class="md-skip">
+        <a href="#agent-skill-codegraphcontext-cgc" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              System Architecture
+              Agent skill (AI assistants)
             
           </span>
         </div>
@@ -276,10 +276,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../guides/onboarding/" class="md-tabs__link">
           
   
@@ -296,12 +298,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../concepts/how_it_works/" class="md-tabs__link">
           
   
@@ -740,28 +740,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -779,7 +782,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -878,10 +881,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../agent_skill_codegraphcontext/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent skill (AI assistants)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -897,6 +927,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-use-this-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use this skill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mcp-setup-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP setup (short)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent behavior
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references-in-this-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References in this repo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -997,31 +1102,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1039,7 +1141,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1082,37 +1184,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    System Architecture
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -1128,81 +1203,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#high-level-architecture-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        High-Level Architecture Diagram
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-the-core-backend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. The Core (Backend)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-front-ends-and-observability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Front-ends and Observability
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-data-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Data Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-key-technologies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Key Technologies
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1817,10 +1817,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#high-level-architecture-diagram" class="md-nav__link">
+  <a href="#when-to-use-this-skill" class="md-nav__link">
     <span class="md-ellipsis">
       
-        High-Level Architecture Diagram
+        When to use this skill
       
     </span>
   </a>
@@ -1828,10 +1828,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-the-core-backend" class="md-nav__link">
+  <a href="#core-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. The Core (Backend)
+        Core workflow
       
     </span>
   </a>
@@ -1839,10 +1839,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-front-ends-and-observability" class="md-nav__link">
+  <a href="#mcp-setup-short" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Front-ends and Observability
+        MCP setup (short)
       
     </span>
   </a>
@@ -1850,10 +1850,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-data-flow" class="md-nav__link">
+  <a href="#agent-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Data Flow
+        Agent behavior
       
     </span>
   </a>
@@ -1861,10 +1861,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-key-technologies" class="md-nav__link">
+  <a href="#references-in-this-repo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Key Technologies
+        References in this repo
       
     </span>
   </a>
@@ -1891,97 +1891,45 @@
   
 
 
-<h1 id="system-architecture">System Architecture</h1>
-<p>CodeGraphContext (CGC) is a <strong>context-aware code intelligence engine</strong> that bridges the gap between your source code and your AI tools.</p>
-<p>It operates primarily as a background service (MCP Server) backed by a graph database, with a CLI for management. Instead of relying solely on vector embeddings, CodeGraphContext leverages an exact knowledge graph for deep, deterministic insights into the codebase.</p>
-<h2 id="high-level-architecture-diagram">High-Level Architecture Diagram</h2>
-<pre class="mermaid"><code>graph TD
-    Client[AI Client / CLI / Editor]
-    Server[MCP Server Interface]
-    CoreEngine[Core Engine &amp; Tools]
-    ParserLayer[Tree-sitter Language Parsers]
-    DBLayer[Database Abstraction Layer]
-    KuzuDB[(KùzuDB - Embedded Default)]
-    Neo4j[(Neo4j - Enterprise Option)]
-    FS[File System]
-
-    Client -- "1. Context Queries (MCP)" --&gt; Server
-    Client -- "2. CLI Commands (Index/List)" --&gt; CoreEngine
-    Server -- "Forward Requests" --&gt; CoreEngine
-    CoreEngine -- "Read/Write Graph" --&gt; DBLayer
-    CoreEngine -- "Trigger Full/Incremental Indexing" --&gt; ParserLayer
-    ParserLayer -- "Scan Source Files" --&gt; FS
-    DBLayer -- "Store nodes &amp; edges" --&gt; KuzuDB
-    DBLayer -- "Store nodes &amp; edges" --&gt; Neo4j</code></pre>
-<h2 id="1-the-core-backend">1. The Core (Backend)</h2>
-<p>The primary intelligence resides within the <code>src/codegraphcontext</code> directory. The system is built purely in Python and heavily relies on abstracting operations to stay versatile.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Component</th>
-<th style="text-align: left;">Responsibility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>MCP Server (<code>server.py</code>)</strong></td>
-<td style="text-align: left;">Acts as the <a href="https://modelcontextprotocol.io/">Model Context Protocol (MCP)</a> host. It translates JSON-RPC requests from LLM clients (like Claude, Cursor, Windsurf) into standardized graph database queries.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Graph Builder (<code>graph_builder.py</code>)</strong></td>
-<td style="text-align: left;">The "indexer" module. It coordinates parsing the codebase using <strong>Tree-sitter</strong>, extracts dependencies, and builds the knowledge graph layout in memory before flushing objects to the database.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Database Abstraction Layer</strong></td>
-<td style="text-align: left;">Handles the connection to the underlying graph database. By default, CGC uses <strong>KùzuDB</strong> for embedded, fast, local indexing, but also natively supports <strong>Neo4j</strong> for complex or enterprise-level deployments.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Watchers &amp; Background Jobs</strong></td>
-<td style="text-align: left;">Manages long-running tasks such as full repository indexing, bundle processing, and file system monitoring (<code>watchdog</code> module) that triggers incremental updates upon file modifications without blocking the AI.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Tree-sitter Parsers</strong></td>
-<td style="text-align: left;">Provide accurate, robust Abstract Syntax Tree (AST) parsing across multiple supported languages to identify classes, functions, files, modules, and their inter-relationships (CALLS, IMPORTS, INHERITS, CONTAINS).</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-front-ends-and-observability">2. Front-ends and Observability</h2>
-<p><strong>Important:</strong> CodeGraphContext does <strong>not</strong> rely on a built-in heavy GUI application.</p>
-<p>The interaction is designed for low friction and automation:
-1.  <strong>AI IDE Integrations:</strong> The primary front-end is your AI IDE chat via the Model Context Protocol. You ask a question ("How does user authentication work in the <code>users</code> module?"), and the MCP server uses the graph to resolve exactly what files and functions fulfill that context.
-2.  <strong>CLI (Command Line Interface):</strong> A fully featured standard CLI (<code>cgc</code>) to initialize, index, clean, or export graph bundles from the terminal.
-3.  <strong>Visualization Dashboard:</strong> A standalone React visualization client (<code>cgc visualize</code>) that parses the raw graph DB and plots nodes dynamically using <code>react-force-graph</code> for exploratory views without needing an external desktop app.
-4.  <strong>Database Browsers:</strong> Deep advanced exploration of the actual graph connections using direct Cypher queries via the KùzuDB CLI or Neo4j Browser (<code>localhost:7474</code>).</p>
-<h2 id="3-data-flow">3. Data Flow</h2>
-<ol>
-<li><strong>Repository Indexing:</strong><ul>
-<li><code>cgc index .</code> invokes the graph builder.</li>
-<li>Files are skipped/filtered based on <code>.cgcignore</code> configurations.</li>
-<li>Files are parsed via language-specific Tree-sitter grammars.</li>
-<li>Language parsers emit standardized objects (Classes, Functions, Modules).</li>
-<li>The Graph Builder reconciles imports (edges across different files) and saves them robustly into the active DB.</li>
-</ul>
-</li>
-<li><strong>Real-time querying:</strong><ul>
-<li>An LLM needs context for "Who calls <code>authenticate_user</code>?".</li>
-<li>The MCP client forwards the tool call: <code>analyze_code_relationships(queryType="find_callers", target="authenticate_user")</code>.</li>
-<li>The MCP server runs strict Cypher validation against the Database Abstraction Layer.</li>
-<li>DB returns specific file paths, snippet boundaries, and exact structural context natively avoiding hallucination.</li>
-</ul>
-</li>
-</ol>
-<h2 id="4-key-technologies">4. Key Technologies</h2>
+<h1 id="agent-skill-codegraphcontext-cgc">Agent skill: CodeGraphContext (CGC)</h1>
+<p>This is the <strong>published copy</strong> of the Cursor agent skill for CodeGraphContext. The same content lives under <code>.cursor/skills/codegraphcontext/SKILL.md</code> for Cursor users who clone the repo; both stay in sync when we update workflows.</p>
+<hr />
+<div class="highlight"><pre><span></span><code><span class="c1"># YAML frontmatter (Cursor SKILL.md format)</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codegraphcontext</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">  </span><span class="no">Use CodeGraphContext (CGC) to index a repo into a graph DB and query it via CLI</span>
+<span class="w">  </span><span class="no">or MCP. Apply when the user wants semantic/code-graph search, call graphs,</span>
+<span class="w">  </span><span class="no">indexing, or configuring the codegraphcontext MCP server.</span>
+</code></pre></div>
+<h2 id="when-to-use-this-skill">When to use this skill</h2>
 <ul>
-<li><strong>Language:</strong> Python 3.10+</li>
-<li><strong>Parsing:</strong> Tree-sitter (for reliable and multi-language AST extraction)</li>
-<li><strong>Protocol:</strong> Model Context Protocol (MCP) by Anthropic for seamless IDE interactions</li>
-<li><strong>Databases:</strong><ul>
-<li><strong>KùzuDB:</strong> Used as the default, lightweight embeddable C++ graph database supporting native Cypher compatibility.</li>
-<li><strong>Neo4j:</strong> Production-level graph DB compatibility via Cypher standardizing queries.</li>
+<li>Indexing or re-indexing a codebase for AI or CLI queries.</li>
+<li>Explaining how to install and run <code>cgc</code>, choose a database backend, or wire MCP into an editor.</li>
+<li>Interpreting CGC tools: <code>codegraph_find_code</code>, <code>analyze_code_relationships</code>, <code>add_code_to_graph</code>, etc.</li>
 </ul>
-</li>
-<li><strong>CLI Interface:</strong> <code>click</code> and <code>typer</code> frameworks.</li>
-<li><strong>Visualizations:</strong> Next.js / Vite / <code>react-force-graph</code> within the <code>website</code> directory for rendering the 3D local graph views.</li>
+<h2 id="core-workflow">Core workflow</h2>
+<ol>
+<li><strong>Install</strong>: <code>pip install codegraphcontext</code> (or <code>pipx install codegraphcontext</code>). With <strong>uv</strong>, <code>uv tool install codegraphcontext</code> or <code>uvx codegraphcontext …</code> is supported. <code>tree-sitter-c-sharp</code> is declared in this project’s <code>pyproject.toml</code>, but some <strong>uvx</strong> isolated environments have still failed to install it; if you see <code>ModuleNotFoundError: tree_sitter_c_sharp</code>, use e.g. <code>uvx --with tree-sitter-c-sharp codegraphcontext …</code>.</li>
+<li><strong>Configure</strong>: Optional <code>~/.codegraphcontext/.env</code> for <code>DEFAULT_DATABASE</code>, Neo4j URI, or Kùzu path. Run <code>cgc doctor</code> if connections fail.</li>
+<li><strong>Index</strong>: From the repo root, <code>cgc index .</code> (or <code>cgc index --force .</code> to rebuild). Ensure CLI and MCP use the same config so they see the same graph.</li>
+<li><strong>Query</strong>: CLI (<code>cgc find</code>, <code>cgc query</code>, …) or MCP tools after <code>cgc mcp setup</code> / <code>cgc mcp start</code> in the client config.</li>
+</ol>
+<h2 id="mcp-setup-short">MCP setup (short)</h2>
+<ul>
+<li>Run <code>cgc mcp setup</code> and pick your editor (including <strong>OpenCode</strong> for printed stdio instructions), or add a server entry that runs <code>cgc</code> with args <code>mcp</code> <code>start</code> and the same env as the CLI.</li>
+<li><strong>OpenCode</strong>: <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers</a>.</li>
+</ul>
+<h2 id="agent-behavior">Agent behavior</h2>
+<ul>
+<li>Prefer <strong>indexing the workspace</strong> before deep graph queries if the user has not indexed yet.</li>
+<li>For <strong>fuzzy symbol search</strong> on Kùzu/Falkor backends, matching is typo-tolerant (edit distance); on Neo4j, full-text fuzzy uses Lucene-style terms—preserve <strong>original casing</strong> in queries when fuzziness matters for camelCase symbols.</li>
+<li>If <strong><code>Repository.path</code> is missing</strong> in the DB, those rows are skipped for path matching and a <strong>warning is logged</strong> when repositories are listed; clean up stale nodes if needed.</li>
+</ul>
+<h2 id="references-in-this-repo">References in this repo</h2>
+<ul>
+<li>CLI entry: <code>codegraphcontext.cli.main</code></li>
+<li>MCP server and tool wiring: <code>codegraphcontext.server</code>, <code>tool_definitions.py</code></li>
+<li>User-facing setup: <a href="../setup_workflows/">Setup workflows</a>, <a href="../guides/mcp_guide/">MCP guide</a></li>
 </ul>
 
 
