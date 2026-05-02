@@ -14,7 +14,7 @@
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../images/cgcIcon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
@@ -86,8 +86,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="CodeGraphContext" class="md-header__button md-logo" aria-label="CodeGraphContext" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/cgcIcon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -352,8 +351,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="CodeGraphContext" class="md-nav__button md-logo" aria-label="CodeGraphContext" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/cgcIcon.png" alt="logo">
 
     </a>
     CodeGraphContext
@@ -1284,7 +1282,7 @@
 </div>
 <div class="tabbed-block">
 <p>If you have already installed <code>codegraphcontext</code>, run:
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>mcp<span class="w"> </span>setup
+<div class="highlight"><pre><span></span><code>codegraphcontext<span class="w"> </span>mcp<span class="w"> </span>setup
 </code></pre></div></p>
 </div>
 </div>
@@ -1327,7 +1325,7 @@
 <tr>
 <td style="text-align: left;"><strong>OpenCode</strong></td>
 <td style="text-align: left;">Manual</td>
-<td style="text-align: left;">Add a stdio MCP server with command <code>cgc</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, LadybugDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
+<td style="text-align: left;">Add a stdio MCP server with command <code>codegraphcontext</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, LadybugDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -1343,7 +1341,7 @@
 <ul>
 <li><strong>"Component not found":</strong> This usually means the MCP server didn't start. Check the logs in your AI editor.</li>
 <li><strong>"Database error":</strong> Embedded backends (<strong>FalkorDB Lite</strong>, <strong>LadybugDB</strong>) need <strong>no external database setup</strong>—if you use them, the problem is usually config, disk, or Python environment. If you use <strong>Neo4j</strong>, ensure the container or server is running (<code>docker ps</code> / service status) and credentials match your config (<strong><code>DEFAULT_DATABASE</code></strong> and related env vars).</li>
-<li><strong>Diagnostics:</strong> Run <strong><code>cgc doctor</code></strong> for a quick health check of your install, backend, and common configuration issues.</li>
+<li><strong>Diagnostics:</strong> Run <strong><code>codegraphcontext doctor</code></strong> for a quick health check of your install, backend, and common configuration issues.</li>
 </ul>
 
 

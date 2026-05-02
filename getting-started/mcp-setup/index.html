@@ -18,7 +18,7 @@
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../images/cgcIcon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mcp-server-configuration" class="md-skip">
+        <a href="#smart-setup-recommended" class="md-skip">
           Skip to content
         </a>
       
@@ -90,8 +90,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="CodeGraphContext" class="md-header__button md-logo" aria-label="CodeGraphContext" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/cgcIcon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -358,8 +357,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="CodeGraphContext" class="md-nav__button md-logo" aria-label="CodeGraphContext" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/cgcIcon.png" alt="logo">
 
     </a>
     CodeGraphContext
@@ -532,8 +530,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -576,14 +572,62 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#smart-setup-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Smart Setup (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Smart Setup (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-uvx-no-installation-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using uvx (No Installation Required)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-local-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Local CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Configuration
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-claude-desktop" class="md-nav__link">
@@ -1337,14 +1381,62 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#smart-setup-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 Smart Setup (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Smart Setup (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-uvx-no-installation-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using uvx (No Installation Required)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-local-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Local CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Configuration
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#1-claude-desktop" class="md-nav__link">
@@ -1449,29 +1541,44 @@
   
 
 
-<h1 id="mcp-server-configuration">MCP Server Configuration</h1>
+  <h1>MCP Setup</h1>
+
 <p>CodeGraphContext (CGC) implements the <strong>Model Context Protocol (MCP)</strong>, allowing it to act as a powerful context provider for AI assistants like Claude Desktop, Cursor, and VS Code.</p>
+<h2 id="smart-setup-recommended">🚀 Smart Setup (Recommended)</h2>
+<p>The easiest way to configure CGC for your AI assistant is to use the interactive setup wizard. This tool will automatically detect your installed IDEs and apps and offer to configure them for you.</p>
+<h3 id="using-uvx-no-installation-required">Using <code>uvx</code> (No Installation Required)</h3>
+<p>If you have <a href="https://github.com/astral-sh/uv">uv</a> installed, run:
+<div class="highlight"><pre><span></span><code>uvx<span class="w"> </span>codegraphcontext<span class="w"> </span>mcp<span class="w"> </span>setup
+</code></pre></div></p>
+<h3 id="using-local-cli">Using Local CLI</h3>
+<p>If you have already installed CGC, run:
+<div class="highlight"><pre><span></span><code>codegraphcontext<span class="w"> </span>mcp<span class="w"> </span>setup
+</code></pre></div></p>
+<hr />
+<h2 id="manual-configuration">Manual Configuration</h2>
+<p>If the automated setup doesn't work for your environment, you can configure your client manually.</p>
 <h2 id="1-claude-desktop">1. Claude Desktop</h2>
 <p>To use CGC with the Claude Desktop app, you need to add it to your configuration file.</p>
 <h3 id="configuration-path">Configuration Path</h3>
 <ul>
 <li><strong>macOS</strong>: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
 <li><strong>Windows</strong>: <code>%APPDATA%\Claude\claude_desktop_config.json</code></li>
+<li><strong>Linux</strong>: <code>~/.config/Claude/claude_desktop_config.json</code></li>
 </ul>
 <h3 id="add-cgc-to-mcpservers">Add CGC to <code>mcpServers</code></h3>
 <p>Add the following entry to the <code>mcpServers</code> object:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;CodeGraphContext&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cgc&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mcp&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;codegraphcontext&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;mcp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;start&quot;</span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
 <p>[!TIP]
-If you installed CGC via <code>uvx</code>, you can use <code>"command": "uvx", "args": ["codegraphcontext", "mcp"]</code> instead.</p>
+If you installed CGC via <code>uvx</code>, you can use <code>"command": "uvx", "args": ["codegraphcontext", "mcp", "start"]</code> instead.</p>
 </blockquote>
 <h2 id="2-cursor">2. Cursor</h2>
 <p>Cursor supports MCP servers natively.</p>
@@ -1482,12 +1589,12 @@ If you installed CGC via <code>uvx</code>, you can use <code>"command": "uvx", "
 <li>Enter the following details:<ul>
 <li><strong>Name</strong>: <code>CodeGraphContext</code></li>
 <li><strong>Type</strong>: <code>command</code></li>
-<li><strong>Command</strong>: <code>cgc mcp</code></li>
+<li><strong>Command</strong>: <code>codegraphcontext mcp</code></li>
 </ul>
 </li>
 </ol>
 <h2 id="3-vs-code-windsurf-kiro">3. VS Code (Windsurf / Kiro)</h2>
-<p>For VS Code extensions that support MCP, use the same command: <code>cgc mcp</code>. Ensure your terminal environment has access to the <code>cgc</code> command.</p>
+<p>For VS Code extensions that support MCP, use the same command: <code>codegraphcontext mcp</code>. Ensure your terminal environment has access to the <code>codegraphcontext</code> command.</p>
 <hr />
 <h2 id="verifying-the-connection">Verifying the Connection</h2>
 <p>Once configured, restart your AI assistant. You should see a list of tools provided by CodeGraphContext, such as:</p>
@@ -1504,8 +1611,8 @@ If you installed CGC via <code>uvx</code>, you can use <code>"command": "uvx", "
 <hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>If the tools do not appear:
-1.  Check that <code>cgc mcp</code> runs without errors in your terminal.
-2.  Verify the path to the <code>cgc</code> executable in your config file.
+1.  Check that <code>codegraphcontext mcp</code> runs without errors in your terminal.
+2.  Verify the path to the <code>codegraphcontext</code> executable in your config file.
 3.  Consult the <strong><a href="../../reference/troubleshooting/">Troubleshooting Guide</a></strong>.</p>
 
 
