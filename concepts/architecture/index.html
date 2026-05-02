@@ -1443,10 +1443,18 @@
         C --&gt; E[MCP Server]
     end</code></pre>
 <h3 id="1-ingestion-layer">1. Ingestion Layer</h3>
-<p>This layer is responsible for translating raw source code into semantic graph entities.
-*   <strong>Parsers</strong>: Uses Tree-sitter for high-fidelity AST extraction and SCIP for precise symbol resolution across files.
-*   <strong>Graph Builder</strong>: Orchestrates the parsing process, resolves imports, and establishes relationships (edges) between nodes.
-*   <strong>Background Jobs</strong>: Long-running indexing tasks are managed via an internal job queue to ensure the UI remains responsive.</p>
+<p>This layer is responsible for translating raw source code into semantic graph entities.</p>
+<ul>
+<li>
+<p><strong>Parsers</strong>: Uses Tree-sitter for high-fidelity AST extraction and SCIP for precise symbol resolution across files.</p>
+</li>
+<li>
+<p><strong>Graph Builder</strong>: Orchestrates the parsing process, resolves imports, and establishes relationships (edges) between nodes.</p>
+</li>
+<li>
+<p><strong>Background Jobs</strong>: Long-running indexing tasks are managed via an internal job queue to ensure the UI remains responsive.</p>
+</li>
+</ul>
 <h3 id="2-persistence-layer">2. Persistence Layer</h3>
 <p>CGC supports multiple database backends to store the code graph.
 *   <strong>Embedded Databases (KùzuDB/FalkorDB Lite)</strong>: Provide zero-latency access for local development without external dependencies.

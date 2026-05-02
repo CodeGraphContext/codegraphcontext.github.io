@@ -1709,60 +1709,92 @@
 <p>The <code>cgc</code> command-line interface provides a suite of tools for indexing, querying, and managing your code graph.</p>
 <h2 id="core-commands">Core Commands</h2>
 <h3 id="index"><code>index</code></h3>
-<p>Index a repository or directory.
-*   <strong>Usage</strong>: <code>cgc index [PATH]</code>
-*   <strong>Options</strong>:
-    *   <code>--dependency</code>: Mark the indexed code as a dependency.
-    *   <code>--deep</code>: Perform a deeper analysis of relationships.
-    *   <code>--force</code>: Re-index all files even if they haven't changed.</p>
+<p>Index a repository or directory.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc index [PATH]</code></li>
+<li><strong>Options</strong>:<ul>
+<li><code>--dependency</code>: Mark the indexed code as a dependency.</li>
+<li><code>--deep</code>: Perform a deeper analysis of relationships.</li>
+<li><code>--force</code>: Re-index all files even if they haven't changed.</li>
+</ul>
+</li>
+</ul>
 <h3 id="watch"><code>watch</code></h3>
-<p>Monitor a directory for changes and update the graph in real-time.
-*   <strong>Usage</strong>: <code>cgc watch [PATH]</code></p>
+<p>Monitor a directory for changes and update the graph in real-time.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc watch [PATH]</code></li>
+</ul>
 <h3 id="stats"><code>stats</code></h3>
-<p>Display statistics about the current indexed repository.
-*   <strong>Usage</strong>: <code>cgc stats [--all]</code></p>
+<p>Display statistics about the current indexed repository.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc stats [--all]</code></li>
+</ul>
 <hr />
 <h2 id="querying-the-graph">Querying the Graph</h2>
 <h3 id="query"><code>query</code></h3>
-<p>Execute relationship-based queries.
-*   <strong>Usage</strong>: <code>cgc query [TYPE] [TARGET]</code>
-*   <strong>Types</strong>:
-    *   <code>callers</code>: Find functions that call the target.
-    *   <code>callees</code>: Find functions called by the target.
-    *   <code>hierarchy</code>: Show class inheritance for the target.
-    *   <code>dead-code</code>: Identify potentially unused functions.</p>
+<p>Execute relationship-based queries.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc query [TYPE] [TARGET]</code></li>
+<li><strong>Types</strong>:<ul>
+<li><code>callers</code>: Find functions that call the target.</li>
+<li><code>callees</code>: Find functions called by the target.</li>
+<li><code>hierarchy</code>: Show class inheritance for the target.</li>
+<li><code>dead-code</code>: Identify potentially unused functions.</li>
+</ul>
+</li>
+</ul>
 <h3 id="find"><code>find</code></h3>
-<p>Search for code symbols (functions, classes, etc.) by name or content.
-*   <strong>Usage</strong>: <code>cgc find [QUERY]</code>
-*   <strong>Options</strong>:
-    *   <code>--fuzzy</code>: Use fuzzy matching for the search query.</p>
+<p>Search for code symbols (functions, classes, etc.) by name or content.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc find [QUERY]</code></li>
+<li><strong>Options</strong>:<ul>
+<li><code>--fuzzy</code>: Use fuzzy matching for the search query.</li>
+</ul>
+</li>
+</ul>
 <h3 id="visualize"><code>visualize</code></h3>
-<p>Generate a visual graph of the codebase or a specific query.
-*   <strong>Usage</strong>: <code>cgc visualize [--query Q]</code></p>
+<p>Generate a visual graph of the codebase or a specific query.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc visualize [--query Q]</code></li>
+</ul>
 <hr />
 <h2 id="bundle-management">Bundle Management</h2>
 <h3 id="bundle-create"><code>bundle create</code></h3>
-<p>Export the current index to a <code>.cgc</code> bundle file.
-*   <strong>Usage</strong>: <code>cgc bundle create --name NAME</code></p>
+<p>Export the current index to a <code>.cgc</code> bundle file.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc bundle create --name NAME</code></li>
+</ul>
 <h3 id="bundle-load"><code>bundle load</code></h3>
-<p>Load a local bundle or download one from the registry.
-*   <strong>Usage</strong>: <code>cgc bundle load [PATH|NAME]</code></p>
+<p>Load a local bundle or download one from the registry.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc bundle load [PATH|NAME]</code></li>
+</ul>
 <h3 id="bundle-search"><code>bundle search</code></h3>
-<p>Search the CGC bundle registry.
-*   <strong>Usage</strong>: <code>cgc bundle search [QUERY]</code></p>
+<p>Search the CGC bundle registry.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc bundle search [QUERY]</code></li>
+</ul>
 <hr />
 <h2 id="system-configuration">System &amp; Configuration</h2>
 <h3 id="config"><code>config</code></h3>
-<p>Manage global configuration settings.
-*   <strong>Subcommands</strong>:
-    *   <code>set-db [kuzudb|falkordb|neo4j]</code>: Set the default database backend.
-    *   <code>list</code>: Show all current configuration values.</p>
+<p>Manage global configuration settings.</p>
+<ul>
+<li><strong>Subcommands</strong>:<ul>
+<li><code>set-db [kuzudb|falkordb|neo4j]</code>: Set the default database backend.</li>
+<li><code>list</code>: Show all current configuration values.</li>
+</ul>
+</li>
+</ul>
 <h3 id="doctor"><code>doctor</code></h3>
-<p>Run diagnostics to verify installation and backend connectivity.
-*   <strong>Usage</strong>: <code>cgc doctor</code></p>
+<p>Run diagnostics to verify installation and backend connectivity.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc doctor</code></li>
+</ul>
 <h3 id="mcp"><code>mcp</code></h3>
-<p>Start the Model Context Protocol (MCP) server. This command is typically invoked by AI assistants, not directly by users.
-*   <strong>Usage</strong>: <code>cgc mcp</code></p>
+<p>Start the Model Context Protocol (MCP) server. This command is typically invoked by AI assistants, not directly by users.</p>
+<ul>
+<li><strong>Usage</strong>: <code>cgc mcp</code></li>
+</ul>
 <hr />
 <h2 id="global-options">Global Options</h2>
 <ul>
