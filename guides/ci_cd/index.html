@@ -692,7 +692,7 @@
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cgc analyze complexity --threshold 20 --fail-on-found</span>
 </code></pre></div>
 <h2 id="ci-without-docker">CI without Docker</h2>
-<p><strong>FalkorDB Lite</strong> and <strong>LadybugDB</strong> work in CI <strong>without Docker</strong> or external graph services—ideal for GitHub Actions and locked-down runners. <strong>LadybugDB</strong> is especially convenient when you want a file-backed embedded store and no extra services; set the backend explicitly with <strong><code>cgc config db kuzudb</code></strong> in the job so behavior is predictable across environments.</p>
+<p><strong>FalkorDB Lite</strong> and <strong>KuzuDB</strong> work in CI <strong>without Docker</strong> or external graph services—ideal for GitHub Actions and locked-down runners. <strong>KuzuDB</strong> is especially convenient when you want a file-backed embedded store and no extra services; set the backend explicitly with <strong><code>cgc config db kuzudb</code></strong> in the job so behavior is predictable across environments.</p>
 <h2 id="large-scale-indexing">Large Scale Indexing</h2>
 <p>For repos with &gt; 100,000 LOC:
 1.  <strong>Use Neo4j:</strong> FalkorDB may run out of RAM.
@@ -766,7 +766,7 @@
 <span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cgc analyze complexity --threshold 20 --fail-on-found</span>
 </code></pre></div>
 <h2 id="ci-without-docker">CI without Docker</h2>
-<p><strong>FalkorDB Lite</strong> and <strong>LadybugDB</strong> work in CI <strong>without Docker</strong> or external graph services—ideal for GitHub Actions and locked-down runners. <strong>LadybugDB</strong> is especially convenient when you want a file-backed embedded store and no extra services; set the backend explicitly with <strong><code>cgc config db kuzudb</code></strong> in the job so behavior is predictable across environments.</p>
+<p><strong>FalkorDB Lite</strong> and <strong>KuzuDB</strong> work in CI <strong>without Docker</strong> or external graph services—ideal for GitHub Actions and locked-down runners. <strong>KuzuDB</strong> is especially convenient when you want a file-backed embedded store and no extra services; set the backend explicitly with <strong><code>cgc config db kuzudb</code></strong> in the job so behavior is predictable across environments.</p>
 <h2 id="large-scale-indexing">Large Scale Indexing</h2>
 <p>For repos with &gt; 100,000 LOC:
 1.  <strong>Use Neo4j:</strong> FalkorDB may run out of RAM.

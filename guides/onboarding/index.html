@@ -687,7 +687,7 @@
 <h3 id="srccodegraphcontext"><code>src/codegraphcontext/</code></h3>
 <p>This is the <strong>Core Engine</strong> containing all the Python logic to index, watch, and query code contexts.
 - <strong><code>cli/</code></strong>: Directory housing the command-line interface logic using <strong>Typer</strong>. All commands like <code>cgc index</code>, <code>cgc list</code>, and <code>cgc clean</code> live here.
-- <strong><code>core/</code></strong>: Core engine pieces including <strong>database drivers and connection logic</strong>. <strong>FalkorDB</strong> (Lite and remote) is the primary path on Unix/Python 3.12+; <strong>LadybugDB</strong> supports embedded use (including Windows/fallback); <strong>Neo4j</strong> is available for remote or production deployments.
+- <strong><code>core/</code></strong>: Core engine pieces including <strong>database drivers and connection logic</strong>. <strong>FalkorDB</strong> (Lite and remote) is the primary path on Unix/Python 3.12+; <strong>KuzuDB</strong> supports embedded use (including Windows/fallback); <strong>Neo4j</strong> is available for remote or production deployments.
 - <strong><code>tools/languages/</code></strong>: Collection of language-specific Tree-sitter implementations. Each module corresponds to a language (e.g., <code>python.py</code>, <code>javascript.py</code>) responsible for translating syntax ASTs into standard nodes/edges.
 - <strong><code>utils/</code></strong>: Shared helpers across the project (logging, environment validation).
 - <strong><code>graph_builder.py</code></strong>: The heavy-lifter file. Coordinates parsing across files, batches nodes and edges, and commits them to the DB.
@@ -702,7 +702,7 @@
 <h3 id="tests"><code>tests/</code></h3>
 <p>The testing suite. It ensures no PR breaks the engine.
 - <strong><code>unit/</code></strong>: Isolated testing for small functions (such as specific parsers returning the right class name).
-- <strong><code>integration/</code></strong>: Ensuring connections to local LadybugDB/Neo4j successfully write and read complex relationships.
+- <strong><code>integration/</code></strong>: Ensuring connections to local KuzuDB/Neo4j successfully write and read complex relationships.
 - <strong><code>fixtures/</code></strong>: Mocked codebase folders (small fake python or typescript projects) used to validate parsers.</p>
 <h3 id="k8s"><code>k8s/</code></h3>
 <p>Kubernetes manifests for enterprise, scaled-out deployments.
@@ -791,7 +791,7 @@
 <h3 id="srccodegraphcontext"><code>src/codegraphcontext/</code></h3>
 <p>This is the <strong>Core Engine</strong> containing all the Python logic to index, watch, and query code contexts.
 - <strong><code>cli/</code></strong>: Directory housing the command-line interface logic using <strong>Typer</strong>. All commands like <code>cgc index</code>, <code>cgc list</code>, and <code>cgc clean</code> live here.
-- <strong><code>core/</code></strong>: Core engine pieces including <strong>database drivers and connection logic</strong>. <strong>FalkorDB</strong> (Lite and remote) is the primary path on Unix/Python 3.12+; <strong>LadybugDB</strong> supports embedded use (including Windows/fallback); <strong>Neo4j</strong> is available for remote or production deployments.
+- <strong><code>core/</code></strong>: Core engine pieces including <strong>database drivers and connection logic</strong>. <strong>FalkorDB</strong> (Lite and remote) is the primary path on Unix/Python 3.12+; <strong>KuzuDB</strong> supports embedded use (including Windows/fallback); <strong>Neo4j</strong> is available for remote or production deployments.
 - <strong><code>tools/languages/</code></strong>: Collection of language-specific Tree-sitter implementations. Each module corresponds to a language (e.g., <code>python.py</code>, <code>javascript.py</code>) responsible for translating syntax ASTs into standard nodes/edges.
 - <strong><code>utils/</code></strong>: Shared helpers across the project (logging, environment validation).
 - <strong><code>graph_builder.py</code></strong>: The heavy-lifter file. Coordinates parsing across files, batches nodes and edges, and commits them to the DB.
@@ -806,7 +806,7 @@
 <h3 id="tests"><code>tests/</code></h3>
 <p>The testing suite. It ensures no PR breaks the engine.
 - <strong><code>unit/</code></strong>: Isolated testing for small functions (such as specific parsers returning the right class name).
-- <strong><code>integration/</code></strong>: Ensuring connections to local LadybugDB/Neo4j successfully write and read complex relationships.
+- <strong><code>integration/</code></strong>: Ensuring connections to local KuzuDB/Neo4j successfully write and read complex relationships.
 - <strong><code>fixtures/</code></strong>: Mocked codebase folders (small fake python or typescript projects) used to validate parsers.</p>
 <h3 id="k8s"><code>k8s/</code></h3>
 <p>Kubernetes manifests for enterprise, scaled-out deployments.

@@ -697,10 +697,10 @@
 <hr />
 <h2 id="2-database-backend-selection">2. Database Backend Selection</h2>
 <p>CGC requires a graph database to store the indexed code. You can choose the backend that best fits your needs.</p>
-<h3 id="option-a-ladybugdb-default-recommended">Option A: LadybugDB (Default &amp; Recommended)</h3>
-<p>LadybugDB is an embedded, extremely fast graph database. It requires zero configuration and runs directly within the CGC process.</p>
+<h3 id="option-a-kuzudb-default-recommended">Option A: KuzuDB (Default &amp; Recommended)</h3>
+<p>KuzuDB is an embedded, extremely fast graph database. It requires zero configuration and runs directly within the CGC process.</p>
 <ul>
-<li><strong>Installation</strong>: <code>pip install real_ladybug</code></li>
+<li><strong>Installation</strong>: <code>pip install kuzu</code></li>
 <li><strong>Best for</strong>: Local development, individual projects, and zero-ops setups.</li>
 <li><strong>Pros</strong>: No external services, portable database files.</li>
 </ul>
@@ -710,7 +710,7 @@
 <li><strong>Installation</strong>: <code>pip install falkordblite</code> (Linux/macOS only)</li>
 <li><strong>Best for</strong>: Large codebases and performance-critical queries.</li>
 <li><strong>Pros</strong>: Industry-leading query performance.</li>
-<li><strong>Note</strong>: We use <code>falkordblite</code> for supported devices (Python 3.12+ on Unix), and LadybugDB (kuzudb) for the rest. We have largely shifted to LadybugDB as the primary embedded engine.</li>
+<li><strong>Note</strong>: We use <code>falkordblite</code> for supported devices (Python 3.12+ on Unix), and KuzuDB (kuzudb) for the rest. We have largely shifted to KuzuDB as the primary embedded engine.</li>
 </ul>
 <h3 id="option-c-neo4j-enterprise">Option C: Neo4j (Enterprise)</h3>
 <p>Neo4j is the industry standard for graph databases, offering powerful visualization and management tools.</p>
@@ -794,10 +794,10 @@
 <hr />
 <h2 id="2-database-backend-selection">2. Database Backend Selection</h2>
 <p>CGC requires a graph database to store the indexed code. You can choose the backend that best fits your needs.</p>
-<h3 id="option-a-ladybugdb-default-recommended">Option A: LadybugDB (Default &amp; Recommended)</h3>
-<p>LadybugDB is an embedded, extremely fast graph database. It requires zero configuration and runs directly within the CGC process.</p>
+<h3 id="option-a-kuzudb-default-recommended">Option A: KuzuDB (Default &amp; Recommended)</h3>
+<p>KuzuDB is an embedded, extremely fast graph database. It requires zero configuration and runs directly within the CGC process.</p>
 <ul>
-<li><strong>Installation</strong>: <code>pip install real_ladybug</code></li>
+<li><strong>Installation</strong>: <code>pip install kuzu</code></li>
 <li><strong>Best for</strong>: Local development, individual projects, and zero-ops setups.</li>
 <li><strong>Pros</strong>: No external services, portable database files.</li>
 </ul>
@@ -807,7 +807,7 @@
 <li><strong>Installation</strong>: <code>pip install falkordblite</code> (Linux/macOS only)</li>
 <li><strong>Best for</strong>: Large codebases and performance-critical queries.</li>
 <li><strong>Pros</strong>: Industry-leading query performance.</li>
-<li><strong>Note</strong>: We use <code>falkordblite</code> for supported devices (Python 3.12+ on Unix), and LadybugDB (kuzudb) for the rest. We have largely shifted to LadybugDB as the primary embedded engine.</li>
+<li><strong>Note</strong>: We use <code>falkordblite</code> for supported devices (Python 3.12+ on Unix), and KuzuDB (kuzudb) for the rest. We have largely shifted to KuzuDB as the primary embedded engine.</li>
 </ul>
 <h3 id="option-c-neo4j-enterprise">Option C: Neo4j (Enterprise)</h3>
 <p>Neo4j is the industry standard for graph databases, offering powerful visualization and management tools.</p>

@@ -720,7 +720,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 <tr>
 <td style="text-align: left;"><strong><code>DEFAULT_DATABASE</code></strong></td>
 <td style="text-align: left;"><code>falkordb</code></td>
-<td style="text-align: left;">Active database: <code>falkordb</code> (FalkorDB Lite), <code>falkordb-remote</code>, <code>kuzudb</code>, or <code>neo4j</code>. On Unix with Python 3.12+, FalkorDB Lite is the typical default; LadybugDB is the common embedded fallback (including Windows).</td>
+<td style="text-align: left;">Active database: <code>falkordb</code> (FalkorDB Lite), <code>falkordb-remote</code>, <code>kuzudb</code>, or <code>neo4j</code>. On Unix with Python 3.12+, FalkorDB Lite is the typical default; KuzuDB is the common embedded fallback (including Windows).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>ENABLE_AUTO_WATCH</code></strong></td>
@@ -891,8 +891,8 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 </tr>
 </tbody>
 </table>
-<h3 id="database-path-ladybugdb-embedded">Database path — LadybugDB (embedded)</h3>
-<p>LadybugDB is an embedded database (no separate server process). The on-disk location is controlled by:</p>
+<h3 id="database-path-kuzudb-embedded">Database path — KuzuDB (embedded)</h3>
+<p>KuzuDB is an embedded database (no separate server process). The on-disk location is controlled by:</p>
 <table>
 <thead>
 <tr>
@@ -903,7 +903,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 <tbody>
 <tr>
 <td style="text-align: left;"><strong><code>KUZUDB_PATH</code></strong></td>
-<td style="text-align: left;">Filesystem path for the LadybugDB database directory/file. If unset, defaults under <code>~/.codegraphcontext/global/kuzudb</code> (or the path resolved for the active <strong>context</strong>).</td>
+<td style="text-align: left;">Filesystem path for the KuzuDB database directory/file. If unset, defaults under <code>~/.codegraphcontext/global/kuzudb</code> (or the path resolved for the active <strong>context</strong>).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Named contexts</strong></td>
@@ -911,7 +911,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 </tr>
 </tbody>
 </table>
-<p>Install the Python package with <code>pip install real_ladybug</code> when using <code>DEFAULT_DATABASE=kuzudb</code>.</p>
+<p>Install the Python package with <code>pip install kuzu</code> when using <code>DEFAULT_DATABASE=kuzudb</code>.</p>
 <hr />
 <h2 id="configuration-files">Configuration files</h2>
 <p>CodeGraphContext merges settings in this order (later overrides earlier where applicable):</p>
@@ -1020,7 +1020,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 <tr>
 <td style="text-align: left;"><strong><code>DEFAULT_DATABASE</code></strong></td>
 <td style="text-align: left;"><code>falkordb</code></td>
-<td style="text-align: left;">Active database: <code>falkordb</code> (FalkorDB Lite), <code>falkordb-remote</code>, <code>kuzudb</code>, or <code>neo4j</code>. On Unix with Python 3.12+, FalkorDB Lite is the typical default; LadybugDB is the common embedded fallback (including Windows).</td>
+<td style="text-align: left;">Active database: <code>falkordb</code> (FalkorDB Lite), <code>falkordb-remote</code>, <code>kuzudb</code>, or <code>neo4j</code>. On Unix with Python 3.12+, FalkorDB Lite is the typical default; KuzuDB is the common embedded fallback (including Windows).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>ENABLE_AUTO_WATCH</code></strong></td>
@@ -1191,8 +1191,8 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 </tr>
 </tbody>
 </table>
-<h3 id="database-path-ladybugdb-embedded">Database path — LadybugDB (embedded)</h3>
-<p>LadybugDB is an embedded database (no separate server process). The on-disk location is controlled by:</p>
+<h3 id="database-path-kuzudb-embedded">Database path — KuzuDB (embedded)</h3>
+<p>KuzuDB is an embedded database (no separate server process). The on-disk location is controlled by:</p>
 <table>
 <thead>
 <tr>
@@ -1203,7 +1203,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 <tbody>
 <tr>
 <td style="text-align: left;"><strong><code>KUZUDB_PATH</code></strong></td>
-<td style="text-align: left;">Filesystem path for the LadybugDB database directory/file. If unset, defaults under <code>~/.codegraphcontext/global/kuzudb</code> (or the path resolved for the active <strong>context</strong>).</td>
+<td style="text-align: left;">Filesystem path for the KuzuDB database directory/file. If unset, defaults under <code>~/.codegraphcontext/global/kuzudb</code> (or the path resolved for the active <strong>context</strong>).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Named contexts</strong></td>
@@ -1211,7 +1211,7 @@ cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </sp
 </tr>
 </tbody>
 </table>
-<p>Install the Python package with <code>pip install real_ladybug</code> when using <code>DEFAULT_DATABASE=kuzudb</code>.</p>
+<p>Install the Python package with <code>pip install kuzu</code> when using <code>DEFAULT_DATABASE=kuzudb</code>.</p>
 <hr />
 <h2 id="configuration-files">Configuration files</h2>
 <p>CodeGraphContext merges settings in this order (later overrides earlier where applicable):</p>

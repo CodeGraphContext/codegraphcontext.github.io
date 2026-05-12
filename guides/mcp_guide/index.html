@@ -725,7 +725,7 @@
 <tr>
 <td style="text-align: left;"><strong>OpenCode</strong></td>
 <td style="text-align: left;">Manual</td>
-<td style="text-align: left;">Add a stdio MCP server with command <code>codegraphcontext</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, LadybugDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
+<td style="text-align: left;">Add a stdio MCP server with command <code>codegraphcontext</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, KuzuDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -740,7 +740,7 @@
 <h2 id="4-troubleshooting">4. Troubleshooting</h2>
 <ul>
 <li><strong>"Component not found":</strong> This usually means the MCP server didn't start. Check the logs in your AI editor.</li>
-<li><strong>"Database error":</strong> Embedded backends (<strong>FalkorDB Lite</strong>, <strong>LadybugDB</strong>) need <strong>no external database setup</strong>—if you use them, the problem is usually config, disk, or Python environment. If you use <strong>Neo4j</strong>, ensure the container or server is running (<code>docker ps</code> / service status) and credentials match your config (<strong><code>DEFAULT_DATABASE</code></strong> and related env vars).</li>
+<li><strong>"Database error":</strong> Embedded backends (<strong>FalkorDB Lite</strong>, <strong>KuzuDB</strong>) need <strong>no external database setup</strong>—if you use them, the problem is usually config, disk, or Python environment. If you use <strong>Neo4j</strong>, ensure the container or server is running (<code>docker ps</code> / service status) and credentials match your config (<strong><code>DEFAULT_DATABASE</code></strong> and related env vars).</li>
 <li><strong>Diagnostics:</strong> Run <strong><code>codegraphcontext doctor</code></strong> for a quick health check of your install, backend, and common configuration issues.</li>
 </ul>
 
@@ -844,7 +844,7 @@
 <tr>
 <td style="text-align: left;"><strong>OpenCode</strong></td>
 <td style="text-align: left;">Manual</td>
-<td style="text-align: left;">Add a stdio MCP server with command <code>codegraphcontext</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, LadybugDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
+<td style="text-align: left;">Add a stdio MCP server with command <code>codegraphcontext</code> and args <code>mcp</code>, <code>start</code>; mirror the same env vars as your CLI (<code>DEFAULT_DATABASE</code>, Neo4j, KuzuDB, etc.). See the <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers guide</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -859,7 +859,7 @@
 <h2 id="4-troubleshooting">4. Troubleshooting</h2>
 <ul>
 <li><strong>"Component not found":</strong> This usually means the MCP server didn't start. Check the logs in your AI editor.</li>
-<li><strong>"Database error":</strong> Embedded backends (<strong>FalkorDB Lite</strong>, <strong>LadybugDB</strong>) need <strong>no external database setup</strong>—if you use them, the problem is usually config, disk, or Python environment. If you use <strong>Neo4j</strong>, ensure the container or server is running (<code>docker ps</code> / service status) and credentials match your config (<strong><code>DEFAULT_DATABASE</code></strong> and related env vars).</li>
+<li><strong>"Database error":</strong> Embedded backends (<strong>FalkorDB Lite</strong>, <strong>KuzuDB</strong>) need <strong>no external database setup</strong>—if you use them, the problem is usually config, disk, or Python environment. If you use <strong>Neo4j</strong>, ensure the container or server is running (<code>docker ps</code> / service status) and credentials match your config (<strong><code>DEFAULT_DATABASE</code></strong> and related env vars).</li>
 <li><strong>Diagnostics:</strong> Run <strong><code>codegraphcontext doctor</code></strong> for a quick health check of your install, backend, and common configuration issues.</li>
 </ul>
 

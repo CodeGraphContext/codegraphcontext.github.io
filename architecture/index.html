@@ -692,7 +692,7 @@
     subgraph Backends["Graph backends"]
         FKL[(FalkorDB Lite)]
         FKR[(FalkorDB Remote)]
-        KUZU[(LadybugDB)]
+        KUZU[(KuzuDB)]
         NEO[(Neo4j)]
     end
 
@@ -746,7 +746,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Database abstraction</strong></td>
-<td style="text-align: left;">Single query/index API over <strong>FalkorDB Lite</strong> (default on Unix with Python 3.12+), <strong>FalkorDB Remote</strong>, <strong>LadybugDB</strong> (embedded fallback, common on Windows), and <strong>Neo4j</strong> (enterprise/production).</td>
+<td style="text-align: left;">Single query/index API over <strong>FalkorDB Lite</strong> (default on Unix with Python 3.12+), <strong>FalkorDB Remote</strong>, <strong>KuzuDB</strong> (embedded fallback, common on Windows), and <strong>Neo4j</strong> (enterprise/production).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Bundle / registry</strong></td>
@@ -768,7 +768,7 @@
 <li><strong>AI IDEs</strong> — Primary UX: chat and agents call MCP tools; the graph grounds answers in real paths, symbols, and relationships.</li>
 <li><strong>CLI (<code>cgc</code>)</strong> — Initialize, index, query (<code>cgc query</code>), search (<code>cgc find</code>), bundles, and maintenance.</li>
 <li><strong>Visualization</strong> — Local <strong>FastAPI</strong> backend plus <strong>React</strong> front-end (not Next.js) for force-directed or similar graph views.</li>
-<li><strong>Native DB tools</strong> — FalkorDB/LadybugDB/Neo4j-specific browsers or CLIs for low-level Cypher or vendor exploration.</li>
+<li><strong>Native DB tools</strong> — FalkorDB/KuzuDB/Neo4j-specific browsers or CLIs for low-level Cypher or vendor exploration.</li>
 </ol>
 <h2 id="typical-data-flow">Typical data flow</h2>
 <ol>
@@ -798,7 +798,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Graph stores</strong></td>
-<td style="text-align: left;"><strong>FalkorDB Lite</strong>, <strong>FalkorDB Remote</strong>, <strong>LadybugDB</strong>, <strong>Neo4j</strong></td>
+<td style="text-align: left;"><strong>FalkorDB Lite</strong>, <strong>FalkorDB Remote</strong>, <strong>KuzuDB</strong>, <strong>Neo4j</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>CLI</strong></td>
@@ -879,7 +879,7 @@
     subgraph Backends["Graph backends"]
         FKL[(FalkorDB Lite)]
         FKR[(FalkorDB Remote)]
-        KUZU[(LadybugDB)]
+        KUZU[(KuzuDB)]
         NEO[(Neo4j)]
     end
 
@@ -933,7 +933,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Database abstraction</strong></td>
-<td style="text-align: left;">Single query/index API over <strong>FalkorDB Lite</strong> (default on Unix with Python 3.12+), <strong>FalkorDB Remote</strong>, <strong>LadybugDB</strong> (embedded fallback, common on Windows), and <strong>Neo4j</strong> (enterprise/production).</td>
+<td style="text-align: left;">Single query/index API over <strong>FalkorDB Lite</strong> (default on Unix with Python 3.12+), <strong>FalkorDB Remote</strong>, <strong>KuzuDB</strong> (embedded fallback, common on Windows), and <strong>Neo4j</strong> (enterprise/production).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Bundle / registry</strong></td>
@@ -955,7 +955,7 @@
 <li><strong>AI IDEs</strong> — Primary UX: chat and agents call MCP tools; the graph grounds answers in real paths, symbols, and relationships.</li>
 <li><strong>CLI (<code>cgc</code>)</strong> — Initialize, index, query (<code>cgc query</code>), search (<code>cgc find</code>), bundles, and maintenance.</li>
 <li><strong>Visualization</strong> — Local <strong>FastAPI</strong> backend plus <strong>React</strong> front-end (not Next.js) for force-directed or similar graph views.</li>
-<li><strong>Native DB tools</strong> — FalkorDB/LadybugDB/Neo4j-specific browsers or CLIs for low-level Cypher or vendor exploration.</li>
+<li><strong>Native DB tools</strong> — FalkorDB/KuzuDB/Neo4j-specific browsers or CLIs for low-level Cypher or vendor exploration.</li>
 </ol>
 <h2 id="typical-data-flow">Typical data flow</h2>
 <ol>
@@ -985,7 +985,7 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Graph stores</strong></td>
-<td style="text-align: left;"><strong>FalkorDB Lite</strong>, <strong>FalkorDB Remote</strong>, <strong>LadybugDB</strong>, <strong>Neo4j</strong></td>
+<td style="text-align: left;"><strong>FalkorDB Lite</strong>, <strong>FalkorDB Remote</strong>, <strong>KuzuDB</strong>, <strong>Neo4j</strong></td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>CLI</strong></td>
