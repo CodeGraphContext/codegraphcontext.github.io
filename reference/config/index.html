@@ -12,7 +12,7 @@
         <link rel="prev" href="../mcp/">
       
       
-        <link rel="next" href="../../contributing/">
+        <link rel="next" href="../troubleshooting/">
       
       
         
@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration" class="md-skip">
+        <a href="#configuration-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -670,109 +695,237 @@
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
+      <div class="rw-main-content md-typeset">
+        <h1 id="configuration-reference">Configuration Reference</h1>
+<p>CodeGraphContext (CGC) is configured using environment variables, local configuration files, and the CLI.</p>
+<hr />
+<h2 id="the-cgc-config-cli-utility">The <code>cgc config</code> CLI Utility</h2>
+<p>Use the <code>config</code> command group to inspect and modify settings from your terminal.</p>
+<h3 id="1-inspect-effective-settings">1. Inspect Effective Settings</h3>
+<p>Prints the merged configuration values (resolving defaults, global <code>.env</code>, and local workspaces):</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>show
+</code></pre></div>
+<h3 id="2-set-configuration-values">2. Set Configuration Values</h3>
+<p>Persists key-value settings to the global environment configuration file:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Set default database engine</span>
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>DEFAULT_DATABASE<span class="w"> </span>kuzudb
 
-
-  
-  
-
-
-<h1 id="configuration">Configuration</h1>
-<p>CodeGraphContext (CGC) can be configured via environment variables, a global config file, or project-specific <code>.cgcignore</code> files.</p>
-<h2 id="environment-variables">Environment Variables</h2>
+<span class="c1"># Change file size threshold (in MB)</span>
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAX_FILE_SIZE_MB<span class="w"> </span><span class="m">25</span>
+</code></pre></div>
+<h3 id="3-database-selection-shortcut">3. Database Selection Shortcut</h3>
+<p>Quickly updates the <code>DEFAULT_DATABASE</code> key:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb
+</code></pre></div>
+<p>Valid database backend identifiers: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code> (Lite/embedded), <code>falkordb-remote</code>, and <code>neo4j</code>.</p>
+<h3 id="4-reset-to-defaults">4. Reset to Defaults</h3>
+<p>Restores all keys to factory configurations:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>reset
+</code></pre></div>
+<hr />
+<h2 id="configuration-variable-reference">Configuration Variable Reference</h2>
+<h3 id="core-engine-settings">Core Engine Settings</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Config Key</th>
 <th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>DEFAULT_DATABASE</code></td>
-<td style="text-align: left;">Sets the default backend (<code>kuzudb</code>, <code>falkordb</code>, <code>neo4j</code>).</td>
+<td style="text-align: left;"><strong><code>DEFAULT_DATABASE</code></strong></td>
 <td style="text-align: left;"><code>kuzudb</code></td>
+<td style="text-align: left;">Active database engine. Options: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code>, <code>falkordb-remote</code>, <code>neo4j</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>FALKORDB_HOST</code></td>
-<td style="text-align: left;">Hostname for remote FalkorDB instance.</td>
-<td style="text-align: left;"><code>localhost</code></td>
+<td style="text-align: left;"><strong><code>ENABLE_AUTO_WATCH</code></strong></td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">When <code>true</code>, indexing a project automatically initializes a directory watcher.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>NEO4J_URI</code></td>
-<td style="text-align: left;">URI for Neo4j connection.</td>
-<td style="text-align: left;"><code>bolt://localhost:7687</code></td>
+<td style="text-align: left;"><strong><code>PARALLEL_WORKERS</code></strong></td>
+<td style="text-align: left;"><code>4</code></td>
+<td style="text-align: left;">Max thread pool size for parsing code files concurrently.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>NEO4J_USERNAME</code></td>
-<td style="text-align: left;">Username for Neo4j authentication.</td>
-<td style="text-align: left;"><code>neo4j</code></td>
+<td style="text-align: left;"><strong><code>CACHE_ENABLED</code></strong></td>
+<td style="text-align: left;"><code>true</code></td>
+<td style="text-align: left;">Caches file hashes to support fast incremental scans.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="indexing-scope-configurations">Indexing Scope Configurations</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>MAX_FILE_SIZE_MB</code></strong></td>
+<td style="text-align: left;"><code>10</code></td>
+<td style="text-align: left;">Skips source files exceeding this size limit (in Megabytes).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>NEO4J_PASSWORD</code></td>
-<td style="text-align: left;">Password for Neo4j authentication.</td>
-<td style="text-align: left;">-</td>
+<td style="text-align: left;"><strong><code>IGNORE_TEST_FILES</code></strong></td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">When <code>true</code>, skips files containing test keywords or directories like <code>tests/</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>CGC_LOG_LEVEL</code></td>
-<td style="text-align: left;">Logging verbosity (<code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>).</td>
-<td style="text-align: left;"><code>INFO</code></td>
+<td style="text-align: left;"><strong><code>IGNORE_HIDDEN_FILES</code></strong></td>
+<td style="text-align: left;"><code>true</code></td>
+<td style="text-align: left;">When <code>true</code>, skips dotfiles and hidden folders (e.g., <code>.github/</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>INDEX_VARIABLES</code></strong></td>
+<td style="text-align: left;"><code>true</code></td>
+<td style="text-align: left;">Extracts variable assignments into the graph. Set to <code>false</code> for smaller graph database sizes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>INDEX_SOURCE</code></strong></td>
+<td style="text-align: left;"><code>true</code></td>
+<td style="text-align: left;">Stores raw source snippets in node attributes. Set to <code>false</code> for a lighter graph.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>SKIP_EXTERNAL_RESOLUTION</code></strong></td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">Skips looking up external Java dependencies.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-scip-indexer-configurations">Optional SCIP Indexer Configurations</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>SCIP_INDEXER</code></strong></td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">When <code>true</code>, enables SCIP-based symbol resolution.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>SCIP_LANGUAGES</code></strong></td>
+<td style="text-align: left;"><code>python,typescript,go,rust,java</code></td>
+<td style="text-align: left;">List of target languages to process via SCIP.</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="the-cgc-config-command">The <code>cgc config</code> Command</h2>
-<p>You can manage persistent settings using the CLI:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Set the default database</span>
-cgc<span class="w"> </span>config<span class="w"> </span>set-db<span class="w"> </span>neo4j
-
-<span class="c1"># View all current settings</span>
-cgc<span class="w"> </span>config<span class="w"> </span>list
-</code></pre></div>
+<h2 id="database-connection-configurations">Database Connection Configurations</h2>
+<h3 id="neo4j-connection-properties">Neo4j Connection Properties</h3>
+<p>Required when <code>DEFAULT_DATABASE</code> is set to <code>neo4j</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>NEO4J_URI</code></strong></td>
+<td style="text-align: left;"><code>bolt://localhost:7687</code></td>
+<td style="text-align: left;">Server connection URI.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NEO4J_USERNAME</code></strong></td>
+<td style="text-align: left;"><code>neo4j</code></td>
+<td style="text-align: left;">Database user name.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NEO4J_PASSWORD</code></strong></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Database connection password.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NEO4J_DATABASE</code></strong></td>
+<td style="text-align: left;"><code>neo4j</code></td>
+<td style="text-align: left;">Logical database partition name.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="falkordb-remote-connection-properties">FalkorDB Remote Connection Properties</h3>
+<p>Required when <code>DEFAULT_DATABASE</code> is set to <code>falkordb-remote</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_HOST</code></strong></td>
+<td style="text-align: left;"><code>127.0.0.1</code></td>
+<td style="text-align: left;">Remote host address.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_PORT</code></strong></td>
+<td style="text-align: left;"><code>6379</code></td>
+<td style="text-align: left;">TCP Port.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_PASSWORD</code></strong></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Authentication password.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_SSL</code></strong></td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;">Enables SSL/TLS connection socket.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_GRAPH_NAME</code></strong></td>
+<td style="text-align: left;"><code>codegraph</code></td>
+<td style="text-align: left;">Target graph namespace.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="embedded-database-directories-kuzudb-ladybugdb-falkordb-lite">Embedded Database Directories (KuzuDB / LadybugDB / FalkorDB Lite)</h3>
+<p>Local embedded database instances are stored on disk. Use the settings below to redirect them:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>KUZUDB_PATH</code></strong></td>
+<td style="text-align: left;"><code>~/.codegraphcontext/global/db/kuzudb/</code></td>
+<td style="text-align: left;">Root storage directory for KuzuDB files.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>FALKORDB_PATH</code></strong></td>
+<td style="text-align: left;"><code>~/.codegraphcontext/global/db/falkordb/</code></td>
+<td style="text-align: left;">Storage path for FalkorDB Lite database.</td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2 id="ignoring-files-cgcignore">Ignoring Files (<code>.cgcignore</code>)</h2>
-<p>To prevent specific files or directories from being indexed, create a <code>.cgcignore</code> file in your repository root. CGC follows standard glob patterns similar to <code>.gitignore</code>.</p>
-<h3 id="common-patterns">Common Patterns</h3>
-<div class="highlight"><pre><span></span><code># Exclude build artifacts
-dist/
-build/
-*.egg-info
-
-# Exclude dependencies (if you don&#39;t want them in the graph)
-node_modules/
-venv/
-.venv/
-
-# Exclude large data files
-*.json
-*.csv
-</code></pre></div>
-<hr />
-<h2 id="advanced-performance-tuning">Advanced: Performance Tuning</h2>
-<p>For large-scale indexing, you can adjust the following internal parameters (via env vars):</p>
-<ul>
-<li><strong><code>CGC_MAX_THREADS</code></strong>: Number of concurrent workers for parsing files.</li>
-<li><strong><code>CGC_CHUNK_SIZE</code></strong>: Number of nodes to batch before committing to the database.</li>
-<li><strong><code>CGC_PARSER_TIMEOUT</code></strong>: Timeout in seconds for individual file parsing.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
+<h2 id="settings-precedence-levels">Settings Precedence Levels</h2>
+<p>CGC resolves configuration keys in the following hierarchical priority (highest level overrides lower levels):</p>
+<ol>
+<li><strong>CLI Flag Parameters</strong>: Overrides passed during execution (e.g., <code>cgc index --db falkordb</code>).</li>
+<li><strong>Local Repository Variables</strong>: Values defined in <code>&lt;workspace_root&gt;/.codegraphcontext/.env</code>.</li>
+<li><strong>User Global Settings</strong>: Configurations stored in <code>~/.codegraphcontext/.env</code>.</li>
+<li><strong>Environment Shell Exports</strong>: System environment variables (e.g., <code>export DEFAULT_DATABASE=neo4j</code>).</li>
+<li><strong>System Defaults</strong>: Hardcoded fallback values defined within the Python package.</li>
+</ol>
       </div>
     </main>
   </div>
@@ -796,107 +949,7 @@ venv/
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="configuration">Configuration</h1>
-<p>CodeGraphContext (CGC) can be configured via environment variables, a global config file, or project-specific <code>.cgcignore</code> files.</p>
-<h2 id="environment-variables">Environment Variables</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Variable</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>DEFAULT_DATABASE</code></td>
-<td style="text-align: left;">Sets the default backend (<code>kuzudb</code>, <code>falkordb</code>, <code>neo4j</code>).</td>
-<td style="text-align: left;"><code>kuzudb</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>FALKORDB_HOST</code></td>
-<td style="text-align: left;">Hostname for remote FalkorDB instance.</td>
-<td style="text-align: left;"><code>localhost</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>NEO4J_URI</code></td>
-<td style="text-align: left;">URI for Neo4j connection.</td>
-<td style="text-align: left;"><code>bolt://localhost:7687</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>NEO4J_USERNAME</code></td>
-<td style="text-align: left;">Username for Neo4j authentication.</td>
-<td style="text-align: left;"><code>neo4j</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>NEO4J_PASSWORD</code></td>
-<td style="text-align: left;">Password for Neo4j authentication.</td>
-<td style="text-align: left;">-</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>CGC_LOG_LEVEL</code></td>
-<td style="text-align: left;">Logging verbosity (<code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>).</td>
-<td style="text-align: left;"><code>INFO</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="the-cgc-config-command">The <code>cgc config</code> Command</h2>
-<p>You can manage persistent settings using the CLI:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Set the default database</span>
-cgc<span class="w"> </span>config<span class="w"> </span>set-db<span class="w"> </span>neo4j
-
-<span class="c1"># View all current settings</span>
-cgc<span class="w"> </span>config<span class="w"> </span>list
-</code></pre></div>
-<hr />
-<h2 id="ignoring-files-cgcignore">Ignoring Files (<code>.cgcignore</code>)</h2>
-<p>To prevent specific files or directories from being indexed, create a <code>.cgcignore</code> file in your repository root. CGC follows standard glob patterns similar to <code>.gitignore</code>.</p>
-<h3 id="common-patterns">Common Patterns</h3>
-<div class="highlight"><pre><span></span><code># Exclude build artifacts
-dist/
-build/
-*.egg-info
-
-# Exclude dependencies (if you don&#39;t want them in the graph)
-node_modules/
-venv/
-.venv/
-
-# Exclude large data files
-*.json
-*.csv
-</code></pre></div>
-<hr />
-<h2 id="advanced-performance-tuning">Advanced: Performance Tuning</h2>
-<p>For large-scale indexing, you can adjust the following internal parameters (via env vars):</p>
-<ul>
-<li><strong><code>CGC_MAX_THREADS</code></strong>: Number of concurrent workers for parsing files.</li>
-<li><strong><code>CGC_CHUNK_SIZE</code></strong>: Number of nodes to batch before committing to the database.</li>
-<li><strong><code>CGC_PARSER_TIMEOUT</code></strong>: Timeout in seconds for individual file parsing.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -939,12 +992,17 @@ venv/
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -957,7 +1015,11 @@ venv/
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -989,8 +1051,69 @@ venv/
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

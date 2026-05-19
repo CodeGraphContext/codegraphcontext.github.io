@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../multi-repo/">
+        <link rel="prev" href="../bundles/">
       
       
-        <link rel="next" href="../../reference/cli/">
+        <link rel="next" href="../datasource-indexing/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Visualization - CodeGraphContext</title>
+        <title>Interactive Visualization - CodeGraphContext</title>
       
     
     
@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#visualizing-the-code-graph" class="md-skip">
+        <a href="#interactive-graph-visualization" class="md-skip">
           Skip to content
         </a>
       
@@ -244,7 +244,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Visualization
+              Interactive Visualization
             
           </span>
         </div>
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="./"
           class="rw-sidebar__link rw-sidebar__link--active">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../../reference/troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -666,73 +691,51 @@
         
         
         <span class="rw-breadcrumb__sep">›</span>
-        Visualization
+        Interactive Visualization
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="visualizing-the-code-graph">Visualizing the Code Graph</h1>
-<p>Visualizing your codebase can help reveal architectural patterns, circular dependencies, and complex call chains that are difficult to see in raw code.</p>
-<h2 id="1-cli-visualization">1. CLI Visualization</h2>
-<p>CGC provides a quick way to visualize the graph directly from the terminal.</p>
+      <div class="rw-main-content md-typeset">
+        <h1 id="interactive-graph-visualization">Interactive Graph Visualization</h1>
+<p>Visualizing your code graph helps identify complex call paths, cyclical dependencies, and architectural anomalies. CodeGraphContext includes a built-in React-based interactive force-directed graph visualizer.</p>
+<hr />
+<h2 id="1-running-the-local-visualizer-server">1. Running the Local Visualizer Server</h2>
+<p>Start the local visualization server using the <code>visualize</code> command:</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>visualize
 </code></pre></div>
-<p>This command generates a temporary visualization file (usually an HTML file with an interactive graph) and opens it in your default web browser.</p>
-<h3 id="visualizing-specific-queries">Visualizing Specific Queries</h3>
-<p>You can visualize the result of a specific relationship query:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>visualize<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;callers find_request_handler&quot;</span>
+<p>By default, this command:
+1. Resolves the active database context.
+2. Launches a FastAPI web server on port <strong>8000</strong>.
+3. Opens your default web browser to <code>http://localhost:8000</code>.</p>
+<h3 id="custom-port-repo-overrides">Custom Port &amp; Repo Overrides</h3>
+<p>Specify a custom port or target repository path when starting the server:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run server on port 9000 for a specific repository</span>
+cgc<span class="w"> </span>visualize<span class="w"> </span>--repo<span class="w"> </span>~/projects/my-api<span class="w"> </span>--port<span class="w"> </span><span class="m">9000</span>
+
+<span class="c1"># Use a specific named context database</span>
+cgc<span class="w"> </span>visualize<span class="w"> </span>--context<span class="w"> </span>StagingGraph
 </code></pre></div>
 <hr />
-<h2 id="2-interactive-analysis-with-neo4j">2. Interactive Analysis with Neo4j</h2>
-<p>If you are using the <strong>Neo4j</strong> backend, you can leverage the full power of the <strong>Neo4j Browser</strong>.</p>
-<ol>
-<li><strong>Start Neo4j</strong>: Ensure your Neo4j container or service is running.</li>
-<li><strong>Access Browser</strong>: Open <code>http://localhost:7474</code> in your browser.</li>
-<li><strong>Run Cypher</strong>: Write custom Cypher queries to explore the graph visually.</li>
-</ol>
-<h3 id="example-visualizing-a-module-hierarchy">Example: Visualizing a Module Hierarchy</h3>
-<div class="highlight"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Module</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">CONTAINS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Class</span><span class="p">)</span>
-<span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">c</span>
-</code></pre></div>
-<hr />
-<h2 id="3-visualizing-via-mcp-tools">3. Visualizing via MCP Tools</h2>
-<p>When using CGC with an AI assistant (like Cursor or Claude), the AI can generate visualization URLs for you.</p>
-<p><strong>Ask the AI</strong>:</p>
-<blockquote>
-<p>"Visualize the call chain leading to the <code>process_order</code> function."</p>
-</blockquote>
-<p>The AI will call the <code>visualize_graph_query</code> tool and provide you with a link to view the resulting graph.</p>
-<hr />
-<h2 id="common-visualization-types">Common Visualization Types</h2>
+<h2 id="2-using-the-interactive-ui">2. Using the Interactive UI</h2>
+<p>The browser interface serves a force-directed graph showing your codebase structures:</p>
 <ul>
-<li><strong>Call Graphs</strong>: Showing which functions call which others.</li>
-<li><strong>Dependency Graphs</strong>: Mapping imports between files and modules.</li>
-<li><strong>Class Hierarchies</strong>: Visualizing inheritance and implementations.</li>
-<li><strong>Complexity Heatmaps</strong>: (Experimental) Nodes sized or colored by their cyclomatic complexity.</li>
+<li><strong>Node Interactions</strong>: Click on any node (file, class, function) to view its code details, extracted signatures, cyclomatic complexity scores, and docstrings in the detail pane.</li>
+<li><strong>Dynamic Search</strong>: Use the search filter to highlight specific symbols.</li>
+<li><strong>Relationship Filters</strong>: Toggle visibility of relationship edges (e.g., hiding <code>IMPORTS</code> to focus exclusively on execution <code>CALLS</code> flow).</li>
+<li><strong>Navigation Controls</strong>: Zoom, pan, and drag nodes to isolate call loops and modules.</li>
 </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
+<hr />
+<h2 id="3-neo4j-browser-visualizations-neo4j-backend-only">3. Neo4j Browser Visualizations (Neo4j Backend Only)</h2>
+<p>If you are using Neo4j as your active database backend, you can leverage the native <strong>Neo4j Browser Console</strong> for complex Cypher queries.</p>
+<ol>
+<li>Open your browser and navigate to the Neo4j Console (typically <code>http://localhost:7474</code>).</li>
+<li>Log in using your configured credentials.</li>
+<li>Execute a Cypher query to retrieve and render graph structures:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1">// Visualize all functions called by the &quot;process_payment&quot; function</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">f1</span><span class="p">:</span><span class="n">Function</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;process_payment&#39;</span><span class="p">})</span><span class="o">-[</span><span class="n">r</span><span class="p">:</span><span class="n">CALLS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">f2</span><span class="p">:</span><span class="n">Function</span><span class="p">)</span>
+<span class="k">RETURN</span><span class="w"> </span><span class="n">f1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span>
+</code></pre></div>
       </div>
     </main>
   </div>
@@ -756,67 +759,7 @@
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="visualizing-the-code-graph">Visualizing the Code Graph</h1>
-<p>Visualizing your codebase can help reveal architectural patterns, circular dependencies, and complex call chains that are difficult to see in raw code.</p>
-<h2 id="1-cli-visualization">1. CLI Visualization</h2>
-<p>CGC provides a quick way to visualize the graph directly from the terminal.</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>visualize
-</code></pre></div>
-<p>This command generates a temporary visualization file (usually an HTML file with an interactive graph) and opens it in your default web browser.</p>
-<h3 id="visualizing-specific-queries">Visualizing Specific Queries</h3>
-<p>You can visualize the result of a specific relationship query:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>visualize<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;callers find_request_handler&quot;</span>
-</code></pre></div>
-<hr />
-<h2 id="2-interactive-analysis-with-neo4j">2. Interactive Analysis with Neo4j</h2>
-<p>If you are using the <strong>Neo4j</strong> backend, you can leverage the full power of the <strong>Neo4j Browser</strong>.</p>
-<ol>
-<li><strong>Start Neo4j</strong>: Ensure your Neo4j container or service is running.</li>
-<li><strong>Access Browser</strong>: Open <code>http://localhost:7474</code> in your browser.</li>
-<li><strong>Run Cypher</strong>: Write custom Cypher queries to explore the graph visually.</li>
-</ol>
-<h3 id="example-visualizing-a-module-hierarchy">Example: Visualizing a Module Hierarchy</h3>
-<div class="highlight"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Module</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">CONTAINS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="n">Class</span><span class="p">)</span>
-<span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">c</span>
-</code></pre></div>
-<hr />
-<h2 id="3-visualizing-via-mcp-tools">3. Visualizing via MCP Tools</h2>
-<p>When using CGC with an AI assistant (like Cursor or Claude), the AI can generate visualization URLs for you.</p>
-<p><strong>Ask the AI</strong>:</p>
-<blockquote>
-<p>"Visualize the call chain leading to the <code>process_order</code> function."</p>
-</blockquote>
-<p>The AI will call the <code>visualize_graph_query</code> tool and provide you with a link to view the resulting graph.</p>
-<hr />
-<h2 id="common-visualization-types">Common Visualization Types</h2>
-<ul>
-<li><strong>Call Graphs</strong>: Showing which functions call which others.</li>
-<li><strong>Dependency Graphs</strong>: Mapping imports between files and modules.</li>
-<li><strong>Class Hierarchies</strong>: Visualizing inheritance and implementations.</li>
-<li><strong>Complexity Heatmaps</strong>: (Experimental) Nodes sized or colored by their cyclomatic complexity.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -859,12 +802,17 @@
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -877,7 +825,11 @@
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -909,8 +861,69 @@
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

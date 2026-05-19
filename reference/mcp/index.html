@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -670,82 +695,159 @@
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="mcp-tool-reference">MCP Tool Reference</h1>
-<p>When CodeGraphContext is running as an MCP server, it exposes a set of tools that AI agents can use to explore and understand your codebase.</p>
-<h2 id="code-search-discovery">Code Search &amp; Discovery</h2>
-<h3 id="find_code"><code>find_code</code></h3>
-<p>Find relevant code snippets related to a keyword or phrase.</p>
-<ul>
-<li><strong>Parameters</strong>: <code>query</code> (string), <code>fuzzy_search</code> (boolean), <code>repo_path</code> (optional).</li>
-</ul>
-<h3 id="list_indexed_repositories"><code>list_indexed_repositories</code></h3>
-<p>List all repositories that are currently available in the graph database.</p>
+      <div class="rw-main-content md-typeset">
+        <h1 id="mcp-tool-reference">MCP Tool Reference</h1>
+<p>When running the CodeGraphContext (CGC) MCP server, it registers a suite of <strong>25 JSON-RPC tools</strong> that AI assistants can use to analyze and query the code graph.</p>
 <hr />
-<h2 id="relationship-analysis">Relationship Analysis</h2>
-<h3 id="analyze_code_relationships"><code>analyze_code_relationships</code></h3>
-<p>The primary tool for deep architectural analysis.
-*   <strong>Parameters</strong>:
-    *   <code>query_type</code>: <code>find_callers</code>, <code>find_callees</code>, <code>class_hierarchy</code>, <code>module_deps</code>, <code>dead_code</code>, etc.
-    *   <code>target</code>: The function, class, or module to analyze.
-    *   <code>repo_path</code>: (Optional) Restrict search to a specific repo.</p>
-<h3 id="calculate_cyclomatic_complexity"><code>calculate_cyclomatic_complexity</code></h3>
-<p>Get the complexity score of a specific function.
-*   <strong>Parameters</strong>: <code>function_name</code> (string), <code>path</code> (optional).</p>
-<h3 id="find_most_complex_functions"><code>find_most_complex_functions</code></h3>
-<p>Identify technical debt by listing the most complex functions in the codebase.
-*   <strong>Parameters</strong>: <code>limit</code> (default: 10).</p>
-<hr />
-<h2 id="graph-management">Graph Management</h2>
+<h2 id="code-ingestion-system-control">Code Ingestion &amp; System Control</h2>
 <h3 id="add_code_to_graph"><code>add_code_to_graph</code></h3>
-<p>Instruct the agent to index a new directory or file.
-*   <strong>Parameters</strong>: <code>path</code> (string), <code>is_dependency</code> (boolean).</p>
+<p>Indexes a local directory or file into the active database context.
+- <strong>Parameters</strong>:
+  - <code>path</code> (string, required): Absolute filesystem path.
+  - <code>is_dependency</code> (boolean, optional): Marks the code as an external library.</p>
+<h3 id="add_package_to_graph"><code>add_package_to_graph</code></h3>
+<p>Discovers, downloads (if needed), and indexes a third-party package.
+- <strong>Parameters</strong>:
+  - <code>package_name</code> (string, required): Name of the package (e.g., <code>requests</code>, <code>express</code>).
+  - <code>language</code> (string, required): Language syntax parser (<code>python</code>, <code>javascript</code>, <code>typescript</code>, <code>java</code>, <code>c</code>, <code>go</code>, <code>ruby</code>, <code>php</code>, <code>cpp</code>).
+  - <code>is_dependency</code> (boolean, optional): Marks the package as an external library (default: true).</p>
 <h3 id="watch_directory"><code>watch_directory</code></h3>
-<p>Start monitoring a directory for real-time updates.
-*   <strong>Parameters</strong>: <code>path</code> (string).</p>
+<p>Launches a directory watcher for incremental updates.
+- <strong>Parameters</strong>:
+  - <code>path</code> (string, required): Directory path to watch.</p>
+<h3 id="unwatch_directory"><code>unwatch_directory</code></h3>
+<p>Stops file monitoring on a folder path.
+- <strong>Parameters</strong>:
+  - <code>path</code> (string, required): Directory path.</p>
+<h3 id="list_watched_paths"><code>list_watched_paths</code></h3>
+<p>Lists all directories currently monitored by watchers.</p>
+<h3 id="delete_repository"><code>delete_repository</code></h3>
+<p>Removes a repository's code structures from the graph.
+- <strong>Parameters</strong>:
+  - <code>repo_path</code> (string, required): Repository path.</p>
+<h3 id="list_indexed_repositories"><code>list_indexed_repositories</code></h3>
+<p>Returns a list of all repositories stored in the active database.</p>
+<h3 id="get_repository_stats"><code>get_repository_stats</code></h3>
+<p>Retrieves ingestion metrics (counts of files, functions, classes, modules).
+- <strong>Parameters</strong>:
+  - <code>repo_path</code> (string, optional): Restricts stats to a specific repository.</p>
+<hr />
+<h2 id="background-job-controller">Background Job Controller</h2>
+<p>Some operations (like indexing large codebases) execute as background tasks. Use these tools to monitor task states:</p>
+<h3 id="list_jobs"><code>list_jobs</code></h3>
+<p>Lists all background jobs and their execution states.</p>
+<h3 id="check_job_status"><code>check_job_status</code></h3>
+<p>Queries progress and logs for a specific job.
+- <strong>Parameters</strong>:
+  - <code>job_id</code> (string, required): Target job ID.</p>
+<hr />
+<h2 id="code-search-relationship-analysis">Code Search &amp; Relationship Analysis</h2>
+<h3 id="find_code"><code>find_code</code></h3>
+<p>Searches symbol definitions, file names, or source code for keyword matches.
+- <strong>Parameters</strong>:
+  - <code>query</code> (string, required): Target keyword or pattern.
+  - <code>fuzzy_search</code> (boolean, optional): Enables fuzzy matching.
+  - <code>edit_distance</code> (number, optional): Levenshtein distance limit (0-2).
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="analyze_code_relationships"><code>analyze_code_relationships</code></h3>
+<p>The primary tool for traversing structural relationships in the graph.
+- <strong>Parameters</strong>:
+  - <code>query_type</code> (string, required): The traversal type. Must be one of:
+    - <code>find_callers</code>: Find immediate caller functions.
+    - <code>find_callees</code>: Find immediate functions called by target.
+    - <code>find_all_callers</code>: Deep search up the invocation chain.
+    - <code>find_all_callees</code>: Deep search down the execution path.
+    - <code>find_importers</code>: Find files importing the target symbol/module.
+    - <code>who_modifies</code>: Trace variables or structures written to.
+    - <code>class_hierarchy</code>: Resolves superclass and subclass trees.
+    - <code>overrides</code>: Finds functions overriding parent methods.
+    - <code>dead_code</code>: Scans context for unused subroutines.
+    - <code>call_chain</code>: Traces invocation chains between source and destination.
+    - <code>module_deps</code>: Identifies dependencies between modules.
+    - <code>variable_scope</code>: Tracks variable bindings.
+    - <code>find_complexity</code>: Returns cyclomatic complexity score.
+    - <code>find_functions_by_argument</code>: Searches for functions declaring target parameter.
+    - <code>find_functions_by_decorator</code>: Searches for functions decorated with target.
+  - <code>target</code> (string, required): The identifier name to analyze.
+  - <code>context</code> (string, optional): Specific file path to resolve target namespace conflicts.
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="calculate_cyclomatic_complexity"><code>calculate_cyclomatic_complexity</code></h3>
+<p>Computes the complexity score of a function.
+- <strong>Parameters</strong>:
+  - <code>function_name</code> (string, required): Function identifier.
+  - <code>path</code> (string, optional): File path containing definition.
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="find_most_complex_functions"><code>find_most_complex_functions</code></h3>
+<p>Returns methods with the highest cyclomatic complexity scores.
+- <strong>Parameters</strong>:
+  - <code>limit</code> (integer, optional): Maximum rows to return (default: 10).
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="find_dead_code"><code>find_dead_code</code></h3>
+<p>Scans for unreferenced code declarations.
+- <strong>Parameters</strong>:
+  - <code>exclude_decorated_with</code> (array of strings, optional): Excludes functions carrying specified decorator annotations (e.g., <code>@app.route</code>).
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<hr />
+<h2 id="workspace-context-management">Workspace Context Management</h2>
+<h3 id="discover_codegraph_contexts"><code>discover_codegraph_contexts</code></h3>
+<p>Scans subdirectories for existing <code>.codegraphcontext/</code> directories.
+- <strong>Parameters</strong>:
+  - <code>path</code> (string, optional): Scan root directory.
+  - <code>max_depth</code> (integer, optional): Folder depth limit (default: 1).</p>
 <h3 id="switch_context"><code>switch_context</code></h3>
-<p>Switch the server's focus to a different indexed project.
-*   <strong>Parameters</strong>: <code>context_path</code> (string).</p>
+<p>Reconnects the MCP session to a different graph database.
+- <strong>Parameters</strong>:
+  - <code>context_path</code> (string, required): Path to the target repository root containing <code>.codegraphcontext/</code>.
+  - <code>save</code> (boolean, optional): Persists configuration mapping (default: true).</p>
 <hr />
-<h2 id="advanced-querying">Advanced Querying</h2>
+<h2 id="advanced-querying-reporting">Advanced Querying &amp; Reporting</h2>
 <h3 id="execute_cypher_query"><code>execute_cypher_query</code></h3>
-<p>A "power user" tool that allows the AI to run raw Cypher queries against the graph.
-*   <strong>Parameters</strong>: <code>cypher_query</code> (string).
-*   <strong>Schema</strong>: Nodes include <code>Repository</code>, <code>File</code>, <code>Module</code>, <code>Class</code>, <code>Function</code>. Relationships include <code>CONTAINS</code>, <code>CALLS</code>, <code>IMPORTS</code>, <code>INHERITS</code>.</p>
+<p>Executes raw Cypher queries directly against the graph database.
+- <strong>Parameters</strong>:
+  - <code>cypher_query</code> (string, required): Cypher statement.</p>
 <h3 id="visualize_graph_query"><code>visualize_graph_query</code></h3>
-<p>Generates a visualization URL for a specific Cypher query.
-*   <strong>Parameters</strong>: <code>cypher_query</code> (string).</p>
+<p>Generates a Neo4j visualization link.
+- <strong>Parameters</strong>:
+  - <code>cypher_query</code> (string, required): Cypher statement to render.</p>
+<h3 id="generate_report"><code>generate_report</code></h3>
+<p>Compiles a markdown quality report (<code>CGC_REPORT.md</code>).
+- <strong>Parameters</strong>:
+  - <code>output_path</code> (string, optional): Output report path.
+  - <code>include_java</code> (boolean, optional): Appends Spring endpoints and bean tables.
+  - <code>god_node_limit</code> (integer, optional): Limit for high fan-in symbol rows.
+  - <code>complexity_limit</code> (integer, optional): Limit for complex method rows.
+  - <code>cross_module_limit</code> (integer, optional): Limit for module coupling rows.</p>
 <hr />
-<h2 id="bundle-operations">Bundle Operations</h2>
+<h2 id="portability-registries">Portability &amp; Registries</h2>
 <h3 id="load_bundle"><code>load_bundle</code></h3>
-<p>Load a portable <code>.cgc</code> bundle into the session.
-*   <strong>Parameters</strong>: <code>bundle_name</code> (string).</p>
+<p>Imports a portable <code>.cgc</code> file, downloading it from the registry if needed.
+- <strong>Parameters</strong>:
+  - <code>bundle_name</code> (string, required): Package name (e.g., <code>requests</code>) or file name.
+  - <code>clear_existing</code> (boolean, optional): Purges active context before loading.</p>
 <h3 id="search_registry_bundles"><code>search_registry_bundles</code></h3>
-<p>Search for available bundles in the remote registry.
-*   <strong>Parameters</strong>: <code>query</code> (string).</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
+<p>Searches the public CGC bundle server database.
+- <strong>Parameters</strong>:
+  - <code>query</code> (string, optional): Name or description keywords.
+  - <code>unique_only</code> (boolean, optional): Returns only the latest version of packages.</p>
+<hr />
+<h2 id="frameworks-datasource-extensions">Frameworks &amp; Datasource Extensions</h2>
+<h3 id="find_java_spring_endpoints"><code>find_java_spring_endpoints</code></h3>
+<p>Searches Spring controller REST mappings.
+- <strong>Parameters</strong>:
+  - <code>http_method</code> (string, optional): Method filter (<code>GET</code>, <code>POST</code>, etc.).
+  - <code>path_pattern</code> (string, optional): URL path substring.
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="find_java_spring_beans"><code>find_java_spring_beans</code></h3>
+<p>Returns registered Spring stereotype beans.
+- <strong>Parameters</strong>:
+  - <code>stereotype</code> (string, optional): Stereotype filter (<code>SERVICE</code>, <code>REPOSITORY</code>, etc.).
+  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+<h3 id="find_datasource_nodes"><code>find_datasource_nodes</code></h3>
+<p>Returns ingested MySQL, Cassandra, or Redis schema nodes.
+- <strong>Parameters</strong>:
+  - <code>kind</code> (string, optional): Datasource kind (<code>mysql</code>, <code>cassandra</code>, <code>redis</code>).
+  - <code>name</code> (string, optional): Substring filter for names.
+  - <code>include_columns</code> (boolean, optional): Appends table columns/key patterns (default: false).</p>
       </div>
     </main>
   </div>
@@ -769,80 +871,7 @@
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="mcp-tool-reference">MCP Tool Reference</h1>
-<p>When CodeGraphContext is running as an MCP server, it exposes a set of tools that AI agents can use to explore and understand your codebase.</p>
-<h2 id="code-search-discovery">Code Search &amp; Discovery</h2>
-<h3 id="find_code"><code>find_code</code></h3>
-<p>Find relevant code snippets related to a keyword or phrase.</p>
-<ul>
-<li><strong>Parameters</strong>: <code>query</code> (string), <code>fuzzy_search</code> (boolean), <code>repo_path</code> (optional).</li>
-</ul>
-<h3 id="list_indexed_repositories"><code>list_indexed_repositories</code></h3>
-<p>List all repositories that are currently available in the graph database.</p>
-<hr />
-<h2 id="relationship-analysis">Relationship Analysis</h2>
-<h3 id="analyze_code_relationships"><code>analyze_code_relationships</code></h3>
-<p>The primary tool for deep architectural analysis.
-*   <strong>Parameters</strong>:
-    *   <code>query_type</code>: <code>find_callers</code>, <code>find_callees</code>, <code>class_hierarchy</code>, <code>module_deps</code>, <code>dead_code</code>, etc.
-    *   <code>target</code>: The function, class, or module to analyze.
-    *   <code>repo_path</code>: (Optional) Restrict search to a specific repo.</p>
-<h3 id="calculate_cyclomatic_complexity"><code>calculate_cyclomatic_complexity</code></h3>
-<p>Get the complexity score of a specific function.
-*   <strong>Parameters</strong>: <code>function_name</code> (string), <code>path</code> (optional).</p>
-<h3 id="find_most_complex_functions"><code>find_most_complex_functions</code></h3>
-<p>Identify technical debt by listing the most complex functions in the codebase.
-*   <strong>Parameters</strong>: <code>limit</code> (default: 10).</p>
-<hr />
-<h2 id="graph-management">Graph Management</h2>
-<h3 id="add_code_to_graph"><code>add_code_to_graph</code></h3>
-<p>Instruct the agent to index a new directory or file.
-*   <strong>Parameters</strong>: <code>path</code> (string), <code>is_dependency</code> (boolean).</p>
-<h3 id="watch_directory"><code>watch_directory</code></h3>
-<p>Start monitoring a directory for real-time updates.
-*   <strong>Parameters</strong>: <code>path</code> (string).</p>
-<h3 id="switch_context"><code>switch_context</code></h3>
-<p>Switch the server's focus to a different indexed project.
-*   <strong>Parameters</strong>: <code>context_path</code> (string).</p>
-<hr />
-<h2 id="advanced-querying">Advanced Querying</h2>
-<h3 id="execute_cypher_query"><code>execute_cypher_query</code></h3>
-<p>A "power user" tool that allows the AI to run raw Cypher queries against the graph.
-*   <strong>Parameters</strong>: <code>cypher_query</code> (string).
-*   <strong>Schema</strong>: Nodes include <code>Repository</code>, <code>File</code>, <code>Module</code>, <code>Class</code>, <code>Function</code>. Relationships include <code>CONTAINS</code>, <code>CALLS</code>, <code>IMPORTS</code>, <code>INHERITS</code>.</p>
-<h3 id="visualize_graph_query"><code>visualize_graph_query</code></h3>
-<p>Generates a visualization URL for a specific Cypher query.
-*   <strong>Parameters</strong>: <code>cypher_query</code> (string).</p>
-<hr />
-<h2 id="bundle-operations">Bundle Operations</h2>
-<h3 id="load_bundle"><code>load_bundle</code></h3>
-<p>Load a portable <code>.cgc</code> bundle into the session.
-*   <strong>Parameters</strong>: <code>bundle_name</code> (string).</p>
-<h3 id="search_registry_bundles"><code>search_registry_bundles</code></h3>
-<p>Search for available bundles in the remote registry.
-*   <strong>Parameters</strong>: <code>query</code> (string).</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -885,12 +914,17 @@
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -903,7 +937,11 @@
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -935,8 +973,69 @@
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

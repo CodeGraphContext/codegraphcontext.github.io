@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../contributing/">
+      
+      
+        <link rel="next" href="../roadmap/">
       
       
         
@@ -19,7 +23,7 @@
     
     
       
-        <title>Contributing New Language Support to CodeGraphContext - CodeGraphContext</title>
+        <title>Contributing Languages - CodeGraphContext</title>
       
     
     
@@ -207,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contributing-new-language-support-to-codegraphcontext" class="md-skip">
+        <a href="#adding-language-support" class="md-skip">
           Skip to content
         </a>
       
@@ -240,7 +244,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contributing New Language Support to CodeGraphContext
+              Contributing Languages
             
           </span>
         </div>
@@ -346,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/installation/" class="md-tabs__link">
+        <a href="../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -366,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../concepts/graph-model/" class="md-tabs__link">
+        <a href="../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -422,10 +426,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../contributing/" class="md-tabs__link">
           
   
@@ -477,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -493,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -532,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -554,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../concepts/backends/"
@@ -564,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../concepts/architecture/"
+        <a href="../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -578,22 +594,32 @@
         
         <a href="../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -618,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -630,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../reference/troubleshooting/"
-          class="rw-sidebar__link ">
-          Troubleshooting
+        <a href="./"
+          class="rw-sidebar__link rw-sidebar__link--active">
+          Contributing Languages
         </a>
         
         <a href="../roadmap/"
@@ -654,195 +685,99 @@
       <div class="rw-breadcrumb">
         <a href="..">Home</a>
         
+        
         <span class="rw-breadcrumb__sep">›</span>
-        Contributing New Language Support to CodeGraphContext
+        <a href="..">Community</a>
+        
+        
+        <span class="rw-breadcrumb__sep">›</span>
+        Contributing Languages
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="contributing-new-language-support-to-codegraphcontext">Contributing New Language Support to CodeGraphContext</h1>
-<p>This document outlines the steps and best practices for adding support for a new programming language to CodeGraphContext. By following this guide, contributors can efficiently integrate new languages and verify structure and relationships in the <strong>graph database</strong> (regardless of whether the active backend is FalkorDB, KuzuDB, Neo4j, or another supported store).</p>
-<h2 id="1-understanding-the-architecture">1. Understanding the Architecture</h2>
-<p>CodeGraphContext uses a modular architecture for multi-language support:</p>
-<ul>
-<li><strong>Generic <code>TreeSitterParser</code> (in <code>graph_builder.py</code>):</strong> This acts as a wrapper, dispatching parsing tasks to language-specific implementations.</li>
-<li><strong>Language-Specific Parser Modules (in <code>src/codegraphcontext/tools/languages/</code>):</strong> Each language (e.g., Python, JavaScript) has its own module (e.g., <code>python.py</code>, <code>javascript.py</code>) containing:<ul>
-<li>Tree-sitter queries (<code>&lt;LANG&gt;_QUERIES</code>).</li>
-<li>A <code>&lt;Lang&gt;TreeSitterParser</code> class that encapsulates language-specific parsing logic.</li>
-<li>A <code>pre_scan_&lt;lang&gt;</code> function for initial symbol mapping.</li>
-</ul>
-</li>
-<li><strong><code>GraphBuilder</code> (in <code>graph_builder.py</code>):</strong> Manages the overall graph building process, including file discovery, pre-scanning, and dispatching to the correct language parser. Persistence goes through <strong><code>GraphWriter</code></strong> in <strong><code>tools/indexing/persistence/writer.py</code></strong>, which writes nodes and edges via the database abstraction—<strong>not</strong> by calling <code>session.run</code> (or equivalent) directly from the builder.</li>
-</ul>
-<h2 id="2-steps-to-add-a-new-language-eg-typescript-ts">2. Steps to Add a New Language (e.g., TypeScript - <code>.ts</code>)</h2>
-<h3 id="step-21-create-the-language-module-file">Step 2.1: Create the Language Module File</h3>
+      <div class="rw-main-content md-typeset">
+        <h1 id="adding-language-support">Adding Language Support</h1>
+<p>This guide outlines the steps required to add parsing support for a new programming language to CodeGraphContext.</p>
+<hr />
+<h2 id="1-architectural-integration">1. Architectural Integration</h2>
+<p>CGC uses a modular parsing system based on Tree-sitter:</p>
 <ol>
-<li>Create a new file: <code>src/codegraphcontext/tools/languages/typescript.py</code>.</li>
-<li>Add the necessary imports: <code>from pathlib import Path</code>, <code>from typing import Any, Dict, Optional, Tuple</code>, <code>import logging</code>, <code>import ast</code> (if needed for AST manipulation).</li>
-<li>Define <code>TS_QUERIES</code> (Tree-sitter queries for TypeScript).</li>
-<li>Create a <code>TypescriptTreeSitterParser</code> class.</li>
-<li>Create a <code>pre_scan_typescript</code> function.</li>
+<li><strong><code>TreeSitterParser</code> (<code>graph_builder.py</code>)</strong>: The primary generic wrapper that dispatches files to specific language sub-parsers.</li>
+<li><strong>Language Parser Modules (<code>src/codegraphcontext/tools/languages/</code>)</strong>: Individual python modules containing:</li>
+<li>Tree-sitter AST tags queries (<code>&lt;LANG&gt;_QUERIES</code>).</li>
+<li>A <code>&lt;Lang&gt;TreeSitterParser</code> class inheriting from the parser interface.</li>
+<li>A <code>pre_scan_&lt;lang&gt;</code> method for rapid initial symbol caching.</li>
+<li><strong><code>GraphBuilder</code></strong>: Dispatches files to language parsers, resolves imports, and feeds nodes/relationships to the persistence drivers.</li>
 </ol>
-<h3 id="step-22-define-tree-sitter-queries-ts_queries">Step 2.2: Define Tree-sitter Queries (<code>TS_QUERIES</code>)</h3>
-<p>This is the most critical and often iterative step. You'll need to define queries for:</p>
-<ul>
-<li><strong><code>functions</code></strong>: Function declarations, arrow functions, methods.</li>
-<li><strong><code>classes</code></strong>: Class declarations, class expressions.</li>
-<li><strong><code>imports</code></strong>: ES6 imports (<code>import ... from ...</code>), CommonJS <code>require()</code>.</li>
-<li><strong><code>calls</code></strong>: Function calls, method calls.</li>
-<li><strong><code>variables</code></strong>: Variable declarations (<code>let</code>, <code>const</code>, <code>var</code>).</li>
-<li><strong><code>docstrings</code></strong>: (Optional) How documentation comments are identified.</li>
-<li><strong><code>lambda_assignments</code></strong>: (Optional, Python-specific) If the language has similar constructs.</li>
-</ul>
-<p><strong>Tips for Query Writing:</strong>
-*   <strong>Consult Tree-sitter Grammars:</strong> Find the <code>node-types.json</code> or grammar definition for your language (e.g., <code>tree-sitter-typescript</code>).
-*   <strong>Use <code>tree-sitter parse</code>:</strong> Use the <code>tree-sitter parse</code> command-line tool to inspect the AST of sample code snippets. This is invaluable for identifying correct node types and field names.
-*   <strong>Start Simple:</strong> Begin with basic queries and gradually add complexity.
-*   <strong>Test Iteratively:</strong> After each query, test it with sample code.</p>
-<h3 id="step-23-implement-langtreesitterparser-class">Step 2.3: Implement <code>&lt;Lang&gt;TreeSitterParser</code> Class</h3>
-<p>This class (e.g., <code>TypescriptTreeSitterParser</code>) will encapsulate the language-specific logic.</p>
+<hr />
+<h2 id="2-step-by-step-implementation">2. Step-by-Step Implementation</h2>
+<h3 id="step-a-create-the-language-parser-module">Step A: Create the Language Parser Module</h3>
+<p>Create a new file under <code>src/codegraphcontext/tools/languages/</code> (e.g., <code>typescript.py</code>).</p>
+<p>Add standard parser imports:
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">codegraphcontext.tools.languages.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseParser</span>
+</code></pre></div></p>
+<h3 id="step-b-define-ast-tag-queries">Step B: Define AST Tag Queries</h3>
+<p>AST tags are parsed using Tree-sitter query expressions. Define queries to target:
+- <strong><code>functions</code></strong>: Standard functions, methods, arrow assignments.
+- <strong><code>classes</code></strong>: Class and interface boundaries.
+- <strong><code>imports</code></strong>: Syntax specifying external file or module dependencies.
+- <strong><code>calls</code></strong>: Function or method invocations.
+- <strong><code>variables</code></strong>: Variable declarations and assignments.</p>
+<p><em>Tip: Use the CLI <code>tree-sitter parse</code> tool to inspect a sample source file's Concrete Syntax Tree (CST) and locate the correct node name keys.</em></p>
+<h3 id="step-c-implement-the-parser-class">Step C: Implement the Parser Class</h3>
+<p>Inherit from the base parser and implement AST extraction routines:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TypescriptTreeSitterParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generic_parser</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">generic_parser</span><span class="p">,</span> <span class="s2">&quot;typescript&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_queries</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_dependency</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;utf8&quot;</span><span class="p">))</span>
+
+        <span class="c1"># Populate and return standardized AST data structures</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">&quot;classes&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_classes</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_calls</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">&quot;imports&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_imports</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">&quot;variables&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_variables</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+        <span class="p">}</span>
+</code></pre></div>
+<h3 id="step-d-implement-the-fast-pre-scan">Step D: Implement the Fast Pre-Scan</h3>
+<p>Define a fast pre-scan routine to map declaration locations before linking call relationships:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">pre_scan_typescript</span><span class="p">(</span><span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">],</span> <span class="n">parser_wrapper</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]:</span>
+    <span class="c1"># Returns a dictionary mapping class/function symbol names to file paths.</span>
+    <span class="o">...</span>
+</code></pre></div>
+<h3 id="step-e-register-the-parser">Step E: Register the Parser</h3>
+<p>Map the file extension to the new parser class in <code>parser_factory.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Map extension inside the registry</span>
+<span class="n">SUPPORTED_LANGUAGES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;.ts&quot;</span><span class="p">:</span> <span class="s2">&quot;typescript&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.tsx&quot;</span><span class="p">:</span> <span class="s2">&quot;typescript&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-verification-diagnostic-queries">3. Verification &amp; Diagnostic Queries</h2>
+<p>Once the parser is registered, verify graph extraction using sample source files:</p>
 <ol>
-<li><strong><code>__init__(self, generic_parser_wrapper)</code></strong>:<ul>
-<li>Store <code>generic_parser_wrapper</code>, <code>language_name</code>, <code>language</code>, <code>parser</code> from the generic wrapper.</li>
-<li>Load <code>TS_QUERIES</code> using <code>self.language.query(query_str)</code>.</li>
-</ul>
-</li>
-<li><strong>Helper Methods</strong>:<ul>
-<li><code>_get_node_text(self, node)</code>: Extracts text from a tree-sitter node.</li>
-<li><code>_get_parent_context(self, node, types=...)</code>: (Language-specific node types for context).</li>
-<li><code>_calculate_complexity(self, node)</code>: (Language-specific complexity nodes).</li>
-<li><code>_get_docstring(self, body_node)</code>: (Language-specific docstring extraction).</li>
-</ul>
-</li>
-<li><strong><code>parse(self, path: Path, is_dependency: bool = False) -&gt; Dict</code></strong>:<ul>
-<li>Reads the file, parses it with <code>self.parser</code>.</li>
-<li>Calls its own <code>_find_*</code> methods (<code>_find_functions</code>, <code>_find_classes</code>, etc.).</li>
-<li>Returns a standardized dictionary format (as seen in <code>python.py</code> and <code>javascript.py</code>).</li>
-</ul>
-</li>
-<li><strong><code>_find_*</code> Methods</strong>:
-    Implement these for each query type, extracting data from the AST and populating the standardized dictionary.</li>
-</ol>
-<h3 id="step-24-implement-pre_scan_lang-function">Step 2.4: Implement <code>pre_scan_&lt;lang&gt;</code> Function</h3>
-<p>This function (e.g., <code>pre_scan_typescript</code>) will quickly scan files to build an initial <code>imports_map</code>.</p>
-<ol>
-<li>It takes <code>files: list[Path]</code> and <code>parser_wrapper</code> (an instance of <code>TreeSitterParser</code>).</li>
-<li>Uses a simplified query (e.g., for <code>class_declaration</code> and <code>function_declaration</code>) to quickly find definitions.</li>
-<li>Returns a dictionary mapping symbol names to file paths.</li>
-</ol>
-<h3 id="step-25-integrate-into-graph_builderpy">Step 2.5: Integrate into <code>graph_builder.py</code></h3>
-<ol>
-<li><strong><code>GraphBuilder.__init__</code></strong>:<ul>
-<li>Add <code>'.ts': TreeSitterParser('typescript')</code> to <code>self.parsers</code>.</li>
-</ul>
-</li>
-<li><strong><code>TreeSitterParser.__init__</code></strong>:<ul>
-<li>Add an <code>elif self.language_name == 'typescript':</code> block to initialize <code>self.language_specific_parser</code> with <code>TypescriptTreeSitterParser(self)</code>.</li>
-</ul>
-</li>
-<li><strong><code>GraphBuilder._pre_scan_for_imports</code></strong>:<ul>
-<li>Add an <code>elif '.ts' in files_by_lang:</code> block to import <code>pre_scan_typescript</code> and call it.</li>
-</ul>
-</li>
-</ol>
-<h2 id="3-verification-and-debugging-using-the-graph-database">3. Verification and debugging using the graph database</h2>
-<p>After implementing support for a new language, it's crucial to verify that the graph is being built correctly.</p>
-<h3 id="step-31-prepare-a-sample-project">Step 3.1: Prepare a sample project</h3>
-<p>Create a small sample project for your new language (e.g., <code>tests/sample_project_typescript/</code>) with:
-*   Function declarations.
-*   Class declarations (including inheritance).
-*   Various import types (if applicable).
-*   Function calls.
-*   Variable declarations.</p>
-<h3 id="step-32-index-the-sample-project">Step 3.2: Index the sample project</h3>
-<p>From a shell, with your virtual environment active and <strong><code>DEFAULT_DATABASE</code></strong> (or <code>cgc config</code>) pointing at the backend you want to test:</p>
-<ol>
-<li><strong>Remove any prior index for that path (optional but avoids confusion):</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>delete<span class="w"> </span>/path/to/your/sample_project
+<li><strong>Index a test codebase</strong>:
+   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>./tests/fixtures/sample_ts_project/<span class="w"> </span>--force
 </code></pre></div></li>
-<li><strong>Index the project:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>/path/to/your/sample_project
+<li><strong>Execute verification queries using Cypher</strong>:</li>
+<li>Verify files are parsed:
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) RETURN f.path, f.language&quot;</span>
 </code></pre></div></li>
-<li><strong>Confirm stats:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>stats<span class="w"> </span>/path/to/your/sample_project
+<li>Verify functions are identified:
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(fn:Function) RETURN f.path, fn.name&quot;</span>
+</code></pre></div></li>
+<li>Verify caller links:
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) RETURN caller.name, callee.name&quot;</span>
 </code></pre></div></li>
 </ol>
-<p>If you use the MCP server instead, the same operations map to the management and indexing tools; the CLI commands above are the usual way to verify locally.</p>
-<h3 id="step-33-query-the-graph-with-cgc-query">Step 3.3: Query the graph with <code>cgc query</code></h3>
-<p>Run <strong>Cypher</strong> through the CLI so you stay on the supported abstraction layer (works across backends that expose OpenCypher-compatible query surfaces):</p>
-<ul>
-<li>
-<p><strong>Check for files and language tags:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; RETURN f.name, f.path, f.lang&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All files from your sample project should be listed with the correct <code>lang</code> tag.</p>
-</li>
-<li>
-<p><strong>Check for functions:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(fn:Function) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND fn.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, fn.name AS FunctionName, fn.line_number AS Line&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All functions from your sample project should be listed.</p>
-</li>
-<li>
-<p><strong>Check for classes:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(c:Class) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND c.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, c.name AS ClassName, c.line_number AS Line&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All classes from your sample project should be listed.</p>
-</li>
-<li>
-<p><strong>Check for imports (module-level):</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:IMPORTS]-&gt;(m:Module) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND f.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, m.name AS ImportedModule, m.full_import_name AS FullImportName&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All module-level imports should be listed.</p>
-</li>
-<li>
-<p><strong>Check for function calls:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) WHERE caller.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND caller.lang = &#39;&lt;your_language_name&gt;&#39; RETURN caller.name AS Caller, callee.name AS Callee, caller.path AS CallerFile, callee.path AS CalleeFile&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All function calls should be correctly linked.</p>
-</li>
-<li>
-<p><strong>Check for class inheritance:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (child:Class)-[:INHERITS]-&gt;(parent:Class) WHERE child.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND child.lang = &#39;&lt;your_language_name&gt;&#39; RETURN child.name AS ChildClass, parent.name AS ParentClass, child.path AS ChildFile, parent.path AS ParentFile&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All inheritance relationships should be correctly linked.</p>
-</li>
-</ul>
-<h3 id="step-34-debugging-common-issues">Step 3.4: Debugging Common Issues</h3>
-<ul>
-<li><strong><code>NameError: Invalid node type ...</code></strong>: Your tree-sitter query is using a node type that doesn't exist in the language's grammar. Use <code>tree-sitter parse</code> to inspect the AST.</li>
-<li><strong>Missing Relationships (e.g., <code>CALLS</code>, <code>IMPORTS</code>)</strong>:<ul>
-<li><strong>Check <code>_find_*</code> methods</strong>: Ensure your <code>_find_*</code> methods are correctly extracting the necessary data.</li>
-<li><strong>Check <code>imports_map</code></strong>: Verify that the <code>pre_scan_&lt;lang&gt;</code> function is correctly populating the <code>imports_map</code>.</li>
-<li><strong>Check <code>local_imports</code> map</strong>: Ensure the <code>local_imports</code> map (built in <code>_create_function_calls</code> and <code>_create_inheritance_links</code>) is correctly resolving symbols.</li>
-</ul>
-</li>
-<li><strong>Incorrect <code>lang</code> tags</strong>: Ensure <code>self.language_name</code> is correctly passed and stored.</li>
-</ul>
-<p>By following these steps, contributors can effectively add and verify new language support.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
       </div>
     </main>
   </div>
@@ -866,188 +801,7 @@
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="contributing-new-language-support-to-codegraphcontext">Contributing New Language Support to CodeGraphContext</h1>
-<p>This document outlines the steps and best practices for adding support for a new programming language to CodeGraphContext. By following this guide, contributors can efficiently integrate new languages and verify structure and relationships in the <strong>graph database</strong> (regardless of whether the active backend is FalkorDB, KuzuDB, Neo4j, or another supported store).</p>
-<h2 id="1-understanding-the-architecture">1. Understanding the Architecture</h2>
-<p>CodeGraphContext uses a modular architecture for multi-language support:</p>
-<ul>
-<li><strong>Generic <code>TreeSitterParser</code> (in <code>graph_builder.py</code>):</strong> This acts as a wrapper, dispatching parsing tasks to language-specific implementations.</li>
-<li><strong>Language-Specific Parser Modules (in <code>src/codegraphcontext/tools/languages/</code>):</strong> Each language (e.g., Python, JavaScript) has its own module (e.g., <code>python.py</code>, <code>javascript.py</code>) containing:<ul>
-<li>Tree-sitter queries (<code>&lt;LANG&gt;_QUERIES</code>).</li>
-<li>A <code>&lt;Lang&gt;TreeSitterParser</code> class that encapsulates language-specific parsing logic.</li>
-<li>A <code>pre_scan_&lt;lang&gt;</code> function for initial symbol mapping.</li>
-</ul>
-</li>
-<li><strong><code>GraphBuilder</code> (in <code>graph_builder.py</code>):</strong> Manages the overall graph building process, including file discovery, pre-scanning, and dispatching to the correct language parser. Persistence goes through <strong><code>GraphWriter</code></strong> in <strong><code>tools/indexing/persistence/writer.py</code></strong>, which writes nodes and edges via the database abstraction—<strong>not</strong> by calling <code>session.run</code> (or equivalent) directly from the builder.</li>
-</ul>
-<h2 id="2-steps-to-add-a-new-language-eg-typescript-ts">2. Steps to Add a New Language (e.g., TypeScript - <code>.ts</code>)</h2>
-<h3 id="step-21-create-the-language-module-file">Step 2.1: Create the Language Module File</h3>
-<ol>
-<li>Create a new file: <code>src/codegraphcontext/tools/languages/typescript.py</code>.</li>
-<li>Add the necessary imports: <code>from pathlib import Path</code>, <code>from typing import Any, Dict, Optional, Tuple</code>, <code>import logging</code>, <code>import ast</code> (if needed for AST manipulation).</li>
-<li>Define <code>TS_QUERIES</code> (Tree-sitter queries for TypeScript).</li>
-<li>Create a <code>TypescriptTreeSitterParser</code> class.</li>
-<li>Create a <code>pre_scan_typescript</code> function.</li>
-</ol>
-<h3 id="step-22-define-tree-sitter-queries-ts_queries">Step 2.2: Define Tree-sitter Queries (<code>TS_QUERIES</code>)</h3>
-<p>This is the most critical and often iterative step. You'll need to define queries for:</p>
-<ul>
-<li><strong><code>functions</code></strong>: Function declarations, arrow functions, methods.</li>
-<li><strong><code>classes</code></strong>: Class declarations, class expressions.</li>
-<li><strong><code>imports</code></strong>: ES6 imports (<code>import ... from ...</code>), CommonJS <code>require()</code>.</li>
-<li><strong><code>calls</code></strong>: Function calls, method calls.</li>
-<li><strong><code>variables</code></strong>: Variable declarations (<code>let</code>, <code>const</code>, <code>var</code>).</li>
-<li><strong><code>docstrings</code></strong>: (Optional) How documentation comments are identified.</li>
-<li><strong><code>lambda_assignments</code></strong>: (Optional, Python-specific) If the language has similar constructs.</li>
-</ul>
-<p><strong>Tips for Query Writing:</strong>
-*   <strong>Consult Tree-sitter Grammars:</strong> Find the <code>node-types.json</code> or grammar definition for your language (e.g., <code>tree-sitter-typescript</code>).
-*   <strong>Use <code>tree-sitter parse</code>:</strong> Use the <code>tree-sitter parse</code> command-line tool to inspect the AST of sample code snippets. This is invaluable for identifying correct node types and field names.
-*   <strong>Start Simple:</strong> Begin with basic queries and gradually add complexity.
-*   <strong>Test Iteratively:</strong> After each query, test it with sample code.</p>
-<h3 id="step-23-implement-langtreesitterparser-class">Step 2.3: Implement <code>&lt;Lang&gt;TreeSitterParser</code> Class</h3>
-<p>This class (e.g., <code>TypescriptTreeSitterParser</code>) will encapsulate the language-specific logic.</p>
-<ol>
-<li><strong><code>__init__(self, generic_parser_wrapper)</code></strong>:<ul>
-<li>Store <code>generic_parser_wrapper</code>, <code>language_name</code>, <code>language</code>, <code>parser</code> from the generic wrapper.</li>
-<li>Load <code>TS_QUERIES</code> using <code>self.language.query(query_str)</code>.</li>
-</ul>
-</li>
-<li><strong>Helper Methods</strong>:<ul>
-<li><code>_get_node_text(self, node)</code>: Extracts text from a tree-sitter node.</li>
-<li><code>_get_parent_context(self, node, types=...)</code>: (Language-specific node types for context).</li>
-<li><code>_calculate_complexity(self, node)</code>: (Language-specific complexity nodes).</li>
-<li><code>_get_docstring(self, body_node)</code>: (Language-specific docstring extraction).</li>
-</ul>
-</li>
-<li><strong><code>parse(self, path: Path, is_dependency: bool = False) -&gt; Dict</code></strong>:<ul>
-<li>Reads the file, parses it with <code>self.parser</code>.</li>
-<li>Calls its own <code>_find_*</code> methods (<code>_find_functions</code>, <code>_find_classes</code>, etc.).</li>
-<li>Returns a standardized dictionary format (as seen in <code>python.py</code> and <code>javascript.py</code>).</li>
-</ul>
-</li>
-<li><strong><code>_find_*</code> Methods</strong>:
-    Implement these for each query type, extracting data from the AST and populating the standardized dictionary.</li>
-</ol>
-<h3 id="step-24-implement-pre_scan_lang-function">Step 2.4: Implement <code>pre_scan_&lt;lang&gt;</code> Function</h3>
-<p>This function (e.g., <code>pre_scan_typescript</code>) will quickly scan files to build an initial <code>imports_map</code>.</p>
-<ol>
-<li>It takes <code>files: list[Path]</code> and <code>parser_wrapper</code> (an instance of <code>TreeSitterParser</code>).</li>
-<li>Uses a simplified query (e.g., for <code>class_declaration</code> and <code>function_declaration</code>) to quickly find definitions.</li>
-<li>Returns a dictionary mapping symbol names to file paths.</li>
-</ol>
-<h3 id="step-25-integrate-into-graph_builderpy">Step 2.5: Integrate into <code>graph_builder.py</code></h3>
-<ol>
-<li><strong><code>GraphBuilder.__init__</code></strong>:<ul>
-<li>Add <code>'.ts': TreeSitterParser('typescript')</code> to <code>self.parsers</code>.</li>
-</ul>
-</li>
-<li><strong><code>TreeSitterParser.__init__</code></strong>:<ul>
-<li>Add an <code>elif self.language_name == 'typescript':</code> block to initialize <code>self.language_specific_parser</code> with <code>TypescriptTreeSitterParser(self)</code>.</li>
-</ul>
-</li>
-<li><strong><code>GraphBuilder._pre_scan_for_imports</code></strong>:<ul>
-<li>Add an <code>elif '.ts' in files_by_lang:</code> block to import <code>pre_scan_typescript</code> and call it.</li>
-</ul>
-</li>
-</ol>
-<h2 id="3-verification-and-debugging-using-the-graph-database">3. Verification and debugging using the graph database</h2>
-<p>After implementing support for a new language, it's crucial to verify that the graph is being built correctly.</p>
-<h3 id="step-31-prepare-a-sample-project">Step 3.1: Prepare a sample project</h3>
-<p>Create a small sample project for your new language (e.g., <code>tests/sample_project_typescript/</code>) with:
-*   Function declarations.
-*   Class declarations (including inheritance).
-*   Various import types (if applicable).
-*   Function calls.
-*   Variable declarations.</p>
-<h3 id="step-32-index-the-sample-project">Step 3.2: Index the sample project</h3>
-<p>From a shell, with your virtual environment active and <strong><code>DEFAULT_DATABASE</code></strong> (or <code>cgc config</code>) pointing at the backend you want to test:</p>
-<ol>
-<li><strong>Remove any prior index for that path (optional but avoids confusion):</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>delete<span class="w"> </span>/path/to/your/sample_project
-</code></pre></div></li>
-<li><strong>Index the project:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>/path/to/your/sample_project
-</code></pre></div></li>
-<li><strong>Confirm stats:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>stats<span class="w"> </span>/path/to/your/sample_project
-</code></pre></div></li>
-</ol>
-<p>If you use the MCP server instead, the same operations map to the management and indexing tools; the CLI commands above are the usual way to verify locally.</p>
-<h3 id="step-33-query-the-graph-with-cgc-query">Step 3.3: Query the graph with <code>cgc query</code></h3>
-<p>Run <strong>Cypher</strong> through the CLI so you stay on the supported abstraction layer (works across backends that expose OpenCypher-compatible query surfaces):</p>
-<ul>
-<li>
-<p><strong>Check for files and language tags:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; RETURN f.name, f.path, f.lang&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All files from your sample project should be listed with the correct <code>lang</code> tag.</p>
-</li>
-<li>
-<p><strong>Check for functions:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(fn:Function) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND fn.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, fn.name AS FunctionName, fn.line_number AS Line&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All functions from your sample project should be listed.</p>
-</li>
-<li>
-<p><strong>Check for classes:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(c:Class) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND c.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, c.name AS ClassName, c.line_number AS Line&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All classes from your sample project should be listed.</p>
-</li>
-<li>
-<p><strong>Check for imports (module-level):</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:IMPORTS]-&gt;(m:Module) WHERE f.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND f.lang = &#39;&lt;your_language_name&gt;&#39; RETURN f.name AS FileName, m.name AS ImportedModule, m.full_import_name AS FullImportName&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All module-level imports should be listed.</p>
-</li>
-<li>
-<p><strong>Check for function calls:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) WHERE caller.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND caller.lang = &#39;&lt;your_language_name&gt;&#39; RETURN caller.name AS Caller, callee.name AS Callee, caller.path AS CallerFile, callee.path AS CalleeFile&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All function calls should be correctly linked.</p>
-</li>
-<li>
-<p><strong>Check for class inheritance:</strong>
-    <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (child:Class)-[:INHERITS]-&gt;(parent:Class) WHERE child.path STARTS WITH &#39;/path/to/your/sample_project&#39; AND child.lang = &#39;&lt;your_language_name&gt;&#39; RETURN child.name AS ChildClass, parent.name AS ParentClass, child.path AS ChildFile, parent.path AS ParentFile&quot;</span>
-</code></pre></div>
-    <em>Expected:</em> All inheritance relationships should be correctly linked.</p>
-</li>
-</ul>
-<h3 id="step-34-debugging-common-issues">Step 3.4: Debugging Common Issues</h3>
-<ul>
-<li><strong><code>NameError: Invalid node type ...</code></strong>: Your tree-sitter query is using a node type that doesn't exist in the language's grammar. Use <code>tree-sitter parse</code> to inspect the AST.</li>
-<li><strong>Missing Relationships (e.g., <code>CALLS</code>, <code>IMPORTS</code>)</strong>:<ul>
-<li><strong>Check <code>_find_*</code> methods</strong>: Ensure your <code>_find_*</code> methods are correctly extracting the necessary data.</li>
-<li><strong>Check <code>imports_map</code></strong>: Verify that the <code>pre_scan_&lt;lang&gt;</code> function is correctly populating the <code>imports_map</code>.</li>
-<li><strong>Check <code>local_imports</code> map</strong>: Ensure the <code>local_imports</code> map (built in <code>_create_function_calls</code> and <code>_create_inheritance_links</code>) is correctly resolving symbols.</li>
-</ul>
-</li>
-<li><strong>Incorrect <code>lang</code> tags</strong>: Ensure <code>self.language_name</code> is correctly passed and stored.</li>
-</ul>
-<p>By following these steps, contributors can effectively add and verify new language support.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -1090,12 +844,17 @@
 
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -1108,7 +867,11 @@
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -1140,8 +903,69 @@
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

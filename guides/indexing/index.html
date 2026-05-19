@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../concepts/architecture/">
+        <link rel="prev" href="../../concepts/how-it-works/">
       
       
-        <link rel="next" href="../bundles/">
+        <link rel="next" href="../contexts/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Indexing Source Code - CodeGraphContext</title>
+        <title>Indexing Codebases - CodeGraphContext</title>
       
     
     
@@ -244,7 +244,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Indexing Source Code
+              Indexing Codebases
             
           </span>
         </div>
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="./"
           class="rw-sidebar__link rw-sidebar__link--active">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../../reference/troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -666,104 +691,82 @@
         
         
         <span class="rw-breadcrumb__sep">›</span>
-        Indexing Source Code
+        Indexing Codebases
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="indexing-source-code">Indexing Source Code</h1>
-<p>Indexing is the process of parsing your source code and materializing it into the code graph. CodeGraphContext (CGC) supports various indexing strategies to suit different workflows.</p>
-<h2 id="1-local-repository-indexing">1. Local Repository Indexing</h2>
-<p>The most common use case is indexing the project you are currently working on.</p>
+      <div class="rw-main-content md-typeset">
+        <h1 id="indexing-source-code">Indexing Source Code</h1>
+<p>Indexing extracts syntactic structures and links semantic relationships within a codebase to populate the graph database. CodeGraphContext (CGC) supports multiple scan strategies.</p>
+<hr />
+<h2 id="1-local-workspace-indexing">1. Local Workspace Indexing</h2>
+<p>To index the repository directory you are currently working in, navigate to the folder and run:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/project
 cgc<span class="w"> </span>index
 </code></pre></div>
-<h3 id="partial-scans">Partial Scans</h3>
-<p>If you only want to index a specific subdirectory or file:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>./src/core
+<h3 id="ingestion-scopes">Ingestion Scopes</h3>
+<p>By default, the <code>index</code> command scans all supported source files in the current working directory. You can narrow the scope by specifying a target subdirectory or file:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Index only the core module folder</span>
+cgc<span class="w"> </span>index<span class="w"> </span>./src/core
+
+<span class="c1"># Index a single file</span>
+cgc<span class="w"> </span>index<span class="w"> </span>./src/main.py
 </code></pre></div>
-<h3 id="incremental-updates">Incremental Updates</h3>
-<p>CGC is smart enough to skip files that haven't changed since the last index. Simply run <code>cgc index</code> again to sync your changes.</p>
-<hr />
-<h2 id="2-dependency-indexing">2. Dependency Indexing</h2>
-<p>To get a complete picture of your application, you may want to index its dependencies.</p>
-<h3 id="python-packages">Python Packages</h3>
-<p>CGC can automatically find and index installed Python packages:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index-package<span class="w"> </span>requests
-</code></pre></div>
-<h3 id="generic-folders">Generic Folders</h3>
-<p>You can also index any arbitrary folder and mark it as a dependency:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>--path<span class="w"> </span>/path/to/lib<span class="w"> </span>--dependency
+<h3 id="overwriting-the-index">Overwriting the Index</h3>
+<p>CGC tracks modification timestamps and file hashes to perform incremental scans. To force a full re-index of all files, bypass the cache with the <code>--force</code> flag:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>--force
 </code></pre></div>
 <hr />
-<h2 id="3-real-time-monitoring-watch">3. Real-time Monitoring (<code>watch</code>)</h2>
-<p>For projects under active development, use the <code>watch</code> command. CGC will monitor your filesystem for changes (create, update, delete) and keep the graph in sync in the background.</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watch
+<h2 id="2-ingesting-third-party-packages">2. Ingesting Third-Party Packages</h2>
+<p>To trace references to external dependencies (e.g., standard library classes or package functions), you can manually add installed Python libraries to your active code graph.</p>
+<p>Use the <code>add-package</code> command:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ingest requests library</span>
+cgc<span class="w"> </span>add-package<span class="w"> </span>requests<span class="w"> </span>python
+</code></pre></div>
+<p>The command resolves the package's installation path on your system, parses its definitions, and appends the nodes to your active context.</p>
+<hr />
+<h2 id="3-real-time-directory-watchers">3. Real-Time Directory Watchers</h2>
+<p>For active development, run a filesystem watcher in the background to capture file writes and incrementally sync the graph.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Start watching the active workspace</span>
+cgc<span class="w"> </span>watch
 </code></pre></div>
 <ul>
-<li><strong>Background Jobs</strong>: The watch command runs as a background process.</li>
-<li><strong>Status</strong>: Check the status of your watchers with <code>cgc list-watchers</code>.</li>
+<li><strong>Listing Watchers</strong>: View active file monitors with:
+  <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watching
+</code></pre></div></li>
+<li><strong>Stopping Watchers</strong>: Terminate directory monitoring using:
+  <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>unwatch<span class="w"> </span>/path/to/project
+</code></pre></div></li>
 </ul>
 <hr />
-<h2 id="4-advanced-indexing-options">4. Advanced Indexing Options</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Option</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>--deep</code></td>
-<td style="text-align: left;">Performs a deep scan, following imports and resolving external symbols.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>--scip</code></td>
-<td style="text-align: left;">(Experimental) Uses SCIP index data if available for higher precision.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>--exclude</code></td>
-<td style="text-align: left;">Glob patterns to ignore (e.g., <code>**/tests/**</code>).</td>
-</tr>
-</tbody>
-</table>
-<h3 id="the-cgcignore-file">The <code>.cgcignore</code> File</h3>
-<p>Similar to <code>.gitignore</code>, you can create a <code>.cgcignore</code> file in your repository root to permanently exclude files or directories from the index.</p>
-<div class="highlight"><pre><span></span><code># Example .cgcignore
-node_modules/
+<h2 id="4-ingest-filters-cgcignore">4. Ingest Filters (<code>.cgcignore</code>)</h2>
+<p>To prevent compiling bloated indices or parsing build artifacts, define ignore rules in a <code>.cgcignore</code> file in the root of your repository or context directory.</p>
+<h3 id="glob-pattern-rules">Glob Pattern Rules:</h3>
+<ul>
+<li>Lines starting with <code>#</code> are treated as comments.</li>
+<li>Directories should terminate with a trailing slash <code>/</code>.</li>
+<li>Supports wildcards (<code>*</code>) and recursive matches (<code>**/</code>).</li>
+</ul>
+<h3 id="typical-cgcignore-configuration">Typical <code>.cgcignore</code> Configuration:</h3>
+<div class="highlight"><pre><span></span><code># Exclude build and compiled outputs
+build/
 dist/
+*.egg-info/
+__pycache__/
 *.pyc
+
+# Exclude dependency libraries
+node_modules/
+.venv/
+venv/
+env/
+
+# Exclude IDE configurations
+.git/
+.vscode/
+.idea/
+.project
 </code></pre></div>
-<hr />
-<h2 id="performance-tips">Performance Tips</h2>
-<ul>
-<li><strong>Memory</strong>: Large repositories may require significant memory during the initial parse phase.</li>
-<li><strong>Storage</strong>: Ensure you have enough disk space for the graph database (usually 2-5x the size of the source code).</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
       </div>
     </main>
   </div>
@@ -787,98 +790,7 @@ dist/
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="indexing-source-code">Indexing Source Code</h1>
-<p>Indexing is the process of parsing your source code and materializing it into the code graph. CodeGraphContext (CGC) supports various indexing strategies to suit different workflows.</p>
-<h2 id="1-local-repository-indexing">1. Local Repository Indexing</h2>
-<p>The most common use case is indexing the project you are currently working on.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/project
-cgc<span class="w"> </span>index
-</code></pre></div>
-<h3 id="partial-scans">Partial Scans</h3>
-<p>If you only want to index a specific subdirectory or file:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>./src/core
-</code></pre></div>
-<h3 id="incremental-updates">Incremental Updates</h3>
-<p>CGC is smart enough to skip files that haven't changed since the last index. Simply run <code>cgc index</code> again to sync your changes.</p>
-<hr />
-<h2 id="2-dependency-indexing">2. Dependency Indexing</h2>
-<p>To get a complete picture of your application, you may want to index its dependencies.</p>
-<h3 id="python-packages">Python Packages</h3>
-<p>CGC can automatically find and index installed Python packages:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index-package<span class="w"> </span>requests
-</code></pre></div>
-<h3 id="generic-folders">Generic Folders</h3>
-<p>You can also index any arbitrary folder and mark it as a dependency:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>--path<span class="w"> </span>/path/to/lib<span class="w"> </span>--dependency
-</code></pre></div>
-<hr />
-<h2 id="3-real-time-monitoring-watch">3. Real-time Monitoring (<code>watch</code>)</h2>
-<p>For projects under active development, use the <code>watch</code> command. CGC will monitor your filesystem for changes (create, update, delete) and keep the graph in sync in the background.</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watch
-</code></pre></div>
-<ul>
-<li><strong>Background Jobs</strong>: The watch command runs as a background process.</li>
-<li><strong>Status</strong>: Check the status of your watchers with <code>cgc list-watchers</code>.</li>
-</ul>
-<hr />
-<h2 id="4-advanced-indexing-options">4. Advanced Indexing Options</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Option</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>--deep</code></td>
-<td style="text-align: left;">Performs a deep scan, following imports and resolving external symbols.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>--scip</code></td>
-<td style="text-align: left;">(Experimental) Uses SCIP index data if available for higher precision.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>--exclude</code></td>
-<td style="text-align: left;">Glob patterns to ignore (e.g., <code>**/tests/**</code>).</td>
-</tr>
-</tbody>
-</table>
-<h3 id="the-cgcignore-file">The <code>.cgcignore</code> File</h3>
-<p>Similar to <code>.gitignore</code>, you can create a <code>.cgcignore</code> file in your repository root to permanently exclude files or directories from the index.</p>
-<div class="highlight"><pre><span></span><code># Example .cgcignore
-node_modules/
-dist/
-*.pyc
-</code></pre></div>
-<hr />
-<h2 id="performance-tips">Performance Tips</h2>
-<ul>
-<li><strong>Memory</strong>: Large repositories may require significant memory during the initial parse phase.</li>
-<li><strong>Storage</strong>: Ensure you have enough disk space for the graph database (usually 2-5x the size of the source code).</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -921,12 +833,17 @@ dist/
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -939,7 +856,11 @@ dist/
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -971,8 +892,69 @@ dist/
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

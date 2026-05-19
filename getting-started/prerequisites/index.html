@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../installation/">
       
       
         
@@ -207,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prerequisites" class="md-skip">
+        <a href="#system-prerequisites" class="md-skip">
           Skip to content
         </a>
       
@@ -342,11 +346,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../installation/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -366,7 +372,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -477,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -493,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -532,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="./"
+          class="rw-sidebar__link rw-sidebar__link--active">
+          Prerequisites
+        </a>
+        
         <a href="../installation/"
           class="rw-sidebar__link ">
           Installation
@@ -554,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -564,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -578,22 +594,32 @@
         
         <a href="../../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -618,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -630,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../../reference/troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -654,113 +685,112 @@
       <div class="rw-breadcrumb">
         <a href="../..">Home</a>
         
+        
+        <span class="rw-breadcrumb__sep">›</span>
+        <a href="../..">Getting Started</a>
+        
+        
         <span class="rw-breadcrumb__sep">›</span>
         Prerequisites
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="prerequisites">Prerequisites</h1>
-<p>Before you install CodeGraphContext (CGC), it helps to see how the pieces fit. CGC is a <strong>client–server style</strong> system even on a laptop: a <strong>Python engine</strong>, a <strong>graph database backend</strong>, and <strong>clients</strong> (CLI and/or MCP).</p>
-<h2 id="the-three-roles">The three roles</h2>
+      <div class="rw-main-content md-typeset">
+        <h1 id="system-prerequisites">System Prerequisites</h1>
+<p>CodeGraphContext (CGC) is designed as a client-server architecture. To ensure a successful installation, understand the primary roles and requirements of the environment.</p>
+<hr />
+<h2 id="architecture-components">Architecture Components</h2>
 <ol>
-<li><strong>Engine (this package)</strong> — Parses code, builds the graph, and talks to the database through a single abstraction API.</li>
-<li><strong>Database</strong> — Stores nodes and relationships (“function A calls function B”, containment, imports, …).</li>
-<li><strong>Clients</strong></li>
-<li><strong>CLI</strong> — <code>cgc</code> in the terminal.</li>
-<li><strong>MCP</strong> — AI-capable editors (Cursor, VS Code, Claude Desktop, and other MCP hosts).</li>
+<li><strong>The Ingestion Engine</strong>: The core Python package responsible for scanning source directories, running Tree-sitter and SCIP syntax parsers, and linking references.</li>
+<li><strong>The Graph Storage Layer</strong>: The database backend containing nodes and edges representing code entities and their interactions.</li>
+<li><strong>The Interface Clients</strong>:<ul>
+<li><strong>CLI (<code>cgc</code>)</strong>: Terminal interface used for managing indices, running analytical searches, and system diagnostics.</li>
+<li><strong>MCP Server</strong>: Gateway enabling Model Context Protocol communication for IDEs and AI assistants.</li>
+</ul>
+</li>
 </ol>
-<h2 id="system-requirements">System requirements</h2>
+<hr />
+<h2 id="hardware-os-requirements">Hardware &amp; OS Requirements</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Requirement</th>
+<th style="text-align: left;">Resource</th>
+<th style="text-align: left;">Minimum Requirement</th>
 <th style="text-align: left;">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>OS</strong></td>
-<td style="text-align: left;">Linux, macOS, or Windows (WSL is a good option on Windows).</td>
+<td style="text-align: left;"><strong>Operating System</strong></td>
+<td style="text-align: left;">Linux, macOS, or Windows</td>
+<td style="text-align: left;">Windows WSL is supported but native installation works via KuzuDB.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Python</strong></td>
-<td style="text-align: left;"><strong>3.10+</strong> for CGC generally. <strong>FalkorDB Lite</strong> (default embedded path on Unix) requires <strong>Python 3.12+</strong>.</td>
+<td style="text-align: left;"><strong>Python Version</strong></td>
+<td style="text-align: left;">Python 3.10 or higher</td>
+<td style="text-align: left;">Python 3.10+ is required for the core package and KuzuDB.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Memory</strong></td>
-<td style="text-align: left;">At least <strong>4 GB RAM</strong> recommended; larger repos and graph stores benefit from more.</td>
+<td style="text-align: left;">4 GB RAM</td>
+<td style="text-align: left;">Large repositories benefit from 8 GB+ memory during initial scans.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="database-options">Database options</h2>
-<p>You do not need to manually install every backend—pick one flow during setup. Use this table to decide:</p>
+<hr />
+<h2 id="database-backend-selection">Database Backend Selection</h2>
+<p>CGC supports multiple database engines. You only need to set up the engine that fits your requirements.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Option</th>
-<th style="text-align: left;">Best for</th>
-<th style="text-align: left;">Complexity</th>
+<th style="text-align: left;">Database Backend</th>
+<th style="text-align: left;">Setup Type</th>
+<th style="text-align: left;">Target Platform</th>
+<th style="text-align: left;">Use Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align: left;"><strong>KuzuDB (Default)</strong></td>
+<td style="text-align: left;">In-process (Embedded)</td>
+<td style="text-align: left;">Cross-Platform (Linux/macOS/Windows)</td>
+<td style="text-align: left;">Recommended for local development and zero-ops setups. Works natively out-of-the-box on Python 3.10+.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LadybugDB</strong></td>
+<td style="text-align: left;">In-process (Embedded)</td>
+<td style="text-align: left;">Cross-Platform</td>
+<td style="text-align: left;">Embedded SQL-based graph engine. Operates similarly to KuzuDB.</td>
+</tr>
+<tr>
 <td style="text-align: left;"><strong>FalkorDB Lite</strong></td>
-<td style="text-align: left;"><strong>Recommended on Linux and macOS</strong> for local development: embedded use, minimal setup. Requires <strong>Python 3.12+</strong>.</td>
-<td style="text-align: left;">Low</td>
+<td style="text-align: left;">In-process (Embedded)</td>
+<td style="text-align: left;">Unix-Only (Linux/macOS)</td>
+<td style="text-align: left;">Embedded, high-performance in-memory graph. Requires Python 3.12+.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>FalkorDB Remote</strong></td>
-<td style="text-align: left;">Teams or shared graphs: connect to a <strong>remote</strong> FalkorDB server instead of embedded Lite.</td>
-<td style="text-align: left;">Low–medium</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>KuzuDB</strong></td>
-<td style="text-align: left;"><strong>Recommended on Windows</strong> (and anywhere you want a <strong>portable embedded</strong> graph without FalkorDB Lite). Good <strong>fallback</strong> when FalkorDB is not the right fit.</td>
-<td style="text-align: left;">Low</td>
+<td style="text-align: left;">Networked Server</td>
+<td style="text-align: left;">Cross-Platform Client</td>
+<td style="text-align: left;">Standard client connecting to a remote FalkorDB instance.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Neo4j</strong></td>
-<td style="text-align: left;"><strong>Production / enterprise</strong>: operational tooling, clustering, and mature Neo4j ecosystem.</td>
-<td style="text-align: left;">Medium–high</td>
+<td style="text-align: left;">Networked Server</td>
+<td style="text-align: left;">Cross-Platform Client</td>
+<td style="text-align: left;">Enterprise setups needing complex clustering, access controls, or Neo4j Browser visualization.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Python version and FalkorDB Lite</p>
-<p>If you are on Linux or macOS and want the <strong>default</strong> embedded experience, plan for <strong>Python 3.12 or newer</strong> so <strong>FalkorDB Lite</strong> is available. On older Python versions, choose <strong>KuzuDB</strong>, <strong>FalkorDB Remote</strong>, or <strong>Neo4j</strong> according to your environment.</p>
-</div>
-<h2 id="ai-assistant-optional">AI assistant (optional)</h2>
-<p>To use CGC from an AI workflow you need an <strong>MCP-capable client</strong>. Examples:</p>
+<hr />
+<h2 id="development-environment-interfaces">Development Environment Interfaces</h2>
+<p>To use CodeGraphContext inside your coding workflow, ensure you have an MCP-compliant workspace interface, such as:</p>
 <ul>
-<li><a href="https://cursor.sh">Cursor</a></li>
-<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://claude.ai/download">Claude Desktop</a></li>
+<li><strong>Cursor IDE</strong> (Native MCP Support)</li>
+<li><strong>VS Code</strong> (with the Continue or similar MCP extension)</li>
+<li><strong>Claude Desktop</strong> (Native local process or SSE support)</li>
+<li><strong>Windsurf IDE / OpenCode</strong></li>
 </ul>
-<p>Any other MCP-compatible agent or IDE can integrate the same way.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
       </div>
     </main>
   </div>
@@ -784,106 +814,7 @@
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="prerequisites">Prerequisites</h1>
-<p>Before you install CodeGraphContext (CGC), it helps to see how the pieces fit. CGC is a <strong>client–server style</strong> system even on a laptop: a <strong>Python engine</strong>, a <strong>graph database backend</strong>, and <strong>clients</strong> (CLI and/or MCP).</p>
-<h2 id="the-three-roles">The three roles</h2>
-<ol>
-<li><strong>Engine (this package)</strong> — Parses code, builds the graph, and talks to the database through a single abstraction API.</li>
-<li><strong>Database</strong> — Stores nodes and relationships (“function A calls function B”, containment, imports, …).</li>
-<li><strong>Clients</strong></li>
-<li><strong>CLI</strong> — <code>cgc</code> in the terminal.</li>
-<li><strong>MCP</strong> — AI-capable editors (Cursor, VS Code, Claude Desktop, and other MCP hosts).</li>
-</ol>
-<h2 id="system-requirements">System requirements</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Requirement</th>
-<th style="text-align: left;">Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>OS</strong></td>
-<td style="text-align: left;">Linux, macOS, or Windows (WSL is a good option on Windows).</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Python</strong></td>
-<td style="text-align: left;"><strong>3.10+</strong> for CGC generally. <strong>FalkorDB Lite</strong> (default embedded path on Unix) requires <strong>Python 3.12+</strong>.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Memory</strong></td>
-<td style="text-align: left;">At least <strong>4 GB RAM</strong> recommended; larger repos and graph stores benefit from more.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="database-options">Database options</h2>
-<p>You do not need to manually install every backend—pick one flow during setup. Use this table to decide:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Option</th>
-<th style="text-align: left;">Best for</th>
-<th style="text-align: left;">Complexity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>FalkorDB Lite</strong></td>
-<td style="text-align: left;"><strong>Recommended on Linux and macOS</strong> for local development: embedded use, minimal setup. Requires <strong>Python 3.12+</strong>.</td>
-<td style="text-align: left;">Low</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>FalkorDB Remote</strong></td>
-<td style="text-align: left;">Teams or shared graphs: connect to a <strong>remote</strong> FalkorDB server instead of embedded Lite.</td>
-<td style="text-align: left;">Low–medium</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>KuzuDB</strong></td>
-<td style="text-align: left;"><strong>Recommended on Windows</strong> (and anywhere you want a <strong>portable embedded</strong> graph without FalkorDB Lite). Good <strong>fallback</strong> when FalkorDB is not the right fit.</td>
-<td style="text-align: left;">Low</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Neo4j</strong></td>
-<td style="text-align: left;"><strong>Production / enterprise</strong>: operational tooling, clustering, and mature Neo4j ecosystem.</td>
-<td style="text-align: left;">Medium–high</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Python version and FalkorDB Lite</p>
-<p>If you are on Linux or macOS and want the <strong>default</strong> embedded experience, plan for <strong>Python 3.12 or newer</strong> so <strong>FalkorDB Lite</strong> is available. On older Python versions, choose <strong>KuzuDB</strong>, <strong>FalkorDB Remote</strong>, or <strong>Neo4j</strong> according to your environment.</p>
-</div>
-<h2 id="ai-assistant-optional">AI assistant (optional)</h2>
-<p>To use CGC from an AI workflow you need an <strong>MCP-capable client</strong>. Examples:</p>
-<ul>
-<li><a href="https://cursor.sh">Cursor</a></li>
-<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://claude.ai/download">Claude Desktop</a></li>
-</ul>
-<p>Any other MCP-compatible agent or IDE can integrate the same way.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -926,12 +857,17 @@
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -944,7 +880,11 @@
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -976,8 +916,69 @@
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

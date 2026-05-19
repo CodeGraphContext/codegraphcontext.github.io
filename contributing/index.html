@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../reference/config/">
+        <link rel="prev" href="../reference/troubleshooting/">
       
       
-        <link rel="next" href="../reference/troubleshooting/">
+        <link rel="next" href="../contributing_languages/">
       
       
         
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/installation/" class="md-tabs__link">
+        <a href="../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../concepts/graph-model/" class="md-tabs__link">
+        <a href="../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../concepts/architecture/"
+        <a href="../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../reference/troubleshooting/"
+        <a href="../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../roadmap/"
@@ -670,80 +695,66 @@
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="contributing-to-codegraphcontext">Contributing to CodeGraphContext</h1>
-<p>Thank you for your interest in contributing to CodeGraphContext (CGC). We welcome contributions from the community to help make CGC the most powerful code intelligence engine available.</p>
+      <div class="rw-main-content md-typeset">
+        <h1 id="contributing-to-codegraphcontext">Contributing to CodeGraphContext</h1>
+<p>Thank you for your interest in contributing to CodeGraphContext (CGC). We welcome contributions from the community to improve the performance, language support, and tooling capabilities of the engine.</p>
+<hr />
 <h2 id="development-principles">Development Principles</h2>
 <ul>
-<li><strong>Consistency</strong>: Adhere to the existing code style (PEP 8 for Python).</li>
-<li><strong>Quality</strong>: Write clean, maintainable, and well-documented code.</li>
-<li><strong>Testing</strong>: Every new feature or bug fix must include corresponding tests.</li>
-<li><strong>Focus</strong>: Keep pull requests focused on a single logical change.</li>
+<li><strong>Code Quality</strong>: Adhere to PEP 8 standards for Python codebase.</li>
+<li><strong>Robust Testing</strong>: Every bug fix, driver implementation, or parser extension must be accompanied by unit or integration tests.</li>
+<li><strong>Focused Commits</strong>: Keep pull requests focused on a single change set.</li>
+<li><strong>Maintain Documentation</strong>: Update references and guides if code changes alter command arguments or configurations.</li>
 </ul>
-<h2 id="setting-up-for-development">Setting Up for Development</h2>
+<hr />
+<h2 id="setting-up-the-development-workspace">Setting Up the Development Workspace</h2>
 <ol>
-<li><strong>Fork and Clone</strong>:
-    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/CodeGraphContext.git
+<li>
+<p><strong>Clone the Repository</strong>:
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CodeGraphContext/CodeGraphContext.git
 <span class="nb">cd</span><span class="w"> </span>CodeGraphContext
-</code></pre></div></li>
-<li><strong>Environment Setup</strong>:
-    We recommend using a virtual environment and <code>pip</code>:
-    <div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Linux/macOS</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Initialize Virtual Environment</strong>:
+   Initialize an isolated python environment and install dependencies:
+   <div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
 pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
-</code></pre></div></li>
+</code></pre></div></p>
+</li>
 </ol>
-<h2 id="development-workflow">Development Workflow</h2>
-<h3 id="1-enable-debug-logging">1. Enable Debug Logging</h3>
-<p>For detailed insights during development, use the <code>CGC_LOG_LEVEL</code> environment variable:</p>
+<hr />
+<h2 id="development-workflows">Development Workflows</h2>
+<h3 id="debug-logging">Debug Logging</h3>
+<p>Enable verbose debug logs during execution by setting the environment variable:
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CGC_LOG_LEVEL</span><span class="o">=</span>DEBUG
 cgc<span class="w"> </span>index
-</code></pre></div>
-<h3 id="2-running-the-test-suite">2. Running the Test Suite</h3>
-<p>We use <code>pytest</code> for testing. Ensure all tests pass before submitting a pull request.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run all tests</span>
+</code></pre></div></p>
+<h3 id="running-the-test-suite">Running the Test Suite</h3>
+<p>The testing pipeline utilizes <code>pytest</code>. Ensure all checks pass locally before pushing changes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run all unit and integration tests</span>
 pytest
 
-<span class="c1"># Run tests for a specific module</span>
-pytest<span class="w"> </span>tests/test_core.py
+<span class="c1"># Test a specific driver module</span>
+pytest<span class="w"> </span>tests/integration/test_kuzudb.py
 
-<span class="c1"># Skip re-indexing for faster iterations</span>
+<span class="c1"># Run tests bypassing re-indexing cache</span>
 <span class="nv">CGC_SKIP_REINDEX</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>pytest
 </code></pre></div>
-<h3 id="3-linting-and-formatting">3. Linting and Formatting</h3>
-<p>Please run <code>ruff</code> (if available) or similar tools to ensure code quality.</p>
+<p><em>Note: Integration tests for remote databases like Neo4j require a running local database instance (refer to docker-compose.yml).</em></p>
+<h3 id="formatting-linting">Formatting &amp; Linting</h3>
+<p>We enforce formatting and static checks via <code>ruff</code>. Run linting checks before committing:</p>
+<div class="highlight"><pre><span></span><code>ruff<span class="w"> </span>check<span class="w"> </span>.
+ruff<span class="w"> </span>format<span class="w"> </span>.
+</code></pre></div>
 <hr />
-<h2 id="submitting-a-pull-request">Submitting a Pull Request</h2>
+<h2 id="pull-request-guidelines">Pull Request Guidelines</h2>
 <ol>
-<li><strong>Create a Branch</strong>: Use a descriptive name like <code>feat/new-backend</code> or <code>fix/mcp-timeout</code>.</li>
-<li><strong>Commit</strong>: Use clear, concise commit messages.</li>
-<li><strong>Submit</strong>: Open a pull request against the <code>main</code> branch. Provide a detailed description of your changes and link any relevant issues.</li>
+<li><strong>Feature Branches</strong>: Branch from <code>main</code> using descriptive naming (e.g., <code>feat/ladybug-concurrency</code> or <code>fix/mcp-json-rpc</code>).</li>
+<li><strong>Commit Styling</strong>: Write clear, descriptive commit logs.</li>
+<li><strong>Submission</strong>: Open a pull request against the <code>main</code> branch. Detail the modification, verify unit test runs, and link to open issue tickets if applicable.</li>
 </ol>
-<h2 id="reporting-issues">Reporting Issues</h2>
-<p>If you find a bug or have a feature request, please open an issue on the <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues">GitHub repository</a>. Include detailed steps to reproduce bugs and provide environment information (OS, Python version, CGC version).</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
       </div>
     </main>
   </div>
@@ -767,78 +778,7 @@ pytest<span class="w"> </span>tests/test_core.py
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="contributing-to-codegraphcontext">Contributing to CodeGraphContext</h1>
-<p>Thank you for your interest in contributing to CodeGraphContext (CGC). We welcome contributions from the community to help make CGC the most powerful code intelligence engine available.</p>
-<h2 id="development-principles">Development Principles</h2>
-<ul>
-<li><strong>Consistency</strong>: Adhere to the existing code style (PEP 8 for Python).</li>
-<li><strong>Quality</strong>: Write clean, maintainable, and well-documented code.</li>
-<li><strong>Testing</strong>: Every new feature or bug fix must include corresponding tests.</li>
-<li><strong>Focus</strong>: Keep pull requests focused on a single logical change.</li>
-</ul>
-<h2 id="setting-up-for-development">Setting Up for Development</h2>
-<ol>
-<li><strong>Fork and Clone</strong>:
-    <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_USERNAME/CodeGraphContext.git
-<span class="nb">cd</span><span class="w"> </span>CodeGraphContext
-</code></pre></div></li>
-<li><strong>Environment Setup</strong>:
-    We recommend using a virtual environment and <code>pip</code>:
-    <div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Linux/macOS</span>
-pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
-</code></pre></div></li>
-</ol>
-<h2 id="development-workflow">Development Workflow</h2>
-<h3 id="1-enable-debug-logging">1. Enable Debug Logging</h3>
-<p>For detailed insights during development, use the <code>CGC_LOG_LEVEL</code> environment variable:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CGC_LOG_LEVEL</span><span class="o">=</span>DEBUG
-cgc<span class="w"> </span>index
-</code></pre></div>
-<h3 id="2-running-the-test-suite">2. Running the Test Suite</h3>
-<p>We use <code>pytest</code> for testing. Ensure all tests pass before submitting a pull request.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Run all tests</span>
-pytest
-
-<span class="c1"># Run tests for a specific module</span>
-pytest<span class="w"> </span>tests/test_core.py
-
-<span class="c1"># Skip re-indexing for faster iterations</span>
-<span class="nv">CGC_SKIP_REINDEX</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>pytest
-</code></pre></div>
-<h3 id="3-linting-and-formatting">3. Linting and Formatting</h3>
-<p>Please run <code>ruff</code> (if available) or similar tools to ensure code quality.</p>
-<hr />
-<h2 id="submitting-a-pull-request">Submitting a Pull Request</h2>
-<ol>
-<li><strong>Create a Branch</strong>: Use a descriptive name like <code>feat/new-backend</code> or <code>fix/mcp-timeout</code>.</li>
-<li><strong>Commit</strong>: Use clear, concise commit messages.</li>
-<li><strong>Submit</strong>: Open a pull request against the <code>main</code> branch. Provide a detailed description of your changes and link any relevant issues.</li>
-</ol>
-<h2 id="reporting-issues">Reporting Issues</h2>
-<p>If you find a bug or have a feature request, please open an issue on the <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues">GitHub repository</a>. Include detailed steps to reproduce bugs and provide environment information (OS, Python version, CGC version).</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -881,12 +821,17 @@ pytest<span class="w"> </span>tests/test_core.py
 
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -899,7 +844,11 @@ pytest<span class="w"> </span>tests/test_core.py
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -931,8 +880,69 @@ pytest<span class="w"> </span>tests/test_core.py
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

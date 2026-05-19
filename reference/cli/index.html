@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../guides/visualization/">
+        <link rel="prev" href="../../guides/onboarding-codebase/">
       
       
         <link rel="next" href="../mcp/">
@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cli-reference" class="md-skip">
+        <a href="#cli-command-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/installation/" class="md-tabs__link">
+        <a href="../../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../concepts/graph-model/" class="md-tabs__link">
+        <a href="../../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../../concepts/architecture/"
+        <a href="../../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../troubleshooting/"
+        <a href="../../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="../../roadmap/"
@@ -670,127 +695,161 @@
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="cli-reference">CLI Reference</h1>
-<p>The <code>cgc</code> command-line interface provides a suite of tools for indexing, querying, and managing your code graph.</p>
-<h2 id="core-commands">Core Commands</h2>
-<h3 id="index"><code>index</code></h3>
-<p>Index a repository or directory.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc index [PATH]</code></li>
-<li><strong>Options</strong>:<ul>
-<li><code>--dependency</code>: Mark the indexed code as a dependency.</li>
-<li><code>--deep</code>: Perform a deeper analysis of relationships.</li>
-<li><code>--force</code>: Re-index all files even if they haven't changed.</li>
-</ul>
-</li>
-</ul>
-<h3 id="watch"><code>watch</code></h3>
-<p>Monitor a directory for changes and update the graph in real-time.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc watch [PATH]</code></li>
-</ul>
-<h3 id="stats"><code>stats</code></h3>
-<p>Display statistics about the current indexed repository.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc stats [--all]</code></li>
-</ul>
-<hr />
-<h2 id="querying-the-graph">Querying the Graph</h2>
-<h3 id="query"><code>query</code></h3>
-<p>Execute relationship-based queries.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc query [TYPE] [TARGET]</code></li>
-<li><strong>Types</strong>:<ul>
-<li><code>callers</code>: Find functions that call the target.</li>
-<li><code>callees</code>: Find functions called by the target.</li>
-<li><code>hierarchy</code>: Show class inheritance for the target.</li>
-<li><code>dead-code</code>: Identify potentially unused functions.</li>
-</ul>
-</li>
-</ul>
-<h3 id="find"><code>find</code></h3>
-<p>Search for code symbols (functions, classes, etc.) by name or content.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc find [QUERY]</code></li>
-<li><strong>Options</strong>:<ul>
-<li><code>--fuzzy</code>: Use fuzzy matching for the search query.</li>
-</ul>
-</li>
-</ul>
-<h3 id="visualize"><code>visualize</code></h3>
-<p>Generate a visual graph of the codebase or a specific query.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc visualize [--query Q]</code></li>
-</ul>
-<hr />
-<h2 id="bundle-management">Bundle Management</h2>
-<h3 id="bundle-create"><code>bundle create</code></h3>
-<p>Export the current index to a <code>.cgc</code> bundle file.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle create --name NAME</code></li>
-</ul>
-<h3 id="bundle-load"><code>bundle load</code></h3>
-<p>Load a local bundle or download one from the registry.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle load [PATH|NAME]</code></li>
-</ul>
-<h3 id="bundle-search"><code>bundle search</code></h3>
-<p>Search the CGC bundle registry.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle search [QUERY]</code></li>
-</ul>
-<hr />
-<h2 id="system-configuration">System &amp; Configuration</h2>
-<h3 id="config"><code>config</code></h3>
-<p>Manage global configuration settings.</p>
-<ul>
-<li><strong>Subcommands</strong>:<ul>
-<li><code>set-db [kuzudb|falkordb|neo4j]</code>: Set the default database backend.</li>
-<li><code>list</code>: Show all current configuration values.</li>
-</ul>
-</li>
-</ul>
-<h3 id="doctor"><code>doctor</code></h3>
-<p>Run diagnostics to verify installation and backend connectivity.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc doctor</code></li>
-</ul>
-<h3 id="mcp"><code>mcp</code></h3>
-<p>Start the Model Context Protocol (MCP) server. This command is typically invoked by AI assistants, not directly by users.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc mcp</code></li>
-</ul>
+      <div class="rw-main-content md-typeset">
+        <h1 id="cli-command-reference">CLI Command Reference</h1>
+<p>The <code>cgc</code> command-line interface provides the entry point for indexing code, starting processes, executing queries, and administering graph databases.</p>
 <hr />
 <h2 id="global-options">Global Options</h2>
-<ul>
-<li><code>--database</code>: Override the default database for a single command.</li>
-<li><code>--verbose</code>: Enable detailed logging for debugging.</li>
-<li><code>--version</code>: Display the version of CodeGraphContext.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
+<p>These flags can be appended to any <code>cgc</code> command to override runtime behavior:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Shorthand</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>--database</code></td>
+<td style="text-align: left;"><code>-db</code></td>
+<td style="text-align: left;">Temporarily overrides the default database backend for the execution (<code>falkordb</code>, <code>ladybugdb</code>, <code>neo4j</code>, or <code>kuzudb</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--path</code></td>
+<td style="text-align: left;"><code>--db-path</code></td>
+<td style="text-align: left;">Temporarily overrides the storage directory path for local embedded engines (KuzuDB/LadybugDB).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--visual</code></td>
+<td style="text-align: left;"><code>-V</code></td>
+<td style="text-align: left;">Renders results using the interactive React graph visualization browser window.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--version</code></td>
+<td style="text-align: left;"><code>-v</code></td>
+<td style="text-align: left;">Display CLI package version and exit. (Root option only)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--help</code></td>
+<td style="text-align: left;"><code>-h</code></td>
+<td style="text-align: left;">Display CLI help prompt and exit. (Root option only)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="command-suite">Command Suite</h2>
+<h3 id="core-index-lifecycle-commands">Core Index &amp; Lifecycle Commands</h3>
+<h4 id="index"><code>index</code></h4>
+<p>Scans and parses files to add or update symbols in the graph.
+- <strong>Usage</strong>: <code>cgc index [PATH] [OPTIONS]</code> (Or shortcut <code>cgc i</code>)
+- <strong>Options</strong>:
+  - <code>--dependency</code>: Registers the code in the target path as an external dependency library.
+  - <code>--force</code>: Discards hash cache and forces a full re-parse of all files.</p>
+<h4 id="clean"><code>clean</code></h4>
+<p>Purges orphaned nodes, links, and unreferenced schemas from the database.
+- <strong>Usage</strong>: <code>cgc clean</code></p>
+<h4 id="stats"><code>stats</code></h4>
+<p>Displays statistics detailing active repository contents in the graph.
+- <strong>Usage</strong>: <code>cgc stats</code></p>
+<h4 id="delete"><code>delete</code></h4>
+<p>Removes an indexed repository and all its code nodes from the graph.
+- <strong>Usage</strong>: <code>cgc delete &lt;repo_path&gt;</code> (Or shortcut <code>cgc rm</code>)</p>
+<h4 id="list"><code>list</code></h4>
+<p>Lists all repositories currently indexed in the active database.
+- <strong>Usage</strong>: <code>cgc list</code> (Or shortcut <code>cgc ls</code>)</p>
+<h4 id="add-package"><code>add-package</code></h4>
+<p>Downloads (if needed) and indexes a third-party package.
+- <strong>Usage</strong>: <code>cgc add-package &lt;name&gt; &lt;language&gt;</code>
+- <strong>Parameters</strong>:
+  - <code>name</code>: Package identifier (e.g., <code>requests</code>, <code>lodash</code>).
+  - <code>language</code>: Programming language syntax parser (e.g., <code>python</code>, <code>typescript</code>).</p>
+<hr />
+<h3 id="analysis-search-commands">Analysis &amp; Search Commands</h3>
+<h4 id="find"><code>find</code></h4>
+<p>Locates code symbols or contents matching a query pattern.
+- <strong>Usage</strong>: <code>cgc find &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>find content &lt;text&gt;</code>: Searches source file contents for matching text strings.
+  - <code>find decorator &lt;name&gt;</code>: Finds functions decorated with the target decorator (e.g., <code>@app.route</code>).
+  - <code>find argument &lt;name&gt;</code>: Finds functions declaring the specified parameter name.
+  - <code>find variable &lt;name&gt;</code>: Finds variable references.</p>
+<h4 id="analyze"><code>analyze</code></h4>
+<p>Executes semantic graph queries to map relationships.
+- <strong>Usage</strong>: <code>cgc analyze &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>analyze callers &lt;function&gt;</code>: Lists direct caller functions.
+  - <code>analyze calls &lt;function&gt;</code>: Lists direct functions called by the target.
+  - <code>analyze chain &lt;source&gt; &lt;target&gt;</code>: Traces the call path between two functions.
+  - <code>analyze overrides &lt;class&gt;</code>: Lists classes overriding target class methods.
+  - <code>analyze variable &lt;name&gt;</code>: Traces variable scopes and writes.</p>
+<h4 id="query"><code>query</code></h4>
+<p>Executes a raw read-only Cypher query against the active database.
+- <strong>Usage</strong>: <code>cgc query "&lt;CYPHER_STATEMENT&gt;"</code></p>
+<h4 id="report"><code>report</code></h4>
+<p>Generates a <code>CGC_REPORT.md</code> file auditing codebase quality, god nodes, complex methods, and cross-module couplings.
+- <strong>Usage</strong>: <code>cgc report [OPTIONS]</code>
+- <strong>Options</strong>:
+  - <code>--include-java</code>: Appends Spring endpoints and bean metrics to the report.</p>
+<h4 id="visualize"><code>visualize</code></h4>
+<p>Launches the FastAPI web server to serve the React force-directed graph UI.
+- <strong>Usage</strong>: <code>cgc visualize [OPTIONS]</code> (Or shortcut <code>cgc v</code>)
+- <strong>Options</strong>:
+  - <code>--repo &lt;path&gt;</code>: Filters the visualization to the specified repository.
+  - <code>--port &lt;integer&gt;</code>: Port to bind the server on (Default: 8000).</p>
+<hr />
+<h3 id="context-workspaces-group">Context Workspaces Group</h3>
+<h4 id="context"><code>context</code></h4>
+<p>Manage logical database contexts and isolation levels.
+- <strong>Usage</strong>: <code>cgc context &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>context list</code>: Lists all contexts and modes.
+  - <code>context mode &lt;global|per-repo|named&gt;</code>: Switches active context isolation mode.
+  - <code>context create &lt;name&gt;</code>: Creates a named context.
+  - <code>context delete &lt;name&gt;</code>: Deletes a named context from registry.
+  - <code>context default &lt;name&gt;</code>: Sets the default named context workspace.</p>
+<hr />
+<h3 id="external-datasources-group">External Datasources Group</h3>
+<h4 id="datasource"><code>datasource</code></h4>
+<p>Ingests database and cache schemas.
+- <strong>Usage</strong>: <code>cgc datasource &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>datasource mysql</code>: Imports tables and columns from MySQL database.
+  - <code>datasource cassandra</code>: Imports tables and schemas from Cassandra cluster.
+  - <code>datasource redis</code>: Scans and registers Redis cache key schemas.</p>
+<hr />
+<h3 id="portable-bundles-group">Portable Bundles Group</h3>
+<h4 id="bundle"><code>bundle</code></h4>
+<p>Serializes and shares graphs as <code>.cgc</code> archive bundles.
+- <strong>Usage</strong>: <code>cgc bundle &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>bundle export &lt;output.cgc&gt;</code>: Exports active graph to a portable bundle file. (Shortcut: <code>cgc export</code>)
+  - <code>bundle import &lt;input.cgc&gt;</code>: Imports a bundle file into the database.
+  - <code>bundle load &lt;name&gt;</code>: Downloads (if remote) and imports a registry bundle. (Shortcut: <code>cgc load</code>)</p>
+<h4 id="registry"><code>registry</code></h4>
+<p>Interacts with the remote CGC bundle server.
+- <strong>Usage</strong>: <code>cgc registry &lt;subcommand&gt; [args]</code>
+- <strong>Subcommands</strong>:
+  - <code>registry list</code>: Lists all packages in the registry.
+  - <code>registry search &lt;query&gt;</code>: Searches for packages.
+  - <code>registry download &lt;name&gt;</code>: Downloads a package bundle.
+  - <code>registry request &lt;github_url&gt;</code>: Submits a package generation request.</p>
+<hr />
+<h3 id="real-time-monitoring-group">Real-Time Monitoring Group</h3>
+<h4 id="watch"><code>watch</code></h4>
+<p>Starts a filesystem watcher to incrementally update the graph.
+- <strong>Usage</strong>: <code>cgc watch [PATH]</code> (Or shortcut <code>cgc w</code>)</p>
+<h4 id="unwatch"><code>unwatch</code></h4>
+<p>Terminates monitoring on a specified directory path.
+- <strong>Usage</strong>: <code>cgc unwatch &lt;PATH&gt;</code></p>
+<h4 id="watching"><code>watching</code></h4>
+<p>Lists all directories currently monitored by watchers.
+- <strong>Usage</strong>: <code>cgc watching</code></p>
+<hr />
+<h3 id="system-diagnostics">System Diagnostics</h3>
+<h4 id="doctor"><code>doctor</code></h4>
+<p>Executes health checks on the CLI execution path, configuration files, write permissions, and database drivers.
+- <strong>Usage</strong>: <code>cgc doctor</code></p>
       </div>
     </main>
   </div>
@@ -814,125 +873,7 @@
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="cli-reference">CLI Reference</h1>
-<p>The <code>cgc</code> command-line interface provides a suite of tools for indexing, querying, and managing your code graph.</p>
-<h2 id="core-commands">Core Commands</h2>
-<h3 id="index"><code>index</code></h3>
-<p>Index a repository or directory.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc index [PATH]</code></li>
-<li><strong>Options</strong>:<ul>
-<li><code>--dependency</code>: Mark the indexed code as a dependency.</li>
-<li><code>--deep</code>: Perform a deeper analysis of relationships.</li>
-<li><code>--force</code>: Re-index all files even if they haven't changed.</li>
-</ul>
-</li>
-</ul>
-<h3 id="watch"><code>watch</code></h3>
-<p>Monitor a directory for changes and update the graph in real-time.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc watch [PATH]</code></li>
-</ul>
-<h3 id="stats"><code>stats</code></h3>
-<p>Display statistics about the current indexed repository.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc stats [--all]</code></li>
-</ul>
-<hr />
-<h2 id="querying-the-graph">Querying the Graph</h2>
-<h3 id="query"><code>query</code></h3>
-<p>Execute relationship-based queries.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc query [TYPE] [TARGET]</code></li>
-<li><strong>Types</strong>:<ul>
-<li><code>callers</code>: Find functions that call the target.</li>
-<li><code>callees</code>: Find functions called by the target.</li>
-<li><code>hierarchy</code>: Show class inheritance for the target.</li>
-<li><code>dead-code</code>: Identify potentially unused functions.</li>
-</ul>
-</li>
-</ul>
-<h3 id="find"><code>find</code></h3>
-<p>Search for code symbols (functions, classes, etc.) by name or content.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc find [QUERY]</code></li>
-<li><strong>Options</strong>:<ul>
-<li><code>--fuzzy</code>: Use fuzzy matching for the search query.</li>
-</ul>
-</li>
-</ul>
-<h3 id="visualize"><code>visualize</code></h3>
-<p>Generate a visual graph of the codebase or a specific query.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc visualize [--query Q]</code></li>
-</ul>
-<hr />
-<h2 id="bundle-management">Bundle Management</h2>
-<h3 id="bundle-create"><code>bundle create</code></h3>
-<p>Export the current index to a <code>.cgc</code> bundle file.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle create --name NAME</code></li>
-</ul>
-<h3 id="bundle-load"><code>bundle load</code></h3>
-<p>Load a local bundle or download one from the registry.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle load [PATH|NAME]</code></li>
-</ul>
-<h3 id="bundle-search"><code>bundle search</code></h3>
-<p>Search the CGC bundle registry.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc bundle search [QUERY]</code></li>
-</ul>
-<hr />
-<h2 id="system-configuration">System &amp; Configuration</h2>
-<h3 id="config"><code>config</code></h3>
-<p>Manage global configuration settings.</p>
-<ul>
-<li><strong>Subcommands</strong>:<ul>
-<li><code>set-db [kuzudb|falkordb|neo4j]</code>: Set the default database backend.</li>
-<li><code>list</code>: Show all current configuration values.</li>
-</ul>
-</li>
-</ul>
-<h3 id="doctor"><code>doctor</code></h3>
-<p>Run diagnostics to verify installation and backend connectivity.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc doctor</code></li>
-</ul>
-<h3 id="mcp"><code>mcp</code></h3>
-<p>Start the Model Context Protocol (MCP) server. This command is typically invoked by AI assistants, not directly by users.</p>
-<ul>
-<li><strong>Usage</strong>: <code>cgc mcp</code></li>
-</ul>
-<hr />
-<h2 id="global-options">Global Options</h2>
-<ul>
-<li><code>--database</code>: Override the default database for a single command.</li>
-<li><code>--verbose</code>: Enable detailed logging for debugging.</li>
-<li><code>--version</code>: Display the version of CodeGraphContext.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -975,12 +916,17 @@
 
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -993,7 +939,11 @@
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -1025,8 +975,69 @@
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {

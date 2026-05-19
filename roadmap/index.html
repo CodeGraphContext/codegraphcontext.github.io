@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../reference/troubleshooting/">
+        <link rel="prev" href="../contributing_languages/">
       
       
         <link rel="next" href="../license/">
@@ -350,7 +350,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/installation/" class="md-tabs__link">
+        <a href="../getting-started/prerequisites/" class="md-tabs__link">
           
   
   
@@ -370,7 +370,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../concepts/graph-model/" class="md-tabs__link">
+        <a href="../concepts/architecture/" class="md-tabs__link">
           
   
   
@@ -483,15 +483,15 @@
         <div class="rw-repo-name">
           <span class="rw-repo-name__full">CodeGraphContext/CodeGraphContext</span>
           <div class="rw-repo-stats">
-            <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> v0.4.10</span>
+              </svg> <span id="git-version">v0.4.10</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> 3.2k</span>
+              </svg> <span id="git-stars">3.2k</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> 564</span>
+              </svg> <span id="git-forks">564</span></span>
           </div>
         </div>
       </div>
@@ -538,6 +538,11 @@
         <div class="rw-sidebar__heading">Getting Started</div>
         
         
+        <a href="../getting-started/prerequisites/"
+          class="rw-sidebar__link ">
+          Prerequisites
+        </a>
+        
         <a href="../getting-started/installation/"
           class="rw-sidebar__link ">
           Installation
@@ -560,9 +565,14 @@
         <div class="rw-sidebar__heading">Core Concepts</div>
         
         
+        <a href="../concepts/architecture/"
+          class="rw-sidebar__link ">
+          System Architecture
+        </a>
+        
         <a href="../concepts/graph-model/"
           class="rw-sidebar__link ">
-          The Code Graph
+          The Code Graph Model
         </a>
         
         <a href="../concepts/backends/"
@@ -570,9 +580,9 @@
           Database Backends
         </a>
         
-        <a href="../concepts/architecture/"
+        <a href="../concepts/how-it-works/"
           class="rw-sidebar__link ">
-          System Architecture
+          How Ingestion Works
         </a>
         
         
@@ -584,22 +594,32 @@
         
         <a href="../guides/indexing/"
           class="rw-sidebar__link ">
-          Indexing Source Code
+          Indexing Codebases
+        </a>
+        
+        <a href="../guides/contexts/"
+          class="rw-sidebar__link ">
+          Configuration Contexts
         </a>
         
         <a href="../guides/bundles/"
           class="rw-sidebar__link ">
-          Portable Bundles
-        </a>
-        
-        <a href="../guides/multi-repo/"
-          class="rw-sidebar__link ">
-          Multi-Repo Workflows
+          Portable CGC Bundles
         </a>
         
         <a href="../guides/visualization/"
           class="rw-sidebar__link ">
-          Visualization
+          Interactive Visualization
+        </a>
+        
+        <a href="../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
+          Datasource Indexing
+        </a>
+        
+        <a href="../guides/onboarding-codebase/"
+          class="rw-sidebar__link ">
+          Developer Onboarding
         </a>
         
         
@@ -624,6 +644,11 @@
           Configuration
         </a>
         
+        <a href="../reference/troubleshooting/"
+          class="rw-sidebar__link ">
+          Troubleshooting
+        </a>
+        
         
       </div>
       
@@ -636,9 +661,9 @@
           Contributing
         </a>
         
-        <a href="../reference/troubleshooting/"
+        <a href="../contributing_languages/"
           class="rw-sidebar__link ">
-          Troubleshooting
+          Contributing Languages
         </a>
         
         <a href="./"
@@ -670,61 +695,33 @@
       </div>
 
       <!-- The actual markdown content -->
-      <div class="rw-main-content">
-        
-        
-                  
-
-
-  
-  
-
-
-<h1 id="project-roadmap">Project Roadmap</h1>
-<p>CodeGraphContext is continuously evolving. This roadmap outlines our current capabilities and our vision for the future of code intelligence.</p>
-<h2 id="current-capabilities">Current Capabilities</h2>
-<p>These features are available in the current release:</p>
+      <div class="rw-main-content md-typeset">
+        <h1 id="project-roadmap">Project Roadmap</h1>
+<p>CodeGraphContext is developed to continuously expand static code analysis depth, enhance AI agent contextual routing, and improve parser speeds.</p>
+<hr />
+<h2 id="current-milestones">Current Milestones</h2>
+<p>The following capabilities are supported in the active release:
+- <strong>Polyglot Parser Suite</strong>: Syntactic support for 19 target languages.
+- <strong>Pluggable Storage Drivers</strong>: Operations across KuzuDB (Default), LadybugDB, FalkorDB, and Neo4j.
+- <strong>Model Context Protocol (MCP)</strong>: Implements 25 JSON-RPC tools for LLM agent integration.
+- <strong>Directory Watchers</strong>: watchdog-based monitors for incremental synchronization.
+- <strong>Graph Serialization</strong>: Exporting/importing database contexts as portable <code>.cgc</code> bundles.
+- <strong>Exploratory Visualizer</strong>: Local server hosting React-based force-directed query rendering.</p>
+<hr />
+<h2 id="short-term-pipeline-short-term">Short-Term Pipeline (Short Term)</h2>
 <ul>
-<li><strong>Multi-Language Support</strong>: Robust parsing for 19+ languages including Python, JS/TS, Go, Rust, C++, and Java.</li>
-<li><strong>Plug-and-Play Backends</strong>: Support for KùzuDB, FalkorDB, and Neo4j.</li>
-<li><strong>MCP Ecosystem</strong>: A rich set of tools for AI assistants, supporting stdio transport.</li>
-<li><strong>Real-time Sync</strong>: File system watchers that keep the code graph up-to-date automatically.</li>
-<li><strong>Portable Bundles</strong>: A registry and CLI tools for sharing and loading pre-indexed code graphs.</li>
-<li><strong>Graph Visualization</strong>: An interactive React-based UI for exploring code relationships.</li>
-</ul>
-<h2 id="in-development-short-term">In Development (Short Term)</h2>
-<ul>
-<li><strong>Language-Specific Query Toolkits</strong>: Specialized queries for deeper analysis of specific language patterns (e.g., React component trees, Python decorator chains).</li>
-<li><strong>Enhanced SCIP Integration</strong>: Moving SCIP support from beta to a first-class indexing citizen for even higher precision.</li>
-<li><strong>Performance Optimizations</strong>: Faster initial indexing for massive (1M+ LOC) repositories.</li>
-</ul>
-<h2 id="planned-long-term">Planned (Long Term)</h2>
-<ul>
-<li><strong>Advanced AI Workflows</strong>: Deeper integration with agentic frameworks to allow AI to perform complex refactorings using the graph.</li>
-<li><strong>CI/CD Integration</strong>: Official GitHub Actions and GitLab CI components for automated graph building.</li>
-<li><strong>Cloud Synchronization</strong>: Optional encrypted cloud storage for syncing code graphs across your development machines.</li>
-<li><strong>Alternative MCP Transports</strong>: Support for HTTP/SSE and WebSocket transports for remote MCP hosting.</li>
+<li><strong>AST Metric Enhancements</strong>: Computing additional code metrics (e.g., maintainability indices, cognitive complexity).</li>
+<li><strong>SCIP Parser Consolidation</strong>: Optimizing SCIP metadata resolution for large compile-time workspaces.</li>
+<li><strong>Ingestion Concurrency</strong>: Performance tuning thread workloads for workspaces exceeding 1 Million LOC.</li>
 </ul>
 <hr />
-<blockquote>
-<p>[!NOTE]
-<strong>Have a feature request?</strong>
-We value community feedback. Please open an issue on our <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues">GitHub repository</a> to suggest new features or report bugs.</p>
-</blockquote>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
+<h2 id="long-term-vision-long-term">Long-Term Vision (Long Term)</h2>
+<ul>
+<li><strong>CI/CD Integration Packages</strong>: Pre-built Github Actions and GitLab CI stages to compile and publish code bundles on commit tags.</li>
+<li><strong>Remote Registry Expansion</strong>: Adding auto-indexed bundles for common library dependencies across Python, Javascript, and Go.</li>
+<li><strong>Alternative MCP Transports</strong>: Server Sent Events (SSE) and WebSocket transports to host CGC servers in cloud microservices.</li>
+<li><strong>Agentic Refactoring Pipelines</strong>: Custom graph traversals allowing agent chains to write refactored code updates back to disk safely.</li>
+</ul>
       </div>
     </main>
   </div>
@@ -748,59 +745,7 @@ We value community feedback. Please open an issue on our <a href="https://github
               
               <article class="md-content__inner md-typeset">
                 
-        
-                  
 
-
-  
-  
-
-
-<h1 id="project-roadmap">Project Roadmap</h1>
-<p>CodeGraphContext is continuously evolving. This roadmap outlines our current capabilities and our vision for the future of code intelligence.</p>
-<h2 id="current-capabilities">Current Capabilities</h2>
-<p>These features are available in the current release:</p>
-<ul>
-<li><strong>Multi-Language Support</strong>: Robust parsing for 19+ languages including Python, JS/TS, Go, Rust, C++, and Java.</li>
-<li><strong>Plug-and-Play Backends</strong>: Support for KùzuDB, FalkorDB, and Neo4j.</li>
-<li><strong>MCP Ecosystem</strong>: A rich set of tools for AI assistants, supporting stdio transport.</li>
-<li><strong>Real-time Sync</strong>: File system watchers that keep the code graph up-to-date automatically.</li>
-<li><strong>Portable Bundles</strong>: A registry and CLI tools for sharing and loading pre-indexed code graphs.</li>
-<li><strong>Graph Visualization</strong>: An interactive React-based UI for exploring code relationships.</li>
-</ul>
-<h2 id="in-development-short-term">In Development (Short Term)</h2>
-<ul>
-<li><strong>Language-Specific Query Toolkits</strong>: Specialized queries for deeper analysis of specific language patterns (e.g., React component trees, Python decorator chains).</li>
-<li><strong>Enhanced SCIP Integration</strong>: Moving SCIP support from beta to a first-class indexing citizen for even higher precision.</li>
-<li><strong>Performance Optimizations</strong>: Faster initial indexing for massive (1M+ LOC) repositories.</li>
-</ul>
-<h2 id="planned-long-term">Planned (Long Term)</h2>
-<ul>
-<li><strong>Advanced AI Workflows</strong>: Deeper integration with agentic frameworks to allow AI to perform complex refactorings using the graph.</li>
-<li><strong>CI/CD Integration</strong>: Official GitHub Actions and GitLab CI components for automated graph building.</li>
-<li><strong>Cloud Synchronization</strong>: Optional encrypted cloud storage for syncing code graphs across your development machines.</li>
-<li><strong>Alternative MCP Transports</strong>: Support for HTTP/SSE and WebSocket transports for remote MCP hosting.</li>
-</ul>
-<hr />
-<blockquote>
-<p>[!NOTE]
-<strong>Have a feature request?</strong>
-We value community feedback. Please open an issue on our <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues">GitHub repository</a> to suggest new features or report bugs.</p>
-</blockquote>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-        
               </article>
             </div>
           
@@ -843,12 +788,17 @@ We value community feedback. Please open an issue on our <a href="https://github
 
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
     
 <script>
   function toggleTheme() {
     var c = document.documentElement.getAttribute('data-theme');
     var n = c === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', n);
+    document.body.setAttribute('data-md-color-scheme', n === 'dark' ? 'slate' : 'default');
     localStorage.setItem('rw-theme', n);
     updateThemeBtn(n);
   }
@@ -861,7 +811,11 @@ We value community feedback. Please open an issue on our <a href="https://github
   }
   (function () {
     var s = localStorage.getItem('rw-theme');
-    if (s) { document.documentElement.setAttribute('data-theme', s); updateThemeBtn(s); }
+    if (s) { 
+      document.documentElement.setAttribute('data-theme', s); 
+      document.body.setAttribute('data-md-color-scheme', s === 'dark' ? 'slate' : 'default');
+      updateThemeBtn(s); 
+    }
   })();
   function toggleSidebar() { document.querySelector('.rw-sidebar').classList.toggle('hidden'); }
 
@@ -893,8 +847,69 @@ We value community feedback. Please open an issue on our <a href="https://github
       resultsContainer.classList.add('active');
     }
   }
+  async function updateGitHubStats() {
+    try {
+      const response = await fetch("https://api.github.com/repos/CodeGraphContext/CodeGraphContext");
+      if (response.ok) {
+        const data = await response.json();
+        const stars = data.stargazers_count;
+        const forks = data.forks_count;
+        const formatNum = (num) => num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        
+        const starsEl = document.getElementById('git-stars');
+        const forksEl = document.getElementById('git-forks');
+        if (starsEl) starsEl.textContent = formatNum(stars);
+        if (forksEl) forksEl.textContent = formatNum(forks);
+      }
+    } catch (e) {
+      console.warn("Failed to fetch GitHub stats:", e);
+    }
+  }
+
+  function initCodeCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(pre => {
+      if (pre.classList.contains('mermaid') || pre.querySelector('code.language-mermaid')) return;
+      pre.style.position = 'relative';
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'rw-code-copy-btn';
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+      pre.appendChild(copyBtn);
+      
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const cleanText = codeEl ? codeEl.textContent : pre.textContent.replace(copyBtn.textContent, '');
+        try {
+          await navigator.clipboard.writeText(cleanText.trim());
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="green" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          `;
+          setTimeout(() => {
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSearch();
+    updateGitHubStats();
+    initCodeCopyButtons();
     const searchInput = document.getElementById('rw-search-input');
     if (searchInput) searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
     document.addEventListener('click', (e) => {
