@@ -714,8 +714,8 @@
 </code></pre></div>
 <hr />
 <h2 id="2-database-driver-setup">2. Database Driver Setup</h2>
-<p>CGC requires Python driver bindings for your selected database backend. KuzuDB is configured by default.</p>
-<h3 id="installing-kuzudb-drivers-recommended-default">Installing KuzuDB Drivers (Recommended Default)</h3>
+<p>CGC requires Python driver bindings for your selected database backend. FalkorDB Lite is configured by default.</p>
+<h3 id="installing-kuzudb-drivers">Installing KuzuDB Drivers</h3>
 <p>KuzuDB is embedded and runs directly inside the Python process.
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>kuzu
 </code></pre></div></p>
@@ -734,9 +734,9 @@
 <hr />
 <h2 id="3-configuring-the-default-backend">3. Configuring the Default Backend</h2>
 <p>Set your preferred default database backend in the global configuration:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">       </span><span class="c1"># Configure KuzuDB (Default)</span>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb<span class="w">     </span><span class="c1"># Configure FalkorDB Lite / Remote (Default)</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">       </span><span class="c1"># Configure KuzuDB</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb<span class="w">    </span><span class="c1"># Configure LadybugDB</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb<span class="w">     </span><span class="c1"># Configure FalkorDB Lite / Remote</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j<span class="w">        </span><span class="c1"># Configure Neo4j</span>
 </code></pre></div>
 <p>For remote databases (FalkorDB Remote, Neo4j), refer to the database connection properties in the <a href="../../reference/config/">Configuration Reference</a>.</p>

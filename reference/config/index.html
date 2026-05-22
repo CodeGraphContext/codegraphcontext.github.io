@@ -708,14 +708,15 @@
 <h3 id="2-set-configuration-values">2. Set Configuration Values</h3>
 <p>Persists key-value settings to the global environment configuration file:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Set default database engine</span>
-cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>DEFAULT_DATABASE<span class="w"> </span>kuzudb
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>DEFAULT_DATABASE<span class="w"> </span>falkordb
 
 <span class="c1"># Change file size threshold (in MB)</span>
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>MAX_FILE_SIZE_MB<span class="w"> </span><span class="m">25</span>
 </code></pre></div>
+<p><code>DEFAULT_DATABASE</code> is the supported configuration key for selecting the database backend. <code>DEFAULT_BACKEND</code> is not a valid <code>cgc config</code> key.</p>
 <h3 id="3-database-selection-shortcut">3. Database Selection Shortcut</h3>
 <p>Quickly updates the <code>DEFAULT_DATABASE</code> key:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb
 </code></pre></div>
 <p>Valid database backend identifiers: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code> (Lite/embedded), <code>falkordb-remote</code>, and <code>neo4j</code>.</p>
 <h3 id="4-reset-to-defaults">4. Reset to Defaults</h3>
@@ -736,7 +737,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <tbody>
 <tr>
 <td style="text-align: left;"><strong><code>DEFAULT_DATABASE</code></strong></td>
-<td style="text-align: left;"><code>kuzudb</code></td>
+<td style="text-align: left;"><code>falkordb</code></td>
 <td style="text-align: left;">Active database engine. Options: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code>, <code>falkordb-remote</code>, <code>neo4j</code>.</td>
 </tr>
 <tr>
