@@ -806,6 +806,9 @@
   - <code>context list</code>: Lists all contexts and modes.
   - <code>context mode &lt;global|per-repo|named&gt;</code>: Switches active context isolation mode.
   - <code>context create &lt;name&gt;</code>: Creates a named context.
+    - <strong>Options</strong>:
+      - <code>--database</code>, <code>--db</code>, <code>-db</code>, <code>-d</code>: Specify the database backend engine (<code>falkordb</code>, <code>ladybugdb</code>, <code>neo4j</code>, or <code>kuzudb</code>).
+      - <code>--db-path</code>: Custom database file storage location path.
   - <code>context delete &lt;name&gt;</code>: Deletes a named context from registry.
   - <code>context default &lt;name&gt;</code>: Sets the default named context workspace.</p>
 <hr />

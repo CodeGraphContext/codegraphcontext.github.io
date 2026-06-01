@@ -856,6 +856,39 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 </tr>
 </tbody>
 </table>
+<h3 id="nornic-connection-properties">Nornic Connection Properties</h3>
+<p>Required when <code>DEFAULT_DATABASE</code> is set to <code>nornic</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Config Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>NORNIC_URI</code></strong></td>
+<td style="text-align: left;"><code>bolt://localhost:7687</code></td>
+<td style="text-align: left;">Server connection URI (supports <code>nornic://</code> and <code>bolt://</code> schemes).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NORNIC_USERNAME</code></strong></td>
+<td style="text-align: left;"><code>nornic</code></td>
+<td style="text-align: left;">Database user name.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NORNIC_PASSWORD</code></strong></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Database connection password.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>NORNIC_DATABASE</code></strong></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">Logical database partition name.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="falkordb-remote-connection-properties">FalkorDB Remote Connection Properties</h3>
 <p>Required when <code>DEFAULT_DATABASE</code> is set to <code>falkordb-remote</code>.</p>
 <table>
@@ -911,6 +944,11 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <td style="text-align: left;">Root storage directory for KuzuDB files.</td>
 </tr>
 <tr>
+<td style="text-align: left;"><strong><code>LADYBUGDB_PATH</code></strong></td>
+<td style="text-align: left;"><code>~/.codegraphcontext/global/db/ladybugdb/</code></td>
+<td style="text-align: left;">Root storage directory for LadybugDB files.</td>
+</tr>
+<tr>
 <td style="text-align: left;"><strong><code>FALKORDB_PATH</code></strong></td>
 <td style="text-align: left;"><code>~/.codegraphcontext/global/db/falkordb/</code></td>
 <td style="text-align: left;">Storage path for FalkorDB Lite database.</td>
@@ -922,9 +960,9 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <p>CGC resolves configuration keys in the following hierarchical priority (highest level overrides lower levels):</p>
 <ol>
 <li><strong>CLI Flag Parameters</strong>: Overrides passed during execution (e.g., <code>cgc index --db falkordb</code>).</li>
-<li><strong>Local Repository Variables</strong>: Values defined in <code>&lt;workspace_root&gt;/.codegraphcontext/.env</code>.</li>
-<li><strong>User Global Settings</strong>: Configurations stored in <code>~/.codegraphcontext/.env</code>.</li>
-<li><strong>Environment Shell Exports</strong>: System environment variables (e.g., <code>export DEFAULT_DATABASE=neo4j</code>).</li>
+<li><strong>Runtime Environment Variables</strong>: System environment variables (shell/CI, e.g., <code>export DEFAULT_DATABASE=neo4j</code>).</li>
+<li><strong>Local Project Variables</strong>: Values defined in <code>.codegraphcontext/.env</code> and <code>.env</code> in the current project directory.</li>
+<li><strong>User Global Settings</strong>: Configurations stored in <code>~/.codegraphcontext/.env</code> (including settings persisted by <code>cgc config set</code>).</li>
 <li><strong>System Defaults</strong>: Hardcoded fallback values defined within the Python package.</li>
 </ol>
       </div>
