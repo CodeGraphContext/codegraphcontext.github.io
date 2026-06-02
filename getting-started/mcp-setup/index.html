@@ -741,6 +741,14 @@
 <li>Click <strong>Save</strong>.</li>
 </ol>
 <hr />
+<h3 id="opencode">OpenCode</h3>
+<p>OpenCode manages MCP in its own UI. Follow the vendor's guide at <a href="https://opencode.ai/docs/ko/mcp-servers/#_top">OpenCode MCP servers</a> to register a stdio server.</p>
+<p>Use the following configuration details:
+- <strong>Type</strong>: <code>stdio</code>
+- <strong>Command</strong>: <code>cgc</code>
+- <strong>Arguments</strong>: <code>mcp start</code></p>
+<p><em>Note: Ensure your database credentials and configurations match what <code>cgc mcp setup</code> generated (usually in <code>~/.codegraphcontext/.env</code>).</em></p>
+<hr />
 <h3 id="vs-code-via-continue-extension">VS Code (via Continue extension)</h3>
 <p>If you use VS Code with the <a href="https://continue.dev">Continue.dev</a> plugin:</p>
 <ol>
