@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-roadmap" class="md-skip">
+        <a href="#codegraphcontext-6-month-evolution-feature-roadmap" class="md-skip">
           Skip to content
         </a>
       
@@ -696,32 +696,548 @@
 
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
-        <h1 id="project-roadmap">Project Roadmap</h1>
-<p>CodeGraphContext is developed to continuously expand static code analysis depth, enhance AI agent contextual routing, and improve parser speeds.</p>
+        <h1 id="codegraphcontext-6-month-evolution-feature-roadmap">CodeGraphContext: 6-Month Evolution &amp; Feature Roadmap</h1>
+<p>CodeGraphContext (CGC) is a polyglot code intelligence tool that maps static codebases into queryable graph databases, exposing this context to AI assistants and developers. This document provides a complete inventory of CGC's existing features, details its current limitations, and outlines a comprehensive 6-month evolution path split into 50 distinct milestones.</p>
 <hr />
-<h2 id="current-milestones">Current Milestones</h2>
-<p>The following capabilities are supported in the active release:
-- <strong>Polyglot Parser Suite</strong>: Syntactic support for 22 target languages.
-- <strong>Pluggable Storage Drivers</strong>: Operations across FalkorDB (Default), KuzuDB, LadybugDB, and Neo4j.
-- <strong>Model Context Protocol (MCP)</strong>: Implements 25 JSON-RPC tools for LLM agent integration.
-- <strong>Directory Watchers</strong>: watchdog-based monitors for incremental synchronization.
-- <strong>Graph Serialization</strong>: Exporting/importing database contexts as portable <code>.cgc</code> bundles.
-- <strong>Exploratory Visualizer</strong>: Local server hosting React-based force-directed query rendering.</p>
-<hr />
-<h2 id="short-term-pipeline-short-term">Short-Term Pipeline (Short Term)</h2>
+<h2 id="1-inventory-of-current-cgc-capabilities">1. Inventory of Current CGC Capabilities</h2>
+<p>Below is the inventory of features currently implemented, shipped, and operational within the CodeGraphContext codebase:</p>
+<h3 id="11-ingestion-parsing">1.1 Ingestion &amp; Parsing</h3>
 <ul>
-<li><strong>AST Metric Enhancements</strong>: Computing additional code metrics (e.g., maintainability indices, cognitive complexity).</li>
-<li><strong>SCIP Parser Consolidation</strong>: Optimizing SCIP metadata resolution for large compile-time workspaces.</li>
-<li><strong>Ingestion Concurrency</strong>: Performance tuning thread workloads for workspaces exceeding 1 Million LOC.</li>
+<li><strong>Polyglot Tree-Sitter Parsers</strong>: Parser classes for 20 target languages:</li>
+<li>Python (with Jupyter Notebook/<code>.ipynb</code> cells support via <code>nbformat</code>/<code>nbconvert</code>)</li>
+<li>JavaScript, TypeScript, TSX</li>
+<li>Go, Rust, C, C++</li>
+<li>Java, Kotlin, Scala</li>
+<li>Ruby, C#, PHP, Swift</li>
+<li>Dart, Perl, Haskell, Elixir, Lua</li>
+<li><strong>SCIP Parsing Pipeline</strong>: Optional protobuf-based precise indexer leveraging external <code>scip-*</code> language tools for deep AST symbol extraction.</li>
+<li><strong>Dependency Resolvers</strong>: Package path resolution logic for 9 languages to link external dependencies into the graph representation.</li>
+<li><strong>Incremental Watcher</strong>: Multi-threaded <code>watchdog</code> system for automatic file modification, creation, and deletion detection with debounced graph writes.</li>
+<li><strong><code>.cgcignore</code> Filter</strong>: Custom pattern matcher adhering to <code>.gitignore</code>-style rules to prevent noise (vendor folders, binaries) from entering the graph database.</li>
+</ul>
+<h3 id="12-graph-persistence-schemas">1.2 Graph Persistence &amp; Schemas</h3>
+<ul>
+<li><strong>Database Adapters</strong>: Consistent connection wrappers for 5 backend drivers:</li>
+<li><strong>FalkorDB Lite</strong>: Local embedded UNIX DB via Redislite.</li>
+<li><strong>FalkorDB Remote</strong>: Remote FalkorDB client.</li>
+<li><strong>KuzuDB</strong>: Local embedded relational-graph DB (default for Windows).</li>
+<li><strong>Neo4j</strong>: Server-side graph database (AuraDB/Docker compatible).</li>
+<li><strong>Nornic DB</strong>: Neo4j-compatible embedded database driver.</li>
+<li><strong>Graph Schema</strong>: Schema contracts enforcing 17 node labels (e.g., <code>Repository</code>, <code>File</code>, <code>Function</code>, <code>Class</code>, <code>Variable</code>, <code>Interface</code>, <code>Enum</code>, <code>Parameter</code>) and 7 relationship types (<code>CONTAINS</code>, <code>CALLS</code>, <code>IMPORTS</code>, <code>INHERITS</code>, <code>IMPLEMENTS</code>, <code>HAS_PARAMETER</code>, <code>INCLUDES</code>).</li>
+</ul>
+<h3 id="13-query-analysis-codefinder">1.3 Query &amp; Analysis (CodeFinder)</h3>
+<ul>
+<li><strong>Fuzzy Search</strong>: In-memory Levenshtein distance fallback search for classes and functions across all DB backends.</li>
+<li><strong>Ast &amp; Structural Queries</strong>: Out-of-the-box Cypher queries for:</li>
+<li>Transitive call chains and callers/callees.</li>
+<li>Class inheritance and C# interface implementations.</li>
+<li>Complexity analysis (Cyclomatic complexity calculations).</li>
+<li>Dead code analysis (unreferenced files and function declarations).</li>
+<li>Variable scope tracking and usage analysis.</li>
+<li><strong>Named Contexts</strong>: Local configuration profiles allowing switching between global contexts, per-repository contexts, or shared workspace contexts.</li>
+</ul>
+<h3 id="14-interfaces-client-integration">1.4 Interfaces &amp; Client Integration</h3>
+<ul>
+<li><strong>MCP Server</strong>: JSON-RPC over <code>stdio</code> implementing 20 tools for tools/list and tools/call, allowing cursor/claude to interact with the database.</li>
+<li><strong>CLI Commands</strong>: Over 55 interactive and command-line scripts for configuration, index wizardry, health checks (<code>cgc doctor</code>), and query execution.</li>
+<li><strong>Viz Server &amp; Website</strong>:</li>
+<li>FastAPI server serving static visual assets locally.</li>
+<li>React SPA with force-directed graphs (2D, 3D, 3D City visual structures, and Mermaid flowchart SVG exports).</li>
+<li>In-browser parsing worker utilizing <code>web-tree-sitter</code> WASM files to parse local uploads or cloned GitHub repositories without Python dependencies.</li>
+<li><strong>Bundles &amp; Registry</strong>:</li>
+<li><code>.cgc</code> archive format for exporting/importing graph snapshots.</li>
+<li>GitHub-backed registry search and on-demand trigger mechanism via GitHub Actions dispatch.</li>
+</ul>
+<h3 id="15-vs-code-extension">1.5 VS Code Extension</h3>
+<ul>
+<li><strong>Early-stage vsix extension</strong> (<code>extensions/vscode</code>):</li>
+<li>Setup wizard commands and activity bar viewer stubs.</li>
+<li>Config management matching core CLI options.</li>
+<li>Interactive menus and control panel webview.</li>
 </ul>
 <hr />
-<h2 id="long-term-vision-long-term">Long-Term Vision (Long Term)</h2>
+<h2 id="2-current-known-bugs-technical-limitations">2. Current Known Bugs &amp; Technical Limitations</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Type</th>
+<th>Limitation / Bug</th>
+<th>Severity</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1</strong></td>
+<td>Arch</td>
+<td><strong>Single-process MCP Server</strong></td>
+<td>Medium</td>
+<td>The standard stdio JSON-RPC transport limits the server to one IDE wrapper instance at a time; no concurrent shared connections.</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Arch</td>
+<td><strong>Sync-over-Async Handlers</strong></td>
+<td>Low</td>
+<td>Handlers run in threads (<code>asyncio.to_thread</code>). True non-blocking asynchronous drivers for Neo4j/Kuzu are not utilized.</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>Arch</td>
+<td><strong>In-Memory Job Manager</strong></td>
+<td>Medium</td>
+<td>Background indexing job states are lost on server restart, leading to broken job polling.</td>
+</tr>
+<tr>
+<td><strong>L4</strong></td>
+<td>Arch</td>
+<td><strong>Monolithic <code>cli/main.py</code></strong></td>
+<td>Medium</td>
+<td>CLI commands are structured in a single 2386-line file, increasing maintenance overhead and making testing difficult.</td>
+</tr>
+<tr>
+<td><strong>L5</strong></td>
+<td>Arch</td>
+<td><strong>Monolithic <code>CodeGraphViewer.tsx</code></strong></td>
+<td>High</td>
+<td>Renders layout, handles Cytoscape/Force-graph state, and processes files in a single 1579-line file.</td>
+</tr>
+<tr>
+<td><strong>L6</strong></td>
+<td>DB</td>
+<td><strong>FalkorDB UNIX Restriction</strong></td>
+<td>Medium</td>
+<td>FalkorDB Lite is blocked on Windows due to redislite binaries, causing silent fallbacks.</td>
+</tr>
+<tr>
+<td><strong>L7</strong></td>
+<td>DB</td>
+<td><strong>KuzuDB Cypher Dialect Discrepancies</strong></td>
+<td>High</td>
+<td>Specific Cypher queries (e.g. <code>UNWIND</code>, aggregations) behave differently between Kuzu and Neo4j, resulting in query failures.</td>
+</tr>
+<tr>
+<td><strong>L8</strong></td>
+<td>Parse</td>
+<td><strong>Syntactic Boundary</strong></td>
+<td>Medium</td>
+<td>Tree-sitter has no type solver; dynamic imports or duplicate class names across folders can result in false connections in the call graph.</td>
+</tr>
+<tr>
+<td><strong>L9</strong></td>
+<td>Parse</td>
+<td><strong>Stubbed Advanced Toolkits</strong></td>
+<td>High</td>
+<td>All 16 language <code>*Toolkit</code> classes in <code>query_tool_languages/</code> raise <code>NotImplementedError</code> when advanced queries are invoked.</td>
+</tr>
+<tr>
+<td><strong>L10</strong></td>
+<td>Test</td>
+<td><strong>Flaky Integration Tests</strong></td>
+<td>Medium</td>
+<td><code>test_cgcignore_patterns.py</code> requires a fully installed workspace and a live DB, leading to CI failures.</td>
+</tr>
+<tr>
+<td><strong>L11</strong></td>
+<td>Test</td>
+<td><strong>Ruby Mixins and C++ Duplicate Tests</strong></td>
+<td>Low</td>
+<td>Stubbed test fixtures like <code>test_mixins.py</code> refer to invalid fixtures, and C++ tests are duplicated.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-the-6-month-evolutionary-roadmap-50-milestones">3. The 6-Month Evolutionary Roadmap (50 Milestones)</h2>
+<p>Here is the week-by-week and month-by-month execution plan to address the constraints, scale the architecture, and implement the planned integrations (Ollama, cloud LLMs, browser extensions, benchmarking, and VS Code upgrades).</p>
+<h3 id="month-1-architectural-refactoring-testing-isolation-benchmarking-milestones-19">Month 1: Architectural Refactoring, Testing Isolation &amp; Benchmarking (Milestones 1–9)</h3>
+<blockquote>
+<p><strong>Focus</strong>: De-monolithing the CLI and frontend, isolating tests, and implementing a real indexing performance bench.</p>
+</blockquote>
+<h4 id="milestone-1-deconstruct-climainpy-monolith">Milestone 1: Deconstruct <code>cli/main.py</code> Monolith</h4>
 <ul>
-<li><strong>CI/CD Integration Packages</strong>: Pre-built Github Actions and GitLab CI stages to compile and publish code bundles on commit tags.</li>
-<li><strong>Remote Registry Expansion</strong>: Adding auto-indexed bundles for common library dependencies across Python, Javascript, and Go.</li>
-<li><strong>Alternative MCP Transports</strong>: Server Sent Events (SSE) and WebSocket transports to host CGC servers in cloud microservices.</li>
-<li><strong>Agentic Refactoring Pipelines</strong>: Custom graph traversals allowing agent chains to write refactored code updates back to disk safely.</li>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Typer CLI, Python Package structures.</li>
+<li><strong>Deliverable</strong>: Split <code>cli/main.py</code> into separate sub-command modules under <code>codegraphcontext/cli/commands/</code> (e.g., <code>index.py</code>, <code>find.py</code>, <code>analyze.py</code>, <code>bundle.py</code>).</li>
+<li><strong>Behavioral Improvement</strong>: Developer maintenance increases; CLI startup overhead drops because only required commands are imported.</li>
 </ul>
+<h4 id="milestone-2-refactor-codegraphviewertsx">Milestone 2: Refactor <code>CodeGraphViewer.tsx</code></h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: React, TypeScript, state synchronization.</li>
+<li><strong>Deliverable</strong>: Split the React viewer into subcomponents (<code>GraphCanvas</code>, <code>CodeViewerSidebar</code>, <code>SearchAndFilter</code>, <code>VisualSettingsPanel</code>).</li>
+<li><strong>Behavioral Improvement</strong>: Frontend codebase becomes modular, making it easier to fix rendering bugs and add custom layout managers.</li>
+</ul>
+<h4 id="milestone-3-database-query-interface-protocol-r4">Milestone 3: Database Query Interface Protocol (R4)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: Cypher dialects (Kuzu vs Neo4j vs FalkorDB), Abstract Base Classes.</li>
+<li><strong>Deliverable</strong>: Extract database queries from <code>CodeFinder</code> into a dedicated translation layer (<code>GraphQueryInterface</code>), with subclassed providers for KuzuDB and Neo4j.</li>
+<li><strong>Behavioral Improvement</strong>: Eliminates Cypher dialect differences; KuzuDB queries no longer crash on unsupported Cypher syntax.</li>
+</ul>
+<h4 id="milestone-4-clean-and-isolate-test-suite-l11-l10">Milestone 4: Clean and Isolate Test Suite (L11, L10)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: pytest, mocks, CI environment configurations.</li>
+<li><strong>Deliverable</strong>: Remove the dead <code>test_mixins.py</code> Ruby fixture; deduplicate C++ tests; isolate <code>test_cgcignore_patterns.py</code> by mocking the database connection.</li>
+<li><strong>Behavioral Improvement</strong>: CI run succeeds on every commit without needing local DB servers or pre-installed environment binaries.</li>
+</ul>
+<h4 id="milestone-5-standardized-error-schema-and-handler-layer-r10">Milestone 5: Standardized Error Schema and Handler Layer (R10)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: MCP protocol, error-handling conventions.</li>
+<li><strong>Deliverable</strong>: Establish structured error codes and messages for the MCP response payloads (e.g., <code>INDEX_NOT_FOUND</code>, <code>DB_CONNECTION_LOST</code>).</li>
+<li><strong>Behavioral Improvement</strong>: AI assistants understand why a tool call failed and can recover gracefully (e.g., prompting the user to run an indexer).</li>
+</ul>
+<h4 id="milestone-6-bundle-schema-versioning-validation-r12-r13">Milestone 6: Bundle Schema Versioning &amp; Validation (R12, R13)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: ZIP archiving, JSON schema validation, version parsing.</li>
+<li><strong>Deliverable</strong>: Add a version header inside the <code>.cgc</code> bundle <code>metadata.json</code> and create the <code>cgc bundle validate &lt;path&gt;</code> CLI command.</li>
+<li><strong>Behavioral Improvement</strong>: Prevents older versions of CGC from loading newer, incompatible database structures, alerting the user with clear instructions.</li>
+</ul>
+<h4 id="milestone-7-build-real-world-ingestion-benchmarking-suite-r9">Milestone 7: Build Real-World Ingestion Benchmarking Suite (R9)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Benchmarking methodologies, performance telemetry.</li>
+<li><strong>Deliverable</strong>: Create <code>scripts/run_benchmarks.py</code> using a standard corpus of target repositories (e.g., a 100k LOC Python/Go codebase). Track parsing throughput (LOC/sec) and database insertion latencies.</li>
+<li><strong>Behavioral Improvement</strong>: Provides quantitative metrics on indexing speed, preventing regressions during parser upgrades.</li>
+</ul>
+<h4 id="milestone-8-establish-query-latency-profiling">Milestone 8: Establish Query Latency Profiling</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Python timing utilities, Cypher EXPLAIN.</li>
+<li><strong>Deliverable</strong>: Include Cypher query execution time metrics in debug logs and <code>cgc</code> CLI output.</li>
+<li><strong>Behavioral Improvement</strong>: Developers can identify slow queries and optimize database constraints/indexes accordingly.</li>
+</ul>
+<h4 id="milestone-9-persistent-job-manager-l3-r6">Milestone 9: Persistent Job Manager (L3, R6)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: SQLite, async job states.</li>
+<li><strong>Deliverable</strong>: Replace the in-memory dict in <code>JobManager</code> with a lightweight, embedded SQLite table (<code>jobs.db</code>) under <code>.codegraphcontext/</code>.</li>
+<li><strong>Behavioral Improvement</strong>: Long-running index jobs resume or report correct failed/completed states if the IDE or MCP server restarts.</li>
+</ul>
+<hr />
+<h3 id="month-2-core-database-optimization-advanced-language-toolkits-milestones-1018">Month 2: Core Database Optimization &amp; Advanced Language Toolkits (Milestones 10–18)</h3>
+<blockquote>
+<p><strong>Focus</strong>: True asynchronous driver interfaces, query optimizations, and implementing the stubbed programming language query toolkits.</p>
+</blockquote>
+<h4 id="milestone-10-implement-core-python-toolkit-queries-l9">Milestone 10: Implement Core Python <code>*Toolkit</code> Queries (L9)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Python Tree-sitter AST, import hooks.</li>
+<li><strong>Deliverable</strong>: Implement <code>PythonToolkit</code> queries for advanced tasks (e.g., identifying decorators, resolving dynamic import boundaries).</li>
+<li><strong>Behavioral Improvement</strong>: The AI assistant can execute target queries tailored specifically to Pythonic patterns instead of generic text searches.</li>
+</ul>
+<h4 id="milestone-11-implement-jsts-and-tsx-toolkit-queries">Milestone 11: Implement JS/TS and TSX <code>*Toolkit</code> Queries</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: JS/TS AST structures.</li>
+<li><strong>Deliverable</strong>: Fill in the JS/TS and TSX toolkit query stubs to handle class overrides, export patterns, and React hook dependencies.</li>
+<li><strong>Behavioral Improvement</strong>: Yields accurate query results for JS/TS codebases.</li>
+</ul>
+<h4 id="milestone-12-implement-go-and-rust-toolkit-queries">Milestone 12: Implement Go and Rust <code>*Toolkit</code> Queries</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Go and Rust syntax structures (traits, interfaces, structs, impl blocks).</li>
+<li><strong>Deliverable</strong>: Implement toolkit stubs for Go (struct composition) and Rust (trait implementations, lifetimes).</li>
+<li><strong>Behavioral Improvement</strong>: Allows the AI to query traits and interface compositions accurately.</li>
+</ul>
+<h4 id="milestone-13-implement-java-and-c-toolkit-queries">Milestone 13: Implement Java and C# <code>*Toolkit</code> Queries</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: JVM and .NET syntax patterns.</li>
+<li><strong>Deliverable</strong>: Implement toolkit stubs for Java and C# to support generic parameter constraints, annotations, and properties.</li>
+<li><strong>Behavioral Improvement</strong>: Provides accurate class inheritance hierarchies and interface implementations.</li>
+</ul>
+<h4 id="milestone-14-implement-c-and-c-toolkit-queries">Milestone 14: Implement C and C++ <code>*Toolkit</code> Queries</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: C/C++ AST, preprocessor patterns.</li>
+<li><strong>Deliverable</strong>: Implement toolkits to track macro expansions and header inclusion graphs.</li>
+<li><strong>Behavioral Improvement</strong>: AI can trace complex C++ macro chains and header-source relationships.</li>
+</ul>
+<h4 id="milestone-15-non-blocking-asynchronous-database-drivers-l2">Milestone 15: Non-Blocking Asynchronous Database Drivers (L2)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: Python <code>asyncio</code>, asynchronous DB drivers (<code>neo4j.AsyncDriver</code>, <code>kuzu</code> async routines).</li>
+<li><strong>Deliverable</strong>: Refactor the database connection layer to use async calls, eliminating thread pools (<code>asyncio.to_thread</code>) for database operations.</li>
+<li><strong>Behavioral Improvement</strong>: Enhances server throughput and reduces thread overhead under heavy concurrent MCP tool calls.</li>
+</ul>
+<h4 id="milestone-16-db-connection-pooling-l11">Milestone 16: DB Connection Pooling (L11)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Database connection pooling.</li>
+<li><strong>Deliverable</strong>: Implement connection pooling for Neo4j and KuzuDB adapters.</li>
+<li><strong>Behavioral Improvement</strong>: Eliminates connection handshake overhead for consecutive tool calls, reducing query latency.</li>
+</ul>
+<h4 id="milestone-17-query-result-streaming-l8">Milestone 17: Query Result Streaming (L8)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Python generators, streaming JSON serialization.</li>
+<li><strong>Deliverable</strong>: Implement a generator-based streaming query pipeline for large Cypher query results.</li>
+<li><strong>Behavioral Improvement</strong>: Eliminates out-of-memory crashes when querying large graphs.</li>
+</ul>
+<h4 id="milestone-18-kuzudb-dialect-compatibility-layer">Milestone 18: KuzuDB Dialect Compatibility Layer</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: KuzuDB Cypher constraints.</li>
+<li><strong>Deliverable</strong>: Implement a query rewriter that converts standard Neo4j Cypher functions into KuzuDB-compatible Cypher.</li>
+<li><strong>Behavioral Improvement</strong>: Standardizes Cypher features across all backends.</li>
+</ul>
+<hr />
+<h3 id="month-3-deep-ast-parsing-semantic-ingestion-upgrades-milestones-1927">Month 3: Deep AST Parsing &amp; Semantic Ingestion Upgrades (Milestones 19–27)</h3>
+<blockquote>
+<p><strong>Focus</strong>: Enhancing parsers, supporting non-code assets, improving incremental ingestion, and adding type inference patterns.</p>
+</blockquote>
+<h4 id="milestone-19-c-header-parser-disambiguation-l16">Milestone 19: C++ Header Parser Disambiguation (L16)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Tree-sitter C vs C++ ASTs.</li>
+<li><strong>Deliverable</strong>: Check for pure C markers in <code>.h</code> files to select either the C or C++ parser.</li>
+<li><strong>Behavioral Improvement</strong>: Reduces parse errors for pure C libraries.</li>
+</ul>
+<h4 id="milestone-20-html-and-css-tree-sitter-parsers-l17">Milestone 20: HTML and CSS Tree-Sitter Parsers (L17)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: HTML/CSS syntax trees.</li>
+<li><strong>Deliverable</strong>: Add parsers for HTML tags and CSS class declarations.</li>
+<li><strong>Behavioral Improvement</strong>: Bridges the gap between frontend templates and backend logic by connecting component classes to styles.</li>
+</ul>
+<h4 id="milestone-21-sql-shell-yaml-parsers-l17">Milestone 21: SQL, Shell &amp; YAML Parsers (L17)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: SQL dialects, Bash syntax, Tree-sitter.</li>
+<li><strong>Deliverable</strong>: Extract database queries from source code and link them to parsed SQL schemas.</li>
+<li><strong>Behavioral Improvement</strong>: Extends the dependency graph to cover database interactions and configuration files.</li>
+</ul>
+<h4 id="milestone-22-incremental-ingestion-concurrency-tuning">Milestone 22: Incremental Ingestion Concurrency Tuning</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Multi-processing, file lock queues.</li>
+<li><strong>Deliverable</strong>: Implement worker pools using Python's <code>multiprocessing</code> for parsing, while serializing writes to the database.</li>
+<li><strong>Behavioral Improvement</strong>: Speeds up initial parsing on multi-core machines.</li>
+</ul>
+<h4 id="milestone-23-type-inference-symbol-reference-resolution">Milestone 23: Type Inference &amp; Symbol Reference Resolution</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: AST scope analysis, basic type inference.</li>
+<li><strong>Deliverable</strong>: Implement a cross-file reference resolver to link function call parameters to class instantiations.</li>
+<li><strong>Behavioral Improvement</strong>: Improves the accuracy of the call graph by reducing ambiguous function name links.</li>
+</ul>
+<h4 id="milestone-24-incremental-scip-ingestion-l15">Milestone 24: Incremental SCIP Ingestion (L15)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: SCIP protocol specifications, git diffs.</li>
+<li><strong>Deliverable</strong>: Implement incremental SCIP indexing based on git diffs.</li>
+<li><strong>Behavioral Improvement</strong>: Reduces indexing times for large projects when using SCIP.</li>
+</ul>
+<h4 id="milestone-25-automated-scip-installer-script-l14">Milestone 25: Automated SCIP Installer Script (L14)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Shell scripting, platform binaries.</li>
+<li><strong>Deliverable</strong>: Create <code>cgc index setup-scip</code> to download and install language-specific SCIP binaries.</li>
+<li><strong>Behavioral Improvement</strong>: Reduces setup friction for SCIP indexing.</li>
+</ul>
+<h4 id="milestone-26-ast-cognitive-complexity-calculations">Milestone 26: AST Cognitive Complexity Calculations</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Static analysis metrics.</li>
+<li><strong>Deliverable</strong>: Implement cognitive complexity parsing alongside cyclomatic complexity.</li>
+<li><strong>Behavioral Improvement</strong>: AI can identify hard-to-maintain code blocks, not just branch-heavy ones.</li>
+</ul>
+<h4 id="milestone-27-workspace-index-size-estimation-utility">Milestone 27: Workspace Index Size Estimation Utility</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: CLI user interface design.</li>
+<li><strong>Deliverable</strong>: Create an indexing pre-flight check command showing estimated node count and DB disk usage.</li>
+<li><strong>Behavioral Improvement</strong>: Helps users budget disk space before indexing large codebases.</li>
+</ul>
+<hr />
+<h3 id="month-4-vs-code-extension-upgrades-milestones-2835">Month 4: VS Code Extension Upgrades (Milestones 28–35)</h3>
+<blockquote>
+<p><strong>Focus</strong>: Turning the VS Code extension into a fully featured visual and analytical assistant.</p>
+</blockquote>
+<h4 id="milestone-28-interactive-webview-control-dashboard">Milestone 28: Interactive Webview Control Dashboard</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: VS Code Extension API, React build integration.</li>
+<li><strong>Deliverable</strong>: Embed the local React dashboard within a VS Code webview panel.</li>
+<li><strong>Behavioral Improvement</strong>: Users can view the codebase graph directly inside the IDE.</li>
+</ul>
+<h4 id="milestone-29-codelens-complexity-dependency-markers">Milestone 29: CodeLens Complexity &amp; Dependency Markers</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: VS Code CodeLens API, CGC CLI queries.</li>
+<li><strong>Deliverable</strong>: Overlay cyclomatic complexity and class hierarchies above code declarations.</li>
+<li><strong>Behavioral Improvement</strong>: Developers see code metrics contextually while writing code.</li>
+</ul>
+<h4 id="milestone-30-vs-code-inline-cypher-console">Milestone 30: VS Code Inline Cypher Console</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: VS Code Webview panels, Cypher execution.</li>
+<li><strong>Deliverable</strong>: Implement an inline Cypher query editor with syntax highlighting and table previews.</li>
+<li><strong>Behavioral Improvement</strong>: Power users can query the graph without leaving the IDE.</li>
+</ul>
+<h4 id="milestone-31-automatic-watcher-lifecycle-integration-l18">Milestone 31: Automatic Watcher Lifecycle Integration (L18)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: VS Code Workspace Event listeners.</li>
+<li><strong>Deliverable</strong>: Automatically start the file watcher thread when a workspace with <code>.codegraphcontext/</code> is opened.</li>
+<li><strong>Behavioral Improvement</strong>: Code modifications are indexed in the background without manual CLI intervention.</li>
+</ul>
+<h4 id="milestone-32-diagnostics-provider-for-dead-code">Milestone 32: Diagnostics Provider for Dead Code</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: VS Code DiagnosticCollection API.</li>
+<li><strong>Deliverable</strong>: Expose dead code detections as warnings in the VS Code "Problems" tab.</li>
+<li><strong>Behavioral Improvement</strong>: Warns developers about unused parameters and dead functions in real-time.</li>
+</ul>
+<h4 id="milestone-33-context-aware-navigation-go-to-definition">Milestone 33: Context-Aware Navigation (Go to Definition)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: VS Code DefinitionProvider.</li>
+<li><strong>Deliverable</strong>: Implement a definition provider powered by the CGC database graph.</li>
+<li><strong>Behavioral Improvement</strong>: Accelerates navigation in dynamic languages where standard VS Code definitions fail.</li>
+</ul>
+<h4 id="milestone-34-graph-guided-refactoring-previews">Milestone 34: Graph-Guided Refactoring Previews</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: VS Code WorkspaceEdit API.</li>
+<li><strong>Deliverable</strong>: Show a refactoring preview panel listing files that will be impacted by renaming a symbol.</li>
+<li><strong>Behavioral Improvement</strong>: Reduces regression risks during large refactors.</li>
+</ul>
+<h4 id="milestone-35-one-click-bundle-export-ui">Milestone 35: One-Click Bundle Export UI</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: VS Code extension commands.</li>
+<li><strong>Deliverable</strong>: Add a button to export <code>.cgc</code> bundles directly from the sidebar.</li>
+<li><strong>Behavioral Improvement</strong>: Simplifies sharing indexed codebase contexts with team members.</li>
+</ul>
+<hr />
+<h3 id="month-5-chatgpt-web-external-llm-integration-milestones-3643">Month 5: ChatGPT Web &amp; External LLM Integration (Milestones 36–43)</h3>
+<blockquote>
+<p><strong>Focus</strong>: Supporting remote connections, writing browser extensions, and improving the website.</p>
+</blockquote>
+<h4 id="milestone-36-websocket-sse-mcp-transport-protocol-l1">Milestone 36: WebSocket &amp; SSE MCP Transport Protocol (L1)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: WebSockets, Server-Sent Events, JSON-RPC.</li>
+<li><strong>Deliverable</strong>: Add WebSocket and SSE servers to the MCP server process (<code>cgc mcp start --transport ws</code>).</li>
+<li><strong>Behavioral Improvement</strong>: Multiple clients and IDEs can connect to a single, shared CGC database concurrently.</li>
+</ul>
+<h4 id="milestone-37-web-llm-browser-extension-chrome-firefox">Milestone 37: Web LLM Browser Extension (Chrome &amp; Firefox)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: Web Extensions API, Content Scripts, IPC.</li>
+<li><strong>Deliverable</strong>: Build a browser extension that securely connects ChatGPT, Claude, and Gemini web interfaces to the local CGC MCP daemon.</li>
+<li><strong>Behavioral Improvement</strong>: Web-based LLMs can run code queries against local codebases securely.</li>
+</ul>
+<h4 id="milestone-38-web-extension-workspace-matcher">Milestone 38: Web Extension Workspace Matcher</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Chrome Tab APIs, Local storage.</li>
+<li><strong>Deliverable</strong>: Detect the GitHub URL or active tab project name and select the matching local database context automatically.</li>
+<li><strong>Behavioral Improvement</strong>: Standardizes LLM responses without manual context switching.</li>
+</ul>
+<h4 id="milestone-39-in-browser-worker-parsing-optimizations">Milestone 39: In-Browser Worker Parsing Optimizations</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: Web Workers, WASM memory structures, Tree-sitter WASM.</li>
+<li><strong>Deliverable</strong>: Optimize <code>parser.worker.ts</code> with streaming uploads and file chunking.</li>
+<li><strong>Behavioral Improvement</strong>: Allows the browser explorer to parse large repositories without browser tab freezes.</li>
+</ul>
+<h4 id="milestone-40-multi-engine-web-visualizer-upgrades">Milestone 40: Multi-Engine Web Visualizer Upgrades</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: React-force-graph, WebGL rendering.</li>
+<li><strong>Deliverable</strong>: Update <code>CodeGraphViewer.tsx</code> to support WebGL for rendering large graphs.</li>
+<li><strong>Behavioral Improvement</strong>: Renders repositories exceeding 10,000 files smoothly.</li>
+</ul>
+<h4 id="milestone-41-browser-based-cypher-builder">Milestone 41: Browser-Based Cypher Builder</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: React, visual query builders.</li>
+<li><strong>Deliverable</strong>: Add a drag-and-drop visual Cypher query builder to the website's explore tab.</li>
+<li><strong>Behavioral Improvement</strong>: Simplifies querying the graph for users unfamiliar with Cypher syntax.</li>
+</ul>
+<h4 id="milestone-42-web-based-bundle-comparison-panel">Milestone 42: Web-Based Bundle Comparison Panel</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: React diff libraries.</li>
+<li><strong>Deliverable</strong>: Build a visual dashboard to compare two <code>.cgc</code> bundles and highlight structural changes.</li>
+<li><strong>Behavioral Improvement</strong>: Simplifies tracking structural changes across commits.</li>
+</ul>
+<h4 id="milestone-43-secure-origin-policy-configuration">Milestone 43: Secure Origin Policy Configuration</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Web security, CORS headers.</li>
+<li><strong>Deliverable</strong>: Add strict origin validation filters to CLI configs for external connections.</li>
+<li><strong>Behavioral Improvement</strong>: Protects local database ports from unauthorized web requests.</li>
+</ul>
+<hr />
+<h3 id="month-6-llm-api-local-ollama-integrations-milestones-4450">Month 6: LLM API &amp; Local Ollama Integrations (Milestones 44–50)</h3>
+<blockquote>
+<p><strong>Focus</strong>: Adding AI-guided summarization, local vector embeddings, and creating documentation tutorials.</p>
+</blockquote>
+<h4 id="milestone-44-llm-api-key-configuration-cli">Milestone 44: LLM API Key Configuration CLI</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: CLI inputs, config file management.</li>
+<li><strong>Deliverable</strong>: Create the <code>cgc config set-key</code> command to securely store OpenAI, Anthropic, and Gemini API keys.</li>
+<li><strong>Behavioral Improvement</strong>: Provides a unified interface for cloud LLM integrations.</li>
+</ul>
+<h4 id="milestone-45-local-ollama-model-integration">Milestone 45: Local Ollama Model Integration</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: Ollama HTTP API, local LLM configurations.</li>
+<li><strong>Deliverable</strong>: Add an Ollama adapter supporting models like <code>qwen2.5-coder</code> or <code>llama3</code>.</li>
+<li><strong>Behavioral Improvement</strong>: Enables offline code analysis and semantic summarization.</li>
+</ul>
+<h4 id="milestone-46-ai-guided-semantic-summarizer">Milestone 46: AI-Guided Semantic Summarizer</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: LLM prompts, batch processing.</li>
+<li><strong>Deliverable</strong>: Build an ingestion pipeline stage that uses LLMs to generate summaries of functions and classes, saving them as properties in the graph.</li>
+<li><strong>Behavioral Improvement</strong>: Allows AI assistants to search the graph using natural language concepts.</li>
+</ul>
+<h4 id="milestone-47-graph-rag-vector-embedding-ingestion">Milestone 47: Graph RAG Vector Embedding Ingestion</h4>
+<ul>
+<li><strong>Difficulty</strong>: Hard</li>
+<li><strong>Knowledge Needed</strong>: Vector embeddings, Kuzu/Neo4j vector indices.</li>
+<li><strong>Deliverable</strong>: Generate embeddings of code summaries and store them in the graph database.</li>
+<li><strong>Behavioral Improvement</strong>: Combines keyword search with structural graph queries for more accurate results.</li>
+</ul>
+<h4 id="milestone-48-high-level-architecture-blogs">Milestone 48: High-Level Architecture Blogs</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Technical writing, blogging structure.</li>
+<li><strong>Deliverable</strong>: Publish a blog series detailing CGC's design (e.g., Tree-sitter parsers, database adapters, and MCP servers).</li>
+<li><strong>Behavioral Improvement</strong>: Enhances community engagement and adoption.</li>
+</ul>
+<h4 id="milestone-50-interactive-walkthrough-and-demos">Milestone 50: Interactive Walkthrough and Demos</h4>
+<ul>
+<li><strong>Difficulty</strong>: Easy</li>
+<li><strong>Knowledge Needed</strong>: Video editing, documentation design.</li>
+<li><strong>Deliverable</strong>: Produce video tutorials demonstrating VS Code integrations, browser extensions, and CLI commands.</li>
+<li><strong>Behavioral Improvement</strong>: Lowers the barrier to entry for new users.</li>
+</ul>
+<h4 id="milestone-50-production-ready-release-v100">Milestone 50: Production-Ready Release (v1.0.0)</h4>
+<ul>
+<li><strong>Difficulty</strong>: Medium</li>
+<li><strong>Knowledge Needed</strong>: PyPI workflows, release lifecycle management.</li>
+<li><strong>Deliverable</strong>: Stabilize the API, verify all tests, and publish v1.0.0 to PyPI.</li>
+<li><strong>Behavioral Improvement</strong>: Delivers a production-ready code intelligence tool.</li>
+</ul>
+<hr />
+<h2 id="4-roadmap-implementation-summary">4. Roadmap Implementation Summary</h2>
+<p>This roadmap prioritizes foundational stability and codebase cleanup in the first month before introducing advanced semantic and AI integrations.</p>
+<div class="highlight"><pre><span></span><code>       Month 1                   Month 2                   Month 3                   Month 4                   Month 5                   Month 6
+  +----------------+        +----------------+        +----------------+        +----------------+        +----------------+        +----------------+
+  |  Refactoring   | -----&gt; | DB Optimization| -----&gt; | Semantic Parse | -----&gt; | VS Code Engine | -----&gt; | ChatGPT Web    | -----&gt; | Ollama &amp; RAG   |
+  |  &amp; Benchmarks  |        | &amp; Language Stubs|        | &amp; Incremental  |        | &amp; Integrations |        | Integrations   |        | Releases v1.0  |
+  +----------------+        +----------------+        +----------------+        +----------------+        +----------------+        +----------------+
+</code></pre></div>
       </div>
     </main>
   </div>
