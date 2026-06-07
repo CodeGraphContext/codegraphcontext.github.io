@@ -794,7 +794,8 @@ Select KuzuDB as the default backend:
 <h3 id="falkordb-lite">FalkorDB Lite</h3>
 <p>An embedded, in-memory graph engine that uses local shared memory drivers.
 - <strong>Limitation</strong>: Unix-only (Linux and macOS) and requires Python 3.12+.
-- <strong>Speed</strong>: Optimal traversal latency due to in-memory index layouts.</p>
+- <strong>Speed</strong>: Optimal traversal latency due to in-memory index layouts.
+- <strong>Content search</strong>: <code>cgc find content</code> uses portable substring matching on <code>source</code> and <code>docstring</code> fields (no Neo4j Lucene index required).</p>
 <h3 id="falkordb-remote">FalkorDB Remote</h3>
 <p>Connects to an external Redis-compatible FalkorDB server instance running in a Docker container or network host.</p>
 <h3 id="setup_2">Setup</h3>

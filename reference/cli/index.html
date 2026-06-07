@@ -770,7 +770,7 @@
 <p>Locates code symbols or contents matching a query pattern.
 - <strong>Usage</strong>: <code>cgc find &lt;subcommand&gt; [args]</code>
 - <strong>Subcommands</strong>:
-  - <code>find content &lt;text&gt;</code>: Searches source file contents for matching text strings.
+  - <code>find content &lt;text&gt;</code>: Searches source and docstrings for matching text (Neo4j full-text index; substring match on FalkorDB, KuzuDB, and LadybugDB).
   - <code>find decorator &lt;name&gt;</code>: Finds functions decorated with the target decorator (e.g., <code>@app.route</code>).
   - <code>find argument &lt;name&gt;</code>: Finds functions declaring the specified parameter name.
   - <code>find variable &lt;name&gt;</code>: Finds variable references.</p>

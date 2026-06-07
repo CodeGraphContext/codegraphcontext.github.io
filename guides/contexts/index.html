@@ -707,6 +707,7 @@
     global/
         .cgcignore              &lt;-- Global ignore patterns
         db/
+            falkordb/           &lt;-- Global-mode FalkorDB Lite storage (default on Unix)
             kuzudb/             &lt;-- Global-mode KuzuDB storage directory
     contexts/
         ProjectA/
@@ -721,7 +722,7 @@
 <li><strong>Context Override Flag</strong>: If <code>--context &lt;name&gt;</code> or <code>-c &lt;name&gt;</code> is provided, CGC routes all writes and queries to the specified named context.</li>
 <li><strong>Local Repository Scope</strong>: If the current directory contains a <code>.codegraphcontext/</code> folder, CGC operates in per-repo mode.</li>
 <li><strong>Global Config Setting</strong>: CGC reads the active mode (<code>global</code>, <code>per-repo</code>, or <code>named</code>) and default context name specified in <code>~/.codegraphcontext/config.yaml</code>.</li>
-<li><strong>Default Fallback</strong>: Connects to the global database located at <code>~/.codegraphcontext/global/db/kuzudb/</code>.</li>
+<li><strong>Default Fallback</strong>: On Linux/macOS with Python 3.12+, connects to FalkorDB Lite at <code>~/.codegraphcontext/global/db/falkordb/</code>; otherwise KuzuDB at <code>~/.codegraphcontext/global/db/kuzudb/</code>.</li>
 </ol>
 <hr />
 <h2 id="context-modes">Context Modes</h2>
