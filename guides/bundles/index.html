@@ -698,26 +698,205 @@
       <div class="rw-main-content md-typeset">
         <h1 id="portable-cgc-bundles-registries">Portable CGC Bundles &amp; Registries</h1>
 <p>CodeGraphContext (CGC) supports <strong>Portable Graph Bundles</strong> (<code>.cgc</code> files)—serialized snapshots of an indexed codebase. Bundles allow teams to distribute pre-parsed code structures so that other developers or CI runners can load them without re-parsing the original source code.</p>
+<h2 id="what-are-cgc-bundles">🎯 What are .cgc Bundles?</h2>
+<p><code>.cgc</code> (CodeGraphContext Bundle) files are <strong>portable, pre-indexed graph snapshots</strong> that can be distributed and loaded instantly without re-indexing. Think of them as "npm packages for code knowledge graphs."</p>
+<h3 id="key-benefits">Key Benefits</h3>
+<ul>
+<li>⚡ <strong>Instant Loading</strong> - Load in seconds instead of minutes/hours of indexing</li>
+<li>🎯 <strong>Pre-analyzed</strong> - All code relationships already computed</li>
+<li>🔍 <strong>Query Ready</strong> - Start using with AI assistants immediately</li>
+<li>📦 <strong>Portable</strong> - Works across any CodeGraphContext installation</li>
+<li>🌐 <strong>Shareable</strong> - Distribute pre-indexed knowledge easily</li>
+</ul>
 <hr />
-<h2 id="1-exporting-a-graph-bundle">1. Exporting a Graph Bundle</h2>
-<p>To package your current database graph into a single <code>.cgc</code> file, use the <code>bundle export</code> command:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Export the entire active database graph</span>
-cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-app-v1.cgc
-
-<span class="c1"># Export only a specific repository path from the database</span>
-cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-app-v1.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/project
+<h2 id="bundle-structure">📦 Bundle Structure</h2>
+<p>A <code>.cgc</code> file is a ZIP archive containing:</p>
+<div class="highlight"><pre><span></span><code>numpy.cgc
+├── metadata.json       # Repository and indexing metadata
+├── schema.json         # Graph schema definition
+├── nodes.jsonl         # All nodes (one JSON per line)
+├── edges.jsonl         # All relationships (one JSON per line)
+├── stats.json          # Graph statistics
+└── README.md           # Human-readable description
 </code></pre></div>
-<p>The exported file contains compressed serialization of all nodes, relationships, and ingestion metadata.</p>
+<h3 id="file-formats">File Formats</h3>
+<h4 id="metadatajson">metadata.json</h4>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;cgc_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;exported_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-13T22:00:00&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;numpy/numpy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;commit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;format_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="nodesjsonl-excerpt">nodes.jsonl (excerpt)</h4>
+<div class="highlight"><pre><span></span><code>{&quot;_id&quot;: &quot;4:abc123&quot;, &quot;_labels&quot;: [&quot;Function&quot;], &quot;name&quot;: &quot;array&quot;, &quot;path&quot;: &quot;/numpy/core/array.py&quot;, &quot;line_number&quot;: 42}
+{&quot;_id&quot;: &quot;4:def456&quot;, &quot;_labels&quot;: [&quot;Class&quot;], &quot;name&quot;: &quot;ndarray&quot;, &quot;path&quot;: &quot;/numpy/core/multiarray.py&quot;, &quot;line_number&quot;: 100}
+</code></pre></div>
+<h4 id="edgesjsonl-excerpt">edges.jsonl (excerpt)</h4>
+<div class="highlight"><pre><span></span><code>{&quot;from&quot;: &quot;4:abc123&quot;, &quot;to&quot;: &quot;4:def456&quot;, &quot;type&quot;: &quot;CALLS&quot;, &quot;properties&quot;: {}}
+{&quot;from&quot;: &quot;4:xyz789&quot;, &quot;to&quot;: &quot;4:def456&quot;, &quot;type&quot;: &quot;INHERITS&quot;, &quot;properties&quot;: {}}
+</code></pre></div>
 <hr />
-<h2 id="2-importing-a-graph-bundle">2. Importing a Graph Bundle</h2>
-<p>To import a local <code>.cgc</code> bundle file into your active database context:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Append bundle contents into the current database</span>
-cgc<span class="w"> </span>bundle<span class="w"> </span>import<span class="w"> </span>./my-app-v1.cgc
+<h2 id="quick-start">🚀 Quick Start</h2>
+<h3 id="creating-bundles">Creating Bundles</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Export current indexed repository</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-project.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/project
 
-<span class="c1"># Clear existing data in the active context before importing</span>
-cgc<span class="w"> </span>bundle<span class="w"> </span>import<span class="w"> </span>./my-app-v1.cgc<span class="w"> </span>--clear
+<span class="c1"># Export all indexed repositories</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>all-repos.cgc
+
+<span class="c1"># Export without statistics (faster)</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>quick.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/project<span class="w"> </span>--no-stats
+
+<span class="c1"># Shortcut</span>
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-project.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/project
 </code></pre></div>
-<p>The database is populated immediately and is ready for CLI query operations or MCP server sessions.</p>
+<h3 id="loading-bundles">Loading Bundles</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load a bundle (adds to existing graph)</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span>import<span class="w"> </span>numpy.cgc
+
+<span class="c1"># Load and clear existing data</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span>import<span class="w"> </span>numpy.cgc<span class="w"> </span>--clear
+
+<span class="c1"># Shortcut</span>
+cgc<span class="w"> </span>load<span class="w"> </span>numpy.cgc
+</code></pre></div>
+<h3 id="using-pre-indexed-bundles">Using Pre-indexed Bundles</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download from GitHub Releases</span>
+wget<span class="w"> </span>https://github.com/CodeGraphContext/CodeGraphContext/releases/download/bundles-20260113/numpy-1.26.4-a1b2c3d.cgc
+
+<span class="c1"># Load it</span>
+cgc<span class="w"> </span>load<span class="w"> </span>numpy-1.26.4-a1b2c3d.cgc
+
+<span class="c1"># Start querying immediately</span>
+cgc<span class="w"> </span>find<span class="w"> </span>name<span class="w"> </span>linalg
+cgc<span class="w"> </span>analyze<span class="w"> </span>deps<span class="w"> </span>numpy.linalg
+</code></pre></div>
+<hr />
+<h2 id="available-pre-indexed-bundles">📚 Available Pre-indexed Bundles</h2>
+<p>We provide weekly-updated bundles for popular repositories:</p>
+<h3 id="tier-1-python-core-libraries">Tier 1 - Python Core Libraries</h3>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Description</th>
+<th>Size</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>numpy</strong></td>
+<td>Scientific computing</td>
+<td>~50MB</td>
+<td><a href="https://github.com/CodeGraphContext/CodeGraphContext/releases/latest">Latest</a></td>
+</tr>
+<tr>
+<td><strong>pandas</strong></td>
+<td>Data analysis</td>
+<td>~80MB</td>
+<td><a href="https://github.com/CodeGraphContext/CodeGraphContext/releases/latest">Latest</a></td>
+</tr>
+<tr>
+<td><strong>fastapi</strong></td>
+<td>Modern web framework</td>
+<td>~15MB</td>
+<td><a href="https://github.com/CodeGraphContext/CodeGraphContext/releases/latest">Latest</a></td>
+</tr>
+<tr>
+<td><strong>requests</strong></td>
+<td>HTTP library</td>
+<td>~10MB</td>
+<td><a href="https://github.com/CodeGraphContext/CodeGraphContext/releases/latest">Latest</a></td>
+</tr>
+<tr>
+<td><strong>flask</strong></td>
+<td>Web framework</td>
+<td>~12MB</td>
+<td><a href="https://github.com/CodeGraphContext/CodeGraphContext/releases/latest">Latest</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="coming-soon">Coming Soon</h3>
+<ul>
+<li><strong>scikit-learn</strong> - Machine learning</li>
+<li><strong>django</strong> - Web framework</li>
+<li><strong>pytorch</strong> - Deep learning (subset)</li>
+<li><strong>kubernetes</strong> - Container orchestration (Go)</li>
+<li><strong>redis</strong> - In-memory database</li>
+</ul>
+<hr />
+<h2 id="advanced-usage">🔧 Advanced Usage</h2>
+<h3 id="bundle-versioning">Bundle Versioning</h3>
+<p>Bundles follow this naming convention:
+<div class="highlight"><pre><span></span><code>&lt;repo-name&gt;-&lt;version&gt;-&lt;commit&gt;.cgc
+</code></pre></div></p>
+<p>Examples:
+- <code>numpy-1.26.4-a1b2c3d.cgc</code>
+- <code>pandas-2.1.0-xyz789.cgc</code>
+- <code>fastapi-0.109.0-abc123.cgc</code></p>
+<h3 id="combining-bundles">Combining Bundles</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Load multiple bundles into the same graph</span>
+cgc<span class="w"> </span>load<span class="w"> </span>numpy.cgc
+cgc<span class="w"> </span>load<span class="w"> </span>pandas.cgc
+cgc<span class="w"> </span>load<span class="w"> </span>scikit-learn.cgc
+
+<span class="c1"># Now query across all three</span>
+cgc<span class="w"> </span>find<span class="w"> </span>name<span class="w"> </span>fit<span class="w"> </span>--type<span class="w"> </span><span class="k">function</span>
+</code></pre></div>
+<h3 id="exporting-specific-repositories">Exporting Specific Repositories</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Index multiple repos</span>
+cgc<span class="w"> </span>index<span class="w"> </span>/path/to/numpy
+cgc<span class="w"> </span>index<span class="w"> </span>/path/to/pandas
+
+<span class="c1"># Export each separately</span>
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span>numpy.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/numpy
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span>pandas.cgc<span class="w"> </span>--repo<span class="w"> </span>/path/to/pandas
+
+<span class="c1"># Or export everything</span>
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span>all-my-projects.cgc
+</code></pre></div>
+<hr />
+<h2 id="creating-your-own-bundle-registry">🏗️ Creating Your Own Bundle Registry</h2>
+<h3 id="1-index-your-repositories">1. Index Your Repositories</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Clone and index</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-org/your-repo
+<span class="nb">cd</span><span class="w"> </span>your-repo
+cgc<span class="w"> </span>index<span class="w"> </span>.
+</code></pre></div>
+<h3 id="2-export-to-bundle">2. Export to Bundle</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get commit info</span>
+<span class="nv">COMMIT</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--short<span class="w"> </span>HEAD<span class="k">)</span>
+<span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>describe<span class="w"> </span>--tags<span class="w"> </span>--abbrev<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="k">)</span>
+
+<span class="c1"># Export with version info</span>
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;your-repo-</span><span class="si">${</span><span class="nv">TAG</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">COMMIT</span><span class="si">}</span><span class="s2">.cgc&quot;</span><span class="w"> </span>--repo<span class="w"> </span>.
+</code></pre></div>
+<h3 id="3-distribute">3. Distribute</h3>
+<h4 id="option-a-github-releases">Option A: GitHub Releases</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a release</span>
+gh<span class="w"> </span>release<span class="w"> </span>create<span class="w"> </span>bundles-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>your-repo-*.cgc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--title<span class="w"> </span><span class="s2">&quot;Pre-indexed Bundles - </span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--notes<span class="w"> </span><span class="s2">&quot;Pre-indexed code graphs for instant loading&quot;</span>
+</code></pre></div>
+<h4 id="option-b-object-storage-s3-r2-gcs">Option B: Object Storage (S3, R2, GCS)</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Upload to S3</span>
+aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>your-repo-*.cgc<span class="w"> </span>s3://your-bucket/bundles/
+
+<span class="c1"># Make public or use signed URLs</span>
+aws<span class="w"> </span>s3<span class="w"> </span>presign<span class="w"> </span>s3://your-bucket/bundles/your-repo-*.cgc
+</code></pre></div>
+<h4 id="option-c-hugging-face-datasets">Option C: Hugging Face Datasets</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install huggingface_hub</span>
+pip<span class="w"> </span>install<span class="w"> </span>huggingface_hub
+
+<span class="c1"># Upload</span>
+huggingface-cli<span class="w"> </span>upload<span class="w"> </span>your-org/cgc-bundles<span class="w"> </span>your-repo-*.cgc
+</code></pre></div>
 <hr />
 <h2 id="3-the-public-bundle-registry">3. The Public Bundle Registry</h2>
 <p>CGC hosts a remote repository of pre-indexed graph bundles for popular libraries and frameworks, allowing developers to query third-party code structures.</p>
@@ -739,6 +918,153 @@ cgc<span class="w"> </span>bundle<span class="w"> </span>import<span class="w"> 
   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>registry<span class="w"> </span>request<span class="w"> </span>https://github.com/pallets/click<span class="w"> </span>--wait
 </code></pre></div></li>
 </ul>
+<hr />
+<h2 id="bundle-inspection">🔍 Bundle Inspection</h2>
+<h3 id="view-bundle-contents">View Bundle Contents</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Extract and view</span>
+unzip<span class="w"> </span>-l<span class="w"> </span>numpy.cgc
+
+<span class="c1"># View metadata</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>numpy.cgc<span class="w"> </span>metadata.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+
+<span class="c1"># View statistics</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>numpy.cgc<span class="w"> </span>stats.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+
+<span class="c1"># Read README</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>numpy.cgc<span class="w"> </span>README.md
+</code></pre></div>
+<h3 id="validate-bundle">Validate Bundle</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check bundle integrity</span>
+cgc<span class="w"> </span>bundle<span class="w"> </span>validate<span class="w"> </span>numpy.cgc<span class="w">  </span><span class="c1"># (future feature)</span>
+</code></pre></div>
+<hr />
+<h2 id="use-cases">🎓 Use Cases</h2>
+<h3 id="1-ai-assistant-context">1. AI Assistant Context</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># AI can now query structure instantly</span>
+<span class="c1"># &quot;Show me all functions that use numpy.linalg&quot;</span>
+</code></pre></div>
+<h3 id="2-code-analysis-pipelines">2. Code Analysis Pipelines</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># CI/CD: Load pre-indexed dependencies</span>
+cgc<span class="w"> </span>load<span class="w"> </span>fastapi.cgc
+cgc<span class="w"> </span>load<span class="w"> </span>sqlalchemy.cgc
+
+<span class="c1"># Analyze your code against them</span>
+cgc<span class="w"> </span>index<span class="w"> </span>./my-api
+cgc<span class="w"> </span>analyze<span class="w"> </span>deps<span class="w"> </span>my_api
+</code></pre></div>
+<h3 id="3-educational-resources">3. Educational Resources</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Students can explore famous codebases</span>
+cgc<span class="w"> </span>load<span class="w"> </span>django.cgc
+cgc<span class="w"> </span>find<span class="w"> </span>name<span class="w"> </span>authenticate
+cgc<span class="w"> </span>analyze<span class="w"> </span>chain<span class="w"> </span>authenticate
+</code></pre></div>
+<h3 id="4-research-documentation">4. Research &amp; Documentation</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Researchers can analyze code evolution</span>
+cgc<span class="w"> </span>load<span class="w"> </span>numpy-1.25.0.cgc
+cgc<span class="w"> </span>load<span class="w"> </span>numpy-1.26.0.cgc
+
+<span class="c1"># Compare structures (future feature)</span>
+cgc<span class="w"> </span>diff<span class="w"> </span>numpy-1.25.0.cgc<span class="w"> </span>numpy-1.26.0.cgc
+</code></pre></div>
+<hr />
+<h2 id="security-considerations">🔐 Security Considerations</h2>
+<h3 id="bundle-verification">Bundle Verification</h3>
+<p>Always verify bundles from untrusted sources:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check metadata</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>bundle.cgc<span class="w"> </span>metadata.json
+
+<span class="c1"># Verify source repository</span>
+<span class="c1"># Ensure commit hash matches official repo</span>
+</code></pre></div>
+<h3 id="sandboxing">Sandboxing</h3>
+<p>Bundles only contain graph data, not executable code. However:
+- Review metadata before loading
+- Use <code>--clear</code> cautiously (it deletes existing data)
+- Keep backups of your graph database</p>
+<hr />
+<h2 id="troubleshooting">🛠️ Troubleshooting</h2>
+<h3 id="bundle-import-fails">Bundle Import Fails</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check bundle integrity</span>
+unzip<span class="w"> </span>-t<span class="w"> </span>bundle.cgc
+
+<span class="c1"># Verify format version</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>bundle.cgc<span class="w"> </span>metadata.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.cgc_version
+
+<span class="c1"># Try with --clear flag</span>
+cgc<span class="w"> </span>load<span class="w"> </span>bundle.cgc<span class="w"> </span>--clear
+</code></pre></div>
+<h3 id="large-bundle-performance">Large Bundle Performance</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># For very large bundles, increase batch size</span>
+<span class="c1"># (future configuration option)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CGC_IMPORT_BATCH_SIZE</span><span class="o">=</span><span class="m">5000</span>
+cgc<span class="w"> </span>load<span class="w"> </span>large-bundle.cgc
+</code></pre></div>
+<h3 id="version-mismatch">Version Mismatch</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check your CGC version</span>
+cgc<span class="w"> </span>--version
+
+<span class="c1"># Update if needed</span>
+pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>codegraphcontext
+
+<span class="c1"># Check bundle version</span>
+unzip<span class="w"> </span>-p<span class="w"> </span>bundle.cgc<span class="w"> </span>metadata.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.cgc_version
+</code></pre></div>
+<hr />
+<h2 id="api-reference">📖 API Reference</h2>
+<h3 id="python-api">Python API</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">codegraphcontext.core.cgc_bundle</span><span class="w"> </span><span class="kn">import</span> <span class="n">CGCBundle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">codegraphcontext.core.database</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseManager</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">db_manager</span> <span class="o">=</span> <span class="n">DatabaseManager</span><span class="p">()</span>
+<span class="n">bundle</span> <span class="o">=</span> <span class="n">CGCBundle</span><span class="p">(</span><span class="n">db_manager</span><span class="p">)</span>
+
+<span class="c1"># Export</span>
+<span class="n">success</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="n">export_to_bundle</span><span class="p">(</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my-bundle.cgc&quot;</span><span class="p">),</span>
+    <span class="n">repo_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/path/to/repo&quot;</span><span class="p">),</span>
+    <span class="n">include_stats</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Import</span>
+<span class="n">success</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="n">import_from_bundle</span><span class="p">(</span>
+    <span class="n">bundle_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my-bundle.cgc&quot;</span><span class="p">),</span>
+    <span class="n">clear_existing</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="roadmap">🗺️ Roadmap</h2>
+<h3 id="v020-bundle-registry">v0.2.0 - Bundle Registry</h3>
+<ul>
+<li>[ ] Central bundle registry</li>
+<li>[ ] <code>cgc registry search</code> command</li>
+<li>[ ] Automatic download from registry</li>
+<li>[ ] Bundle versioning and updates</li>
+</ul>
+<h3 id="v030-advanced-features">v0.3.0 - Advanced Features</h3>
+<ul>
+<li>[ ] Delta bundles (incremental updates)</li>
+<li>[ ] Bundle compression options</li>
+<li>[ ] Encrypted bundles</li>
+<li>[ ] Bundle signing and verification</li>
+</ul>
+<h3 id="v040-collaboration">v0.4.0 - Collaboration</h3>
+<ul>
+<li>[ ] Bundle merging</li>
+<li>[ ] Conflict resolution</li>
+<li>[ ] Multi-repository bundles</li>
+<li>[ ] Bundle diff and comparison</li>
+</ul>
+<hr />
+<h2 id="contributing">🤝 Contributing</h2>
+<h3 id="creating-bundles-for-popular-repos">Creating Bundles for Popular Repos</h3>
+<p>We welcome contributions of pre-indexed bundles! See <a href="../docs/contributing.md">CONTRIBUTING.md</a> for guidelines.</p>
+<h3 id="improving-bundle-format">Improving Bundle Format</h3>
+<p>The bundle format is versioned and extensible. Propose improvements via GitHub issues.</p>
+<hr />
+<h2 id="license">📄 License</h2>
+<p>Bundle format specification: MIT License
+Pre-indexed bundles: Subject to source repository licenses</p>
       </div>
     </main>
   </div>
