@@ -730,6 +730,20 @@ cgc<span class="w"> </span>add-package<span class="w"> </span>requests<span clas
 <div class="highlight"><pre><span></span><code><span class="c1"># Start watching the active workspace</span>
 cgc<span class="w"> </span>watch
 </code></pre></div>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User
+    participant Watch as cgc watch
+    participant FileSystem
+    participant ParsingQueue
+
+    User-&gt;&gt;Watch: Start watch command
+    Watch-&gt;&gt;FileSystem: Monitor directory
+
+    FileSystem--&gt;&gt;Watch: File changed
+    Watch-&gt;&gt;ParsingQueue: Queue file for parsing
+
+    FileSystem--&gt;&gt;Watch: Another change
+    Watch-&gt;&gt;ParsingQueue: Queue updated file</code></pre>
 <ul>
 <li><strong>Listing Watchers</strong>: View active file monitors with:
   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watching
