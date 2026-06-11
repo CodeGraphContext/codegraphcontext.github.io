@@ -485,7 +485,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.19</span></span>
+              </svg> <span id="git-version">v0.5.0</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -696,8 +696,8 @@
       <div class="rw-main-content md-typeset">
         <h1 id="introduction-to-codegraphcontext">Introduction to CodeGraphContext</h1>
 <p>CodeGraphContext (CGC) is a high-performance, developer-focused <strong>Code Intelligence Engine</strong> that transforms source repositories into semantic, queryable property graphs. Tree-sitter and optional SCIP indexers extract symbols; CGC resolves calls, imports, and inheritance into a graph you can query from the CLI, MCP tools, or the HTTP API gateway.</p>
-<p><strong>Current release: 0.4.19</strong></p>
-<p>Recent improvements in the 0.4.17–0.4.19 line include nested call-chain accuracy, per-repo context isolation fixes, Neo4j write performance (CREATE vs MERGE, managed transactions), watcher startup graph reconciliation, SCIP respect for <code>.cgcignore</code>, <code>GET /health</code> on the API gateway, <code>bundle import --yes</code> for CI, and clearer configuration precedence for project-local <code>.env</code> files.</p>
+<p><strong>Current release: 0.5.0</strong></p>
+<p>Recent improvements in the 0.5.0 line include cross-language call-graph resolution fixes (Perl, Ruby, Lua, Haskell, Rust, TypeScript, C#, Dart, C), structural edge persistence (<code>PARTIAL_OF</code>, <code>IMPLEMENTS</code>, <code>METACLASS</code>, etc.), and average CALLS audit accuracy rising from ~84% to ~98%.</p>
 <hr />
 <h2 id="core-capabilities">Core Capabilities</h2>
 <ul>
