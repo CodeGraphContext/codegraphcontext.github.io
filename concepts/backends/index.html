@@ -775,6 +775,23 @@
 <li><strong>Cross-Platform</strong>: Natively supports Windows, Linux, and macOS on Python 3.10+.</li>
 <li><strong>Data Directory</strong>: Graphs are saved inside the local <code>.codegraphcontext/</code> directory within the workspace.</li>
 </ul>
+<h3 id="version-compatibility">Version Compatibility</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
+<th style="text-align: left;">Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>kuzu</code></td>
+<td style="text-align: left;">Not declared</td>
+<td style="text-align: left;"><code>0.10.0</code>, <code>0.11.0</code>, <code>0.11.1</code>, <code>0.11.2</code>, <code>0.11.3</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="setup">Setup</h3>
 <p>Ensure the driver is installed:
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>kuzu
@@ -803,6 +820,33 @@ Select KuzuDB as the default backend:
 - <strong>Content search</strong>: <code>cgc find content</code> uses portable substring matching on <code>source</code> and <code>docstring</code> fields (no Neo4j Lucene index required).</p>
 <h3 id="falkordb-remote">FalkorDB Remote</h3>
 <p>Connects to an external Redis-compatible FalkorDB server instance running in a Docker container or network host.</p>
+<h3 id="version-compatibility_1">Version Compatibility</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
+<th style="text-align: left;">Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>falkordblite</code></td>
+<td style="text-align: left;"><code>&gt;=0.7, &lt;0.10</code></td>
+<td style="text-align: left;"><code>0.7.0</code>, <code>0.8.0</code>, <code>0.9.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>falkordb</code></td>
+<td style="text-align: left;"><code>&gt;=1.0, &lt;1.6</code></td>
+<td style="text-align: left;"><code>1.5.0</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>redis</code></td>
+<td style="text-align: left;"><code>&gt;=5, &lt;6</code></td>
+<td style="text-align: left;"><code>5.3.1</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="setup_2">Setup</h3>
 <p>Install the target drivers:
 <div class="highlight"><pre><span></span><code><span class="c1"># For FalkorDB Lite</span>
@@ -826,6 +870,23 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <li><strong>Neo4j Browser</strong>: Connect to <code>http://localhost:7474</code> to visualize and interact with your code graph using Neo4j's query visualizer.</li>
 <li><strong>Scale</strong>: Handles repositories containing millions of lines of code.</li>
 </ul>
+<h3 id="version-compatibility_2">Version Compatibility</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
+<th style="text-align: left;">Versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>neo4j</code></td>
+<td style="text-align: left;"><code>&gt;=5.15.0</code></td>
+<td style="text-align: left;"><code>6.2.0</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="setup_3">Setup</h3>
 <p>Start a Neo4j server (e.g., using Docker):
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>neo4j-cgc<span class="w"> </span>-p<span class="w"> </span><span class="m">7474</span>:7474<span class="w"> </span>-p<span class="w"> </span><span class="m">7687</span>:7687<span class="w"> </span>-e<span class="w"> </span><span class="nv">NEO4J_AUTH</span><span class="o">=</span>neo4j/password<span class="w"> </span>neo4j:latest
