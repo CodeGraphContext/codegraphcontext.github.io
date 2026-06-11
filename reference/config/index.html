@@ -487,7 +487,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -634,6 +634,11 @@
           CLI Reference
         </a>
         
+        <a href="../api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
+        </a>
+        
         <a href="../mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
@@ -699,6 +704,40 @@
         <h1 id="configuration-reference">Configuration Reference</h1>
 <p>CodeGraphContext (CGC) is configured using environment variables, local configuration files, and the CLI.</p>
 <hr />
+<h2 id="important-defaults-read-this-first">Important defaults (read this first)</h2>
+<p>These three points are the most common sources of confusion in older docs and issue reports:</p>
+<h3 id="default-database-backend">Default database backend</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Platform</th>
+<th style="text-align: left;">What CGC uses by default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Unix (Linux/macOS), Python 3.12+</strong></td>
+<td style="text-align: left;"><strong>FalkorDB Lite</strong> when <code>falkordblite</code> is installed (<code>DEFAULT_DATABASE=falkordb</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Windows</strong>, or FalkorDB Lite unavailable</td>
+<td style="text-align: left;"><strong>KuzuDB</strong> as the automatic fallback</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Any platform</strong></td>
+<td style="text-align: left;">Override anytime with <code>cgc config db &lt;backend&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>KuzuDB is <strong>not</strong> the universal default—it is the cross-platform fallback when FalkorDB Lite cannot run.</p>
+<h3 id="neo4j-username-key">Neo4j username key</h3>
+<p>Use <strong><code>NEO4J_USERNAME</code></strong>, not <code>NEO4J_USER</code>. The latter is not a valid <code>cgc config set</code> key.</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_USERNAME<span class="w"> </span>neo4j
+</code></pre></div>
+<h3 id="project-local-env-files">Project-local <code>.env</code> files</h3>
+<p>Repository <code>.codegraphcontext/.env</code> and <code>.env</code> files are loaded <strong>only in per-repo context mode</strong> (or when <code>CGC_LOAD_PROJECT_ENV=1</code>). In <strong>global</strong> or <strong>named</strong> mode, <code>~/.codegraphcontext/.env</code> wins so cloned repos cannot override your credentials. Set <code>CGC_IGNORE_PROJECT_ENV=1</code> to force-skip project env.</p>
+<p>See <a href="#project-local-environment-files">Project-Local Environment Files</a> below for the full precedence table.</p>
+<hr />
 <h2 id="the-cgc-config-cli-utility">The <code>cgc config</code> CLI Utility</h2>
 <p>Use the <code>config</code> command group to inspect and modify settings from your terminal.</p>
 <h3 id="1-inspect-effective-settings">1. Inspect Effective Settings</h3>
@@ -718,7 +757,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <p>Quickly updates the <code>DEFAULT_DATABASE</code> key:</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb
 </code></pre></div>
-<p>Valid database backend identifiers: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code> (Lite/embedded), <code>falkordb-remote</code>, and <code>neo4j</code>.</p>
+<p>Valid database backend identifiers: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code> (Lite/embedded), <code>falkordb-remote</code>, <code>neo4j</code>, and <code>nornic</code>.</p>
 <h3 id="4-reset-to-defaults">4. Reset to Defaults</h3>
 <p>Restores all keys to factory configurations:</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>reset
@@ -956,14 +995,45 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 </tbody>
 </table>
 <hr />
+<h2 id="project-local-environment-files">Project-Local Environment Files</h2>
+<p>Repository-level env files are <strong>not</strong> loaded in every mode:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">When it applies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>~/.codegraphcontext/.env</code></td>
+<td style="text-align: left;">Always (global defaults)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&lt;repo&gt;/.codegraphcontext/.env</code></td>
+<td style="text-align: left;"><strong>Per-repo mode only</strong> (or when <code>CGC_LOAD_PROJECT_ENV=1</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>&lt;repo&gt;/.env</code></td>
+<td style="text-align: left;"><strong>Per-repo mode only</strong> (searched up to 5 parent directories)</td>
+</tr>
+</tbody>
+</table>
+<p>In <strong>global</strong> or <strong>named</strong> context mode, a checked-in <code>.codegraphcontext/.env</code> inside a clone does <strong>not</strong> override your user config—this prevents accidental hijacking when indexing third-party repos.</p>
+<p>Override flags:</p>
+<ul>
+<li><code>CGC_IGNORE_PROJECT_ENV=1</code> — never load project-local env.</li>
+<li><code>CGC_LOAD_PROJECT_ENV=1</code> — always load project-local env (even outside per-repo mode).</li>
+</ul>
+<hr />
 <h2 id="settings-precedence-levels">Settings Precedence Levels</h2>
 <p>CGC resolves configuration keys in the following hierarchical priority (highest level overrides lower levels):</p>
 <ol>
-<li><strong>CLI Flag Parameters</strong>: Overrides passed during execution (e.g., <code>cgc index --db falkordb</code>).</li>
-<li><strong>Runtime Environment Variables</strong>: System environment variables (shell/CI, e.g., <code>export DEFAULT_DATABASE=neo4j</code>).</li>
-<li><strong>Local Project Variables</strong>: Values defined in <code>.codegraphcontext/.env</code> and <code>.env</code> in the current project directory.</li>
-<li><strong>User Global Settings</strong>: Configurations stored in <code>~/.codegraphcontext/.env</code> (including settings persisted by <code>cgc config set</code>).</li>
-<li><strong>System Defaults</strong>: Hardcoded fallback values defined within the Python package.</li>
+<li><strong>CLI flag parameters</strong> — e.g. <code>cgc index --db neo4j</code>.</li>
+<li><strong>Runtime environment variables</strong> — shell/CI exports and <code>CGC_RUNTIME_DB_TYPE</code>.</li>
+<li><strong>Project-local env</strong> — <code>.codegraphcontext/.env</code> / <code>.env</code> (per-repo mode only; see above).</li>
+<li><strong>User global settings</strong> — <code>~/.codegraphcontext/.env</code> (including values from <code>cgc config set</code>).</li>
+<li><strong>System defaults</strong> — hardcoded fallbacks in the package.</li>
 </ol>
       </div>
     </main>

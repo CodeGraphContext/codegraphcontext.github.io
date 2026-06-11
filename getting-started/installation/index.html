@@ -487,7 +487,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -634,6 +634,11 @@
           CLI Reference
         </a>
         
+        <a href="../../reference/api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
+        </a>
+        
         <a href="../../reference/mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
@@ -714,7 +719,7 @@
 </code></pre></div>
 <hr />
 <h2 id="2-database-driver-setup">2. Database Driver Setup</h2>
-<p>CGC requires Python driver bindings for your selected database backend. FalkorDB Lite is configured by default.</p>
+<p>CGC requires Python driver bindings for your selected database backend. On <strong>Unix with Python 3.12+</strong>, FalkorDB Lite is the default when <code>falkordblite</code> is installed; on <strong>Windows</strong> (or when FalkorDB Lite is unavailable), CGC falls back to <strong>KuzuDB</strong>. See <a href="../../reference/config/#important-defaults-read-this-first">Important defaults</a>.</p>
 <h3 id="installing-kuzudb-drivers">Installing KuzuDB Drivers</h3>
 <p>KuzuDB is embedded and runs directly inside the Python process.
 <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>kuzu
@@ -734,10 +739,12 @@
 <hr />
 <h2 id="3-configuring-the-default-backend">3. Configuring the Default Backend</h2>
 <p>Set your preferred default database backend in the global configuration:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb<span class="w">     </span><span class="c1"># Configure FalkorDB Lite / Remote (Default)</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">       </span><span class="c1"># Configure KuzuDB</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb<span class="w">    </span><span class="c1"># Configure LadybugDB</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j<span class="w">        </span><span class="c1"># Configure Neo4j</span>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb<span class="w">          </span><span class="c1"># FalkorDB Lite (default on Unix when falkordblite is installed)</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">          </span><span class="c1"># KuzuDB (cross-platform fallback)</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb<span class="w">       </span><span class="c1"># LadybugDB</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb-remote<span class="w"> </span><span class="c1"># Remote FalkorDB server</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j<span class="w">           </span><span class="c1"># Neo4j</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>nornic<span class="w">          </span><span class="c1"># Nornic (Neo4j-compatible)</span>
 </code></pre></div>
 <p>For remote databases (FalkorDB Remote, Neo4j), refer to the database connection properties in the <a href="../../reference/config/">Configuration Reference</a>.</p>
 <hr />

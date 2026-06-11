@@ -487,7 +487,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -632,6 +632,11 @@
         <a href="../../reference/cli/"
           class="rw-sidebar__link ">
           CLI Reference
+        </a>
+        
+        <a href="../../reference/api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
         </a>
         
         <a href="../../reference/mcp/"
@@ -831,11 +836,21 @@ Install the Neo4j client library:
 Configure CGC to connect to Neo4j:
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_URI<span class="w"> </span>bolt://localhost:7687
-cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_USER<span class="w"> </span>neo4j
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_USERNAME<span class="w"> </span>neo4j
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_PASSWORD<span class="w"> </span>password
 </code></pre></div></p>
+<p>Or run the interactive wizard: <code>cgc neo4j setup</code>.</p>
 <hr />
-<h2 id="in-memory-vs-file-backed-selection-logic">In-Memory vs. File-Backed Selection Logic</h2>
+<h2 id="5-nornic-db">5. Nornic DB</h2>
+<p>Nornic is a Neo4j-compatible embedded graph driver. Configure it when you want Bolt/Cypher semantics without a standalone Neo4j server.</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>nornic
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_URI<span class="w"> </span>bolt://localhost:7687
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_USERNAME<span class="w"> </span>nornic
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_PASSWORD<span class="w"> </span>&lt;password&gt;
+</code></pre></div>
+<p>Connection keys mirror the Neo4j section in <a href="../../reference/config/">Configuration Reference</a>.</p>
+<hr />
+<h2 id="backend-selection-logic">Backend Selection Logic</h2>
 <p>When executing commands, CGC automatically resolves the active database connection using the following precedence:</p>
 <ol>
 <li><strong>CLI Flag Override</strong>: Explicitly set using <code>--database</code> or <code>-db</code> (e.g., <code>cgc index --database neo4j</code>).</li>

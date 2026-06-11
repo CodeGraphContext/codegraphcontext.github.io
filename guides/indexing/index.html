@@ -487,7 +487,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -634,6 +634,11 @@
           CLI Reference
         </a>
         
+        <a href="../../reference/api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
+        </a>
+        
         <a href="../../reference/mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
@@ -725,7 +730,11 @@ cgc<span class="w"> </span>add-package<span class="w"> </span>requests<span clas
 </code></pre></div>
 <p>The command resolves the package's installation path on your system, parses its definitions, and appends the nodes to your active context.</p>
 <hr />
-<h2 id="3-real-time-directory-watchers">3. Real-Time Directory Watchers</h2>
+<h2 id="3-scip-and-cgcignore">3. SCIP and <code>.cgcignore</code></h2>
+<p>When <code>SCIP_INDEXER=true</code>, external SCIP tools run on eligible source files. SCIP ingestion <strong>respects <code>.cgcignore</code></strong> the same way Tree-sitter indexing does—ignored paths are not passed to SCIP indexers.</p>
+<p>C and C++ SCIP requires a <code>compile_commands.json</code> in the project (or under <code>build/</code> / <code>cmake-build-*/</code>). Without it, CGC logs a warning and falls back to Tree-sitter for those files.</p>
+<hr />
+<h2 id="4-real-time-directory-watchers">4. Real-Time Directory Watchers</h2>
 <p>For active development, run a filesystem watcher in the background to capture file writes and incrementally sync the graph.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Start watching the active workspace</span>
 cgc<span class="w"> </span>watch
@@ -752,8 +761,9 @@ cgc<span class="w"> </span>watch
   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>unwatch<span class="w"> </span>/path/to/project
 </code></pre></div></li>
 </ul>
+<p>On startup, each watcher <strong>reconciles</strong> the graph with disk: files present on disk but missing from the graph are indexed, and graph entries for deleted files are removed before live monitoring begins.</p>
 <hr />
-<h2 id="4-ingest-filters-cgcignore">4. Ingest Filters (<code>.cgcignore</code>)</h2>
+<h2 id="5-ingest-filters-cgcignore">5. Ingest Filters (<code>.cgcignore</code>)</h2>
 <p>To prevent compiling bloated indices or parsing build artifacts, define ignore rules in a <code>.cgcignore</code> file in the root of your repository or context directory.</p>
 <h3 id="glob-pattern-rules">Glob Pattern Rules:</h3>
 <ul>

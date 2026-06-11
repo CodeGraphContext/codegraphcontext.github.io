@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../visualization/">
+        <link rel="prev" href="../cli/">
       
       
-        <link rel="next" href="../onboarding-codebase/">
+        <link rel="next" href="../mcp/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>Datasource Indexing - CodeGraphContext</title>
+        <title>HTTP API Reference - CodeGraphContext</title>
       
     
     
@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ingesting-database-cache-schemas" class="md-skip">
+        <a href="#http-api-reference" class="md-skip">
           Skip to content
         </a>
       
@@ -244,7 +244,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Datasource Indexing
+              HTTP API Reference
             
           </span>
         </div>
@@ -386,13 +386,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../indexing/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../guides/indexing/" class="md-tabs__link">
           
   
   
@@ -408,11 +406,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../reference/cli/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../cli/" class="md-tabs__link">
           
   
   
@@ -592,32 +592,32 @@
         <div class="rw-sidebar__heading">User Guides</div>
         
         
-        <a href="../indexing/"
+        <a href="../../guides/indexing/"
           class="rw-sidebar__link ">
           Indexing Codebases
         </a>
         
-        <a href="../contexts/"
+        <a href="../../guides/contexts/"
           class="rw-sidebar__link ">
           Configuration Contexts
         </a>
         
-        <a href="../bundles/"
+        <a href="../../guides/bundles/"
           class="rw-sidebar__link ">
           Portable CGC Bundles
         </a>
         
-        <a href="../visualization/"
+        <a href="../../guides/visualization/"
           class="rw-sidebar__link ">
           Interactive Visualization
         </a>
         
-        <a href="./"
-          class="rw-sidebar__link rw-sidebar__link--active">
+        <a href="../../guides/datasource-indexing/"
+          class="rw-sidebar__link ">
           Datasource Indexing
         </a>
         
-        <a href="../onboarding-codebase/"
+        <a href="../../guides/onboarding-codebase/"
           class="rw-sidebar__link ">
           Developer Onboarding
         </a>
@@ -629,27 +629,27 @@
         <div class="rw-sidebar__heading">Reference</div>
         
         
-        <a href="../../reference/cli/"
+        <a href="../cli/"
           class="rw-sidebar__link ">
           CLI Reference
         </a>
         
-        <a href="../../reference/api/"
-          class="rw-sidebar__link ">
+        <a href="./"
+          class="rw-sidebar__link rw-sidebar__link--active">
           HTTP API Reference
         </a>
         
-        <a href="../../reference/mcp/"
+        <a href="../mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
         </a>
         
-        <a href="../../reference/config/"
+        <a href="../config/"
           class="rw-sidebar__link ">
           Configuration
         </a>
         
-        <a href="../../reference/troubleshooting/"
+        <a href="../troubleshooting/"
           class="rw-sidebar__link ">
           Troubleshooting
         </a>
@@ -692,64 +692,144 @@
         
         
         <span class="rw-breadcrumb__sep">›</span>
-        <a href="../..">User Guides</a>
+        <a href="../..">Reference</a>
         
         
         <span class="rw-breadcrumb__sep">›</span>
-        Datasource Indexing
+        HTTP API Reference
       </div>
 
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
-        <h1 id="ingesting-database-cache-schemas">Ingesting Database &amp; Cache Schemas</h1>
-<p>CodeGraphContext (CGC) goes beyond parsing code syntax—it allows developers to ingest database and cache schemas. By linking code functions to database columns or cache keys, CGC maps dependencies from the API layer down to the storage tables.</p>
+        <h1 id="http-api-reference">HTTP API Reference</h1>
+<p>CodeGraphContext ships a <strong>CGC Gateway</strong> HTTP server for ChatGPT Actions, Claude connectors, and custom web frontends. It wraps the same MCP tool surface exposed by <code>cgc mcp start</code>.</p>
 <hr />
-<h2 id="1-supported-datasources">1. Supported Datasources</h2>
-<p>CGC provides ingestion connectors for three primary database models:</p>
-<ol>
-<li><strong>Aurora MySQL / Relational Schemas</strong>: Ingests tables, columns, primary/foreign keys, and SQL constraints.</li>
-<li><strong>Apache Cassandra / Column-Family Schemas</strong>: Ingests keyspaces, column families (tables), columns, and cluster keys.</li>
-<li><strong>Redis / NoSQL Cache Stores</strong>: Ingests logical key namespace patterns and cache structure types.</li>
-</ol>
+<h2 id="starting-the-server">Starting the Server</h2>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>api<span class="w"> </span>start
+cgc<span class="w"> </span>api<span class="w"> </span>start<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">8080</span>
+cgc<span class="w"> </span>api<span class="w"> </span>start<span class="w"> </span>--reload<span class="w">   </span><span class="c1"># development only</span>
+</code></pre></div>
+<p>The server loads credentials from the same configuration chain as the CLI (<code>~/.codegraphcontext/.env</code>, context resolution, etc.).</p>
 <hr />
-<h2 id="2-ingesting-schemas-via-cli">2. Ingesting Schemas via CLI</h2>
-<p>Use the <code>cgc datasource</code> command group to configure and ingest datasource metadata.</p>
-<h3 id="a-ingesting-mysql-schemas">A. Ingesting MySQL Schemas</h3>
-<p>Connect to a MySQL database to extract table metadata and column datatypes:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>mysql<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">3306</span><span class="w"> </span>--user<span class="w"> </span>app_user<span class="w"> </span>--password<span class="w"> </span>secure_pass<span class="w"> </span>--db<span class="w"> </span>main_db
-</code></pre></div>
-<p>This populates the active context with <code>DbTable</code> and <code>DbColumn</code> nodes, linking tables to columns via <code>CONTAINS</code> edges.</p>
-<h3 id="b-ingesting-cassandra-schemas">B. Ingesting Cassandra Schemas</h3>
-<p>Connect to a Cassandra cluster to extract keyspace schemas:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>cassandra<span class="w"> </span>--hosts<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">9042</span><span class="w"> </span>--keyspace<span class="w"> </span>production_keyspace
-</code></pre></div>
-<p>This populates the context with keyspace tables and columns.</p>
-<h3 id="c-ingesting-redis-key-patterns">C. Ingesting Redis Key Patterns</h3>
-<p>Analyze active Redis databases to extract key schemas:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>redis<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">6379</span><span class="w"> </span>--db<span class="w"> </span><span class="m">0</span>
-</code></pre></div>
-<p>This command runs key scans, resolves namespaces (e.g., <code>user:*:profile</code> or <code>session:*</code>), and populates <code>RedisKeyPattern</code> nodes.</p>
+<h2 id="endpoints">Endpoints</h2>
+<h3 id="health-status">Health &amp; Status</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Path</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/health</code></td>
+<td style="text-align: left;">Liveness probe. Returns <code>{"status": "ok"}</code>. Suitable for load balancers and Kubernetes.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/</code></td>
+<td style="text-align: left;">Simple HTML landing page with links to OpenAPI docs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/v1/status</code></td>
+<td style="text-align: left;">Database connectivity and active backend name.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mcp-over-sse">MCP-over-SSE</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Path</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/v1/mcp/sse</code></td>
+<td style="text-align: left;">Server-Sent Events stream for MCP clients.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/v1/mcp/messages</code></td>
+<td style="text-align: left;">MCP message ingress for SSE transport.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rest-tool-bridge">REST Tool Bridge</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Path</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/v1/tools</code></td>
+<td style="text-align: left;">Lists registered MCP tools and schemas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/v1/tools/call</code></td>
+<td style="text-align: left;">Invokes a tool by name with JSON arguments.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/v1/index</code></td>
+<td style="text-align: left;">Triggers repository indexing (background job).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/v1/query</code></td>
+<td style="text-align: left;">Executes a read-only Cypher query.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GET</code></td>
+<td style="text-align: left;"><code>/api/v1/repositories</code></td>
+<td style="text-align: left;">Lists indexed repositories in the active context.</td>
+</tr>
+</tbody>
+</table>
+<p>Interactive OpenAPI documentation is available at <code>/docs</code> while the server is running.</p>
 <hr />
-<h2 id="3-resolving-code-to-database-relationships">3. Resolving Code-to-Database Relationships</h2>
-<p>After ingesting both your codebase (via <code>cgc index</code>) and your database schemas (via <code>cgc datasource</code>), CGC runs static query analysis.</p>
-<p>It parses SQL query strings and Redis command invocations inside your code functions (e.g., <code>SELECT user_id FROM users</code> or <code>redis.get(f"user:{user_id}:profile")</code>) and resolves target nodes.</p>
-<h3 id="resulting-edges">Resulting Edges:</h3>
-<ul>
-<li><strong><code>READS</code></strong>: Ingested when a function queries database tables, reads columns, or fetches Redis key patterns.</li>
-<li><strong><code>WRITES</code></strong>: Ingested when a function writes data to tables (INSERT, UPDATE, DELETE) or modifies cache keys.</li>
-</ul>
+<h2 id="example-health-check">Example: Health Check</h2>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8000/health
+<span class="c1"># {&quot;status&quot;:&quot;ok&quot;}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>http://localhost:8000/api/v1/status
+</code></pre></div>
 <hr />
-<h2 id="4-querying-datasource-relationships">4. Querying Datasource Relationships</h2>
-<p>Once the unified graph is created, you can query relationships using Cypher:</p>
-<h3 id="example-a-trace-functions-modifying-a-table">Example A: Trace Functions Modifying a Table</h3>
-<div class="highlight"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="p">:</span><span class="n">Function</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">WRITES</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">table</span><span class="p">:</span><span class="n">DbTable</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;orders&#39;</span><span class="p">})</span>
-<span class="k">RETURN</span><span class="w"> </span><span class="n">fn</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">fn</span><span class="p">.</span><span class="n">path</span>
-</code></pre></div>
-<h3 id="example-b-identify-functions-interfacing-with-cache-patterns">Example B: Identify Functions Interfacing with Cache Patterns</h3>
-<div class="highlight"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="p">:</span><span class="n">Function</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">READS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">cache</span><span class="p">:</span><span class="n">RedisKeyPattern</span><span class="p">)</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="n">pattern</span><span class="w"> </span><span class="n">CONTAINS</span><span class="w"> </span><span class="s">&#39;session&#39;</span>
-<span class="k">RETURN</span><span class="w"> </span><span class="n">fn</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">cache</span><span class="p">.</span><span class="n">pattern</span>
-</code></pre></div>
+<h2 id="relationship-to-mcp">Relationship to MCP</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Interface</th>
+<th style="text-align: left;">Transport</th>
+<th style="text-align: left;">Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>cgc mcp start</code></td>
+<td style="text-align: left;">stdio</td>
+<td style="text-align: left;">Cursor, Claude Desktop, VS Code</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>cgc api start</code></td>
+<td style="text-align: left;">HTTP / SSE</td>
+<td style="text-align: left;">Web apps, ChatGPT Actions, remote agents</td>
+</tr>
+</tbody>
+</table>
+<p>Both paths share the same graph database and tool implementations.</p>
       </div>
     </main>
   </div>

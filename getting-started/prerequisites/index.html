@@ -487,7 +487,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -634,6 +634,11 @@
           CLI Reference
         </a>
         
+        <a href="../../reference/api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
+        </a>
+        
         <a href="../../reference/mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
@@ -753,32 +758,38 @@
 <tr>
 <td style="text-align: left;"><strong>FalkorDB Lite (Default)</strong></td>
 <td style="text-align: left;">In-process (Embedded)</td>
-<td style="text-align: left;">Unix-Only (Linux/macOS)</td>
-<td style="text-align: left;">Embedded, high-performance in-memory graph. Requires Python 3.12+.</td>
+<td style="text-align: left;">Unix (Linux/macOS), Python 3.12+</td>
+<td style="text-align: left;">Default when <code>falkordblite</code> is installed. In-memory, extremely low latency.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>KuzuDB</strong></td>
 <td style="text-align: left;">In-process (Embedded)</td>
 <td style="text-align: left;">Cross-Platform (Linux/macOS/Windows)</td>
-<td style="text-align: left;">Recommended for local development and zero-ops setups. Works natively out-of-the-box on Python 3.10+.</td>
+<td style="text-align: left;">Automatic fallback on Windows or when FalkorDB Lite is unavailable. Python 3.10+.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>LadybugDB</strong></td>
 <td style="text-align: left;">In-process (Embedded)</td>
 <td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Embedded SQL-based graph engine. Operates similarly to KuzuDB.</td>
+<td style="text-align: left;">Alternative embedded engine; <code>pip install ladybug</code>.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>FalkorDB Remote</strong></td>
 <td style="text-align: left;">Networked Server</td>
 <td style="text-align: left;">Cross-Platform Client</td>
-<td style="text-align: left;">Standard client connecting to a remote FalkorDB instance.</td>
+<td style="text-align: left;">Connects to a remote FalkorDB/Redis-compatible server.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong>Neo4j</strong></td>
 <td style="text-align: left;">Networked Server</td>
 <td style="text-align: left;">Cross-Platform Client</td>
-<td style="text-align: left;">Enterprise setups needing complex clustering, access controls, or Neo4j Browser visualization.</td>
+<td style="text-align: left;">Enterprise clustering, Neo4j Browser, AuraDB.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nornic DB</strong></td>
+<td style="text-align: left;">Embedded / Bolt client</td>
+<td style="text-align: left;">Cross-Platform</td>
+<td style="text-align: left;">Neo4j-compatible driver without a full Neo4j deployment.</td>
 </tr>
 </tbody>
 </table>

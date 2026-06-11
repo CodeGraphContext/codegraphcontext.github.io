@@ -485,7 +485,7 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.4.16</span></span>
+              </svg> <span id="git-version">v0.4.19</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
@@ -632,6 +632,11 @@
           CLI Reference
         </a>
         
+        <a href="reference/api/"
+          class="rw-sidebar__link ">
+          HTTP API Reference
+        </a>
+        
         <a href="reference/mcp/"
           class="rw-sidebar__link ">
           MCP Tool Reference
@@ -690,13 +695,15 @@
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
         <h1 id="introduction-to-codegraphcontext">Introduction to CodeGraphContext</h1>
-<p>CodeGraphContext (CGC) is a high-performance, developer-focused <strong>Code Intelligence Engine</strong> designed to transform complex source code repositories into semantic, queryable property graphs. By parsing source code syntax and resolving symbols, CGC maps relationships—such as function invocations, class inheritances, file structures, and module imports—into a structured graph model. This enables both human developers and Model Context Protocol (MCP) compatible AI agents to navigate and analyze codebases programmatically.</p>
+<p>CodeGraphContext (CGC) is a high-performance, developer-focused <strong>Code Intelligence Engine</strong> that transforms source repositories into semantic, queryable property graphs. Tree-sitter and optional SCIP indexers extract symbols; CGC resolves calls, imports, and inheritance into a graph you can query from the CLI, MCP tools, or the HTTP API gateway.</p>
+<p><strong>Current release: 0.4.19</strong></p>
+<p>Recent improvements in the 0.4.17–0.4.19 line include nested call-chain accuracy, per-repo context isolation fixes, Neo4j write performance (CREATE vs MERGE, managed transactions), watcher startup graph reconciliation, SCIP respect for <code>.cgcignore</code>, <code>GET /health</code> on the API gateway, <code>bundle import --yes</code> for CI, and clearer configuration precedence for project-local <code>.env</code> files.</p>
 <hr />
 <h2 id="core-capabilities">Core Capabilities</h2>
 <ul>
 <li><strong>Semantic AST Extraction</strong>: Utilizes tree-sitter for syntax analysis and SCIP (Sourcegraph Code Intelligence Protocol) for static symbol resolution across multiple directories.</li>
 <li><strong>Model Context Protocol (MCP) Integration</strong>: Built-in MCP server support allows AI models and IDE agents (Cursor, Claude, VS Code, Windsurf) to query the codebase context dynamically.</li>
-<li><strong>Pluggable Database Architecture</strong>: Supports KuzuDB as the default cross-platform embedded database engine, LadybugDB, FalkorDB (embedded and remote), and Neo4j for enterprise analytics and visual exploration.</li>
+<li><strong>Pluggable Database Architecture</strong>: FalkorDB Lite on Unix (Python 3.12+), KuzuDB as the cross-platform fallback, plus LadybugDB, FalkorDB Remote, Nornic, and Neo4j. See <a href="reference/config/#important-defaults-read-this-first">configuration defaults</a>.</li>
 <li><strong>Filesystem Synchronization</strong>: Integrated directory watchers monitor file updates and update the graph incrementally.</li>
 <li><strong>Portable Code Graphs</strong>: Supports exporting and importing serialized graph representations as <code>.cgc</code> bundles for offline sharing and registry integration.</li>
 </ul>
@@ -717,7 +724,7 @@
 <li><strong><a href="getting-started/prerequisites/">Getting Started</a></strong>: Explore prerequisites, installation steps, quickstart tutorials, and MCP setup.</li>
 <li><strong><a href="concepts/architecture/">Core Concepts</a></strong>: Deep dive into the architecture, graph model schemas, database backends, and parser designs.</li>
 <li><strong><a href="guides/indexing/">User Guides</a></strong>: Learn indexing strategies, workspaces contexts, bundles distribution, custom visualizers, and database schema mappings.</li>
-<li><strong><a href="reference/cli/">Reference Manual</a></strong>: Complete CLI command listings, MCP tool schemas, and configuration variables.</li>
+<li><strong><a href="reference/cli/">Reference Manual</a></strong>: CLI commands, <a href="reference/api/">HTTP API</a>, MCP tool schemas, and configuration variables.</li>
 <li><strong><a href="contributing/">Community Portal</a></strong>: Guidelines for contributing code, extending languages support, and the project roadmap.</li>
 </ol>
       </div>
