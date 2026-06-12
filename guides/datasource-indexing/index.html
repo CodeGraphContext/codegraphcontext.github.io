@@ -716,12 +716,12 @@
 <p>Use the <code>cgc datasource</code> command group to configure and ingest datasource metadata.</p>
 <h3 id="a-ingesting-mysql-schemas">A. Ingesting MySQL Schemas</h3>
 <p>Connect to a MySQL database to extract table metadata and column datatypes:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>mysql<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">3306</span><span class="w"> </span>--user<span class="w"> </span>app_user<span class="w"> </span>--password<span class="w"> </span>secure_pass<span class="w"> </span>--db<span class="w"> </span>main_db
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>mysql<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">3306</span><span class="w"> </span>--user<span class="w"> </span>app_user<span class="w"> </span>--password<span class="w"> </span>secure_pass<span class="w"> </span>--database<span class="w"> </span>main_db
 </code></pre></div>
 <p>This populates the active context with <code>DbTable</code> and <code>DbColumn</code> nodes, linking tables to columns via <code>CONTAINS</code> edges.</p>
 <h3 id="b-ingesting-cassandra-schemas">B. Ingesting Cassandra Schemas</h3>
 <p>Connect to a Cassandra cluster to extract keyspace schemas:</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>cassandra<span class="w"> </span>--hosts<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">9042</span><span class="w"> </span>--keyspace<span class="w"> </span>production_keyspace
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>datasource<span class="w"> </span>cassandra<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">9042</span><span class="w"> </span>--keyspace<span class="w"> </span>production_keyspace
 </code></pre></div>
 <p>This populates the context with keyspace tables and columns.</p>
 <h3 id="c-ingesting-redis-key-patterns">C. Ingesting Redis Key Patterns</h3>
