@@ -858,6 +858,11 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <td style="text-align: left;"><code>python,typescript,go,rust,java</code></td>
 <td style="text-align: left;">List of target languages to process via SCIP.</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong><code>SCIP_LOCAL_INDEXER_TIMEOUT_SECONDS</code></strong></td>
+<td style="text-align: left;"><code>300</code></td>
+<td style="text-align: left;">Timeout for the local SCIP indexer subprocess. Raise it for large repositories whose indexer runs longer than 5 minutes. Values <code>&lt;= 0</code> or non-numeric fall back to <code>300</code>.</td>
+</tr>
 </tbody>
 </table>
 <hr />
