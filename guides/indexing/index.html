@@ -761,7 +761,8 @@ cgc<span class="w"> </span>watch
   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>unwatch<span class="w"> </span>/path/to/project
 </code></pre></div></li>
 </ul>
-<p>On startup, each watcher <strong>reconciles</strong> the graph with disk: files present on disk but missing from the graph are indexed, and graph entries for deleted files are removed before live monitoring begins.</p>
+<p>On startup, each watcher can <strong>reconcile</strong> the graph with disk: files present on disk but missing from the graph are indexed, and graph entries for deleted files are removed before live monitoring begins.</p>
+<p>This is <strong>off by default</strong> — pass <code>--sync-on-start</code> to enable it. Without it, changes made while the watcher was not running are not picked up for an already-indexed repository.</p>
 <hr />
 <h2 id="5-ingest-filters-cgcignore">5. Ingest Filters (<code>.cgcignore</code>)</h2>
 <p>To prevent compiling bloated indices or parsing build artifacts, define ignore rules in a <code>.cgcignore</code> file in the root of your repository or context directory.</p>

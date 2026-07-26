@@ -732,10 +732,13 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <hr />
 <h2 id="development-workflows">Development Workflows</h2>
 <h3 id="debug-logging">Debug Logging</h3>
-<p>Enable verbose debug logs during execution by setting the environment variable:
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CGC_LOG_LEVEL</span><span class="o">=</span>DEBUG
+<p>Enable verbose debug logs during execution by setting the environment variables:
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">DEBUG_LOGS</span><span class="o">=</span><span class="nb">true</span><span class="w">          </span><span class="c1"># developer/troubleshooting logs</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_APP_LOGS</span><span class="o">=</span>DEBUG<span class="w">    </span><span class="c1"># application log level (default: CRITICAL)</span>
 cgc<span class="w"> </span>index
 </code></pre></div></p>
+<p><code>LIBRARY_LOG_LEVEL</code> controls the verbosity of third-party libraries (neo4j,
+asyncio, urllib3) separately, and defaults to <code>WARNING</code>.</p>
 <h3 id="running-the-test-suite">Running the Test Suite</h3>
 <p>The testing pipeline utilizes <code>pytest</code>. Ensure all checks pass locally before pushing changes:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Run all unit and integration tests</span>
@@ -743,9 +746,6 @@ pytest
 
 <span class="c1"># Test a specific driver module</span>
 pytest<span class="w"> </span>tests/unit/core/test_database_kuzu_compat.py
-
-<span class="c1"># Run tests bypassing re-indexing cache</span>
-<span class="nv">CGC_SKIP_REINDEX</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span>pytest
 </code></pre></div>
 <p><em>Note: Integration tests for remote databases like Neo4j require a running local database instance (refer to docker-compose.yml).</em></p>
 <h3 id="formatting-linting">Formatting &amp; Linting</h3>

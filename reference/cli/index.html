@@ -954,7 +954,7 @@ cgc<span class="w"> </span>registry<span class="w"> </span>request<span class="w
 cgc<span class="w"> </span>unwatch<span class="w"> </span>&lt;PATH&gt;
 cgc<span class="w"> </span>watching
 </code></pre></div>
-<p>On startup, watchers reconcile the graph with the filesystem (add missing files, remove deleted paths) before monitoring changes.</p>
+<p>With <code>--sync-on-start</code>, watchers reconcile the graph with the filesystem (add missing files, remove deleted paths) before monitoring changes. This is off by default.</p>
 <hr />
 <h2 id="git-hooks-hook">Git Hooks (<code>hook</code>)</h2>
 <p>Keep the graph in sync on commit:</p>
