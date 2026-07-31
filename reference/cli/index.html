@@ -763,8 +763,8 @@
 <tbody>
 <tr>
 <td style="text-align: left;"><strong><code>index</code></strong></td>
-<td style="text-align: left;"><code>cgc index [PATH] [--force] [--dependency]</code></td>
-<td style="text-align: left;">Shortcut: <code>cgc i</code>. Incremental by default; <code>--force</code> rebuilds from scratch.</td>
+<td style="text-align: left;"><code>cgc index [PATH] [--force] [--summarize]</code></td>
+<td style="text-align: left;">Shortcut: <code>cgc i</code>. Incremental by default; <code>--force</code> rebuilds from scratch; <code>--summarize</code> displays a summary after indexing.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>clean</code></strong></td>
@@ -876,8 +876,8 @@
 <td style="text-align: left;">Unreferenced functions/files (with optional filters).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>analyze overrides &lt;class&gt;</code></td>
-<td style="text-align: left;">Methods overridden in subclasses.</td>
+<td style="text-align: left;"><code>analyze overrides &lt;function&gt;</code></td>
+<td style="text-align: left;">Implementations of a function across classes.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>analyze variable &lt;name&gt;</code></td>
@@ -899,7 +899,7 @@ cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;M
 <p><code>cgc cypher</code> still works as a hidden alias but prints a deprecation warning—prefer <code>cgc query</code>.</p>
 <h4 id="report"><code>report</code></h4>
 <p>Generate <code>CGC_REPORT.md</code> with god-node, complexity, and coupling metrics.</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>report<span class="w"> </span><span class="o">[</span>--include-java<span class="o">]</span>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>report<span class="w"> </span><span class="o">[</span>--java<span class="o">]</span>
 </code></pre></div>
 <h4 id="visualize"><code>visualize</code></h4>
 <p>Launch the React force-directed graph UI (shortcut: <code>cgc v</code>).</p>
