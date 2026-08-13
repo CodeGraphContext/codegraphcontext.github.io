@@ -791,7 +791,8 @@
 <p>Scans for unreferenced code declarations.
 - <strong>Parameters</strong>:
   - <code>exclude_decorated_with</code> (array of strings, optional): Excludes functions carrying specified decorator annotations (e.g., <code>@app.route</code>, or <code>Composable</code> for Kotlin). Matching is by substring, so <code>Preview</code> matches <code>@Preview(showBackground = true)</code>.
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
+  - <code>repo_path</code> (string, optional): Restricts search scope.
+- For Android codebases, <code>ANDROID_DECORATOR_PRESET</code> (<code>codegraphcontext.tools.code_finder.ANDROID_DECORATOR_PRESET</code>) is a preset tuple of Compose/JUnit/Hilt/Room/tooling annotation names to pass as <code>exclude_decorated_with</code>. Same substring matching applies.</p>
 <hr />
 <h2 id="workspace-context-management">Workspace Context Management</h2>
 <h3 id="discover_codegraph_contexts"><code>discover_codegraph_contexts</code></h3>
