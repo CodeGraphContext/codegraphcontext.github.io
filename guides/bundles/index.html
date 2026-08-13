@@ -990,6 +990,18 @@ unzip<span class="w"> </span>-p<span class="w"> </span>bundle.cgc<span class="w"
 - Review metadata before loading
 - Use <code>--clear</code> cautiously (it deletes existing data)
 - Keep backups of your graph database</p>
+<h3 id="secrets-in-bundles">Secrets in Bundles</h3>
+<p>Bundles include node properties from the indexed source code, which may contain <strong>string literals and variable values</strong> such as API keys, tokens, passwords, and database connection strings that were hardcoded in the source.</p>
+<p><strong>Before sharing a bundle:</strong></p>
+<ol>
+<li>Enable <code>REDACT_SECRETS=true</code> in your CGC config before indexing to automatically redact likely secrets:
+   <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>REDACT_SECRETS<span class="w"> </span><span class="nb">true</span>
+cgc<span class="w"> </span>index<span class="w"> </span>/path/to/repo
+cgc<span class="w"> </span>bundle<span class="w"> </span><span class="nb">export</span><span class="w"> </span>my-project.cgc
+</code></pre></div></li>
+<li>Inspect the bundle contents (<code>unzip -p bundle.cgc nodes.jsonl</code>) for any remaining sensitive values.</li>
+<li>CGC logs a warning at index time when potential secrets are detected, listing the affected nodes and properties.</li>
+</ol>
 <hr />
 <h2 id="troubleshooting">🛠️ Troubleshooting</h2>
 <h3 id="bundle-import-fails">Bundle Import Fails</h3>
