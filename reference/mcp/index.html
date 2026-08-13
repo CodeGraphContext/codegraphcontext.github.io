@@ -790,7 +790,7 @@
 <h3 id="find_dead_code"><code>find_dead_code</code></h3>
 <p>Scans for unreferenced code declarations.
 - <strong>Parameters</strong>:
-  - <code>exclude_decorated_with</code> (array of strings, optional): Excludes functions carrying specified decorator annotations (e.g., <code>@app.route</code>).
+  - <code>exclude_decorated_with</code> (array of strings, optional): Excludes functions carrying specified decorator annotations (e.g., <code>@app.route</code>, or <code>Composable</code> for Kotlin). Matching is by substring, so <code>Preview</code> matches <code>@Preview(showBackground = true)</code>.
   - <code>repo_path</code> (string, optional): Restricts search scope.</p>
 <hr />
 <h2 id="workspace-context-management">Workspace Context Management</h2>
