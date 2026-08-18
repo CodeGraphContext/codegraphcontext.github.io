@@ -893,8 +893,8 @@
 <h2 id="querying-reports">Querying &amp; Reports</h2>
 <h4 id="query"><code>query</code></h4>
 <p>Execute a read-only Cypher query.</p>
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:Function) RETURN f.name LIMIT 10&quot;</span>
-cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (n)-[r]-&gt;(m) RETURN n,r,m LIMIT 50&quot;</span><span class="w"> </span>--visual
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:Function) RETURN f.name LIMIT 10"</span>
+cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (n)-[r]-&gt;(m) RETURN n,r,m LIMIT 50"</span><span class="w"> </span>--visual
 </code></pre></div>
 <p><code>cgc cypher</code> still works as a hidden alias but prints a deprecation warning—prefer <code>cgc query</code>.</p>
 <h4 id="report"><code>report</code></h4>

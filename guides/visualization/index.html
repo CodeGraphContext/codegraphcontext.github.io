@@ -737,8 +737,8 @@ cgc<span class="w"> </span>visualize<span class="w"> </span>--context<span class
 <li>Log in using your configured credentials.</li>
 <li>Execute a Cypher query to retrieve and render graph structures:</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="c1">// Visualize all functions called by the &quot;process_payment&quot; function</span>
-<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">f1</span><span class="p">:</span><span class="n">Function</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;process_payment&#39;</span><span class="p">})</span><span class="o">-[</span><span class="n">r</span><span class="p">:</span><span class="n">CALLS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">f2</span><span class="p">:</span><span class="n">Function</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Visualize all functions called by the "process_payment" function</span>
+<span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">f1</span><span class="p">:</span><span class="n">Function</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">'process_payment'</span><span class="p">})</span><span class="o">-[</span><span class="n">r</span><span class="p">:</span><span class="n">CALLS</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">f2</span><span class="p">:</span><span class="n">Function</span><span class="p">)</span>
 <span class="k">RETURN</span><span class="w"> </span><span class="n">f1</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span>
 </code></pre></div>
       </div>

@@ -735,20 +735,20 @@
 <p>Inherit from the base parser and implement AST extraction routines:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TypescriptTreeSitterParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generic_parser</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">generic_parser</span><span class="p">,</span> <span class="s2">&quot;typescript&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">generic_parser</span><span class="p">,</span> <span class="s2">"typescript"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">queries</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_queries</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">is_dependency</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="n">content</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span>
-        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;utf8&quot;</span><span class="p">))</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s2">"utf8"</span><span class="p">))</span>
 
         <span class="c1"># Populate and return standardized AST data structures</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;functions&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
-            <span class="s2">&quot;classes&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_classes</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
-            <span class="s2">&quot;calls&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_calls</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
-            <span class="s2">&quot;imports&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_imports</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
-            <span class="s2">&quot;variables&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_variables</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">"functions"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_functions</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">"classes"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_classes</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">"calls"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_calls</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">"imports"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_imports</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
+            <span class="s2">"variables"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_variables</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">content</span><span class="p">),</span>
         <span class="p">}</span>
 </code></pre></div>
 <h3 id="step-d-implement-the-fast-pre-scan">Step D: Implement the Fast Pre-Scan</h3>
@@ -761,8 +761,8 @@
 <p>Map the file extension to the new parser class in <code>parser_factory.py</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Map extension inside the registry</span>
 <span class="n">SUPPORTED_LANGUAGES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;.ts&quot;</span><span class="p">:</span> <span class="s2">&quot;typescript&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;.tsx&quot;</span><span class="p">:</span> <span class="s2">&quot;typescript&quot;</span><span class="p">,</span>
+    <span class="s2">".ts"</span><span class="p">:</span> <span class="s2">"typescript"</span><span class="p">,</span>
+    <span class="s2">".tsx"</span><span class="p">:</span> <span class="s2">"typescript"</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
 <hr />
@@ -774,13 +774,13 @@
 </code></pre></div></li>
 <li><strong>Execute verification queries using Cypher</strong>:</li>
 <li>Verify files are parsed:
-     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) RETURN f.path, f.language&quot;</span>
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File) RETURN f.path, f.language"</span>
 </code></pre></div></li>
 <li>Verify functions are identified:
-     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:CONTAINS]-&gt;(fn:Function) RETURN f.path, fn.name&quot;</span>
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File)-[:CONTAINS]-&gt;(fn:Function) RETURN f.path, fn.name"</span>
 </code></pre></div></li>
 <li>Verify caller links:
-     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) RETURN caller.name, callee.name&quot;</span>
+     <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) RETURN caller.name, callee.name"</span>
 </code></pre></div></li>
 </ol>
 <h3 id="emacs-lisp-smoke-check">Emacs Lisp smoke check</h3>
@@ -790,17 +790,17 @@
 <span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>src
 <span class="nb">export</span><span class="w"> </span><span class="nv">DEFAULT_DATABASE</span><span class="o">=</span>kuzudb
 <span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_TYPE</span><span class="o">=</span>kuzudb
-<span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$tmpdir</span><span class="s2">/kuzu.db&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$tmpdir</span><span class="s2">/kuzu.db"</span>
 
 uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>index<span class="w"> </span>tests/fixtures/sample_projects/sample_project_elisp<span class="w"> </span>--force
 
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) WHERE f.path ENDS WITH &#39;.el&#39; RETURN f.name AS file ORDER BY file&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (fn:Function) WHERE fn.lang = &#39;elisp&#39; RETURN fn.name AS function ORDER BY function&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (v:Variable) WHERE v.lang = &#39;elisp&#39; RETURN v.name AS variable ORDER BY variable&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[:IMPORTS]-&gt;(m:Module) RETURN f.name AS file, m.name AS module ORDER BY file, module&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) WHERE caller.lang = &#39;elisp&#39; RETURN caller.name AS caller_name, callee.name AS callee_name ORDER BY caller_name, callee_name&quot;</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File) WHERE f.path ENDS WITH '.el' RETURN f.name AS file ORDER BY file"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (fn:Function) WHERE fn.lang = 'elisp' RETURN fn.name AS function ORDER BY function"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (v:Variable) WHERE v.lang = 'elisp' RETURN v.name AS variable ORDER BY variable"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File)-[:IMPORTS]-&gt;(m:Module) RETURN f.name AS file, m.name AS module ORDER BY file, module"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (caller:Function)-[:CALLS]-&gt;(callee:Function) WHERE caller.lang = 'elisp' RETURN caller.name AS caller_name, callee.name AS callee_name ORDER BY caller_name, callee_name"</span>
 
-rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$tmpdir</span><span class="s2">&quot;</span>
+rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">"</span><span class="nv">$tmpdir</span><span class="s2">"</span>
 </code></pre></div>
 <p>Expected results include <code>foo-core.el</code> and <code>foo-ui.el</code>, function nodes such as <code>foo-core-greet</code> and <code>foo-ui-render</code>, variable nodes such as <code>foo-core-count</code> and <code>foo-core-loud</code>, module nodes for <code>cl-lib</code>, <code>foo-core</code>, and <code>foo-ui</code>, and direct call edges including <code>foo-ui-render -&gt; foo-core-greet</code> and <code>foo-core-greet -&gt; foo-core-format</code>.</p>
 <h3 id="solidity-smoke-check">Solidity smoke check</h3>
@@ -809,21 +809,21 @@ rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</sp
 <span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>src
 <span class="nb">export</span><span class="w"> </span><span class="nv">DEFAULT_DATABASE</span><span class="o">=</span>kuzudb
 <span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_TYPE</span><span class="o">=</span>kuzudb
-<span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$tmpdir</span><span class="s2">/kuzu.db&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">CGC_RUNTIME_DB_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$tmpdir</span><span class="s2">/kuzu.db"</span>
 
 uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>index<span class="w"> </span>tests/fixtures/sample_projects/sample_project_solidity<span class="w"> </span>--force
 
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File) WHERE f.path ENDS WITH &#39;.sol&#39; RETURN f.name AS file ORDER BY file&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (c:Class) WHERE c.lang = &#39;solidity&#39; RETURN c.name AS class ORDER BY class&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (fn:Function) WHERE fn.lang = &#39;solidity&#39; RETURN fn.name AS function ORDER BY function&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (a)-[:INHERITS]-&gt;(b) RETURN a.name AS child, b.name AS parent ORDER BY child, parent&quot;</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (caller:Function)-[:CALLS]-&gt;(callee) WHERE caller.lang = &#39;solidity&#39; RETURN caller.name AS caller_name, callee.name AS callee_name ORDER BY caller_name, callee_name&quot;</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File) WHERE f.path ENDS WITH '.sol' RETURN f.name AS file ORDER BY file"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (c:Class) WHERE c.lang = 'solidity' RETURN c.name AS class ORDER BY class"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (fn:Function) WHERE fn.lang = 'solidity' RETURN fn.name AS function ORDER BY function"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (a)-[:INHERITS]-&gt;(b) RETURN a.name AS child, b.name AS parent ORDER BY child, parent"</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (caller:Function)-[:CALLS]-&gt;(callee) WHERE caller.lang = 'solidity' RETURN caller.name AS caller_name, callee.name AS callee_name ORDER BY caller_name, callee_name"</span>
 
 <span class="c1"># Foundry remapping fixture</span>
 uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>index<span class="w"> </span>tests/fixtures/sample_projects/sample_project_solidity_foundry<span class="w"> </span>--force
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">&quot;MATCH (f:File)-[i:IMPORTS]-&gt;(m:Module) WHERE f.name = &#39;App.sol&#39; RETURN m.name, i.full_import_name&quot;</span>
+uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>codegraphcontext<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File)-[i:IMPORTS]-&gt;(m:Module) WHERE f.name = 'App.sol' RETURN m.name, i.full_import_name"</span>
 
-rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$tmpdir</span><span class="s2">&quot;</span>
+rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">"</span><span class="nv">$tmpdir</span><span class="s2">"</span>
 </code></pre></div>
 <p>Expected results include files such as <code>Greeter.sol</code> / <code>BaseGreeter.sol</code> / <code>UsingCounter.sol</code>, classes/interfaces such as <code>Greeter</code>, <code>BaseGreeter</code>, <code>IGreeter</code>, <code>MathLib</code>, functions such as <code>greet</code> / <code>bump</code> / <code>add</code>, inheritance <code>Greeter -&gt; BaseGreeter</code>, modifier CALLS (<code>nonEmpty</code>), <code>using for</code> rewrites (<code>MathLib.add</code>), emit CALLS (<code>Greeted</code>), and remapped imports for <code>App.sol</code> resolving <code>forge-std/Helper.sol</code> → <code>lib/helper/src/Helper.sol</code>.</p>
 <h3 id="solidity-limitations-v1">Solidity limitations (v1)</h3>

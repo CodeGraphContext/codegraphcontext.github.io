@@ -727,21 +727,21 @@
 <h3 id="file-formats">File Formats</h3>
 <h4 id="metadatajson">metadata.json</h4>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;cgc_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;exported_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-01-13T22:00:00&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;numpy/numpy&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;commit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;a1b2c3d4&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;languages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;format_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span>
+<span class="w">  </span><span class="nt">"cgc_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.5.0"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"exported_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-01-13T22:00:00"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"repo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"numpy/numpy"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"commit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a1b2c3d4"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"languages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"format_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span>
 <span class="p">}</span>
 </code></pre></div>
 <h4 id="nodesjsonl-excerpt">nodes.jsonl (excerpt)</h4>
-<div class="highlight"><pre><span></span><code>{&quot;_id&quot;: &quot;4:abc123&quot;, &quot;_labels&quot;: [&quot;Function&quot;], &quot;name&quot;: &quot;array&quot;, &quot;path&quot;: &quot;/numpy/core/array.py&quot;, &quot;line_number&quot;: 42}
-{&quot;_id&quot;: &quot;4:def456&quot;, &quot;_labels&quot;: [&quot;Class&quot;], &quot;name&quot;: &quot;ndarray&quot;, &quot;path&quot;: &quot;/numpy/core/multiarray.py&quot;, &quot;line_number&quot;: 100}
+<div class="highlight"><pre><span></span><code>{"_id": "4:abc123", "_labels": ["Function"], "name": "array", "path": "/numpy/core/array.py", "line_number": 42}
+{"_id": "4:def456", "_labels": ["Class"], "name": "ndarray", "path": "/numpy/core/multiarray.py", "line_number": 100}
 </code></pre></div>
 <h4 id="edgesjsonl-excerpt">edges.jsonl (excerpt)</h4>
-<div class="highlight"><pre><span></span><code>{&quot;from&quot;: &quot;4:abc123&quot;, &quot;to&quot;: &quot;4:def456&quot;, &quot;type&quot;: &quot;CALLS&quot;, &quot;properties&quot;: {}}
-{&quot;from&quot;: &quot;4:xyz789&quot;, &quot;to&quot;: &quot;4:def456&quot;, &quot;type&quot;: &quot;INHERITS&quot;, &quot;properties&quot;: {}}
+<div class="highlight"><pre><span></span><code>{"from": "4:abc123", "to": "4:def456", "type": "CALLS", "properties": {}}
+{"from": "4:xyz789", "to": "4:def456", "type": "INHERITS", "properties": {}}
 </code></pre></div>
 <hr />
 <h2 id="quick-start">🚀 Quick Start</h2>
@@ -879,18 +879,18 @@ cgc<span class="w"> </span>index<span class="w"> </span>.
 <h3 id="2-export-to-bundle">2. Export to Bundle</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Get commit info</span>
 <span class="nv">COMMIT</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span>--short<span class="w"> </span>HEAD<span class="k">)</span>
-<span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>describe<span class="w"> </span>--tags<span class="w"> </span>--abbrev<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="k">)</span>
+<span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>describe<span class="w"> </span>--tags<span class="w"> </span>--abbrev<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"main"</span><span class="k">)</span>
 
 <span class="c1"># Export with version info</span>
-cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">&quot;your-repo-</span><span class="si">${</span><span class="nv">TAG</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">COMMIT</span><span class="si">}</span><span class="s2">.cgc&quot;</span><span class="w"> </span>--repo<span class="w"> </span>.
+cgc<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s2">"your-repo-</span><span class="si">${</span><span class="nv">TAG</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">COMMIT</span><span class="si">}</span><span class="s2">.cgc"</span><span class="w"> </span>--repo<span class="w"> </span>.
 </code></pre></div>
 <h3 id="3-distribute">3. Distribute</h3>
 <h4 id="option-a-github-releases">Option A: GitHub Releases</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create a release</span>
 gh<span class="w"> </span>release<span class="w"> </span>create<span class="w"> </span>bundles-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>your-repo-*.cgc<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--title<span class="w"> </span><span class="s2">&quot;Pre-indexed Bundles - </span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--notes<span class="w"> </span><span class="s2">&quot;Pre-indexed code graphs for instant loading&quot;</span>
+<span class="w">  </span>--title<span class="w"> </span><span class="s2">"Pre-indexed Bundles - </span><span class="k">$(</span>date<span class="w"> </span>+%Y-%m-%d<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--notes<span class="w"> </span><span class="s2">"Pre-indexed code graphs for instant loading"</span>
 </code></pre></div>
 <h4 id="option-b-object-storage-s3-r2-gcs">Option B: Object Storage (S3, R2, GCS)</h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># Upload to S3</span>
@@ -950,7 +950,7 @@ cgc<span class="w"> </span>bundle<span class="w"> </span>validate<span class="w"
 <h2 id="use-cases">🎓 Use Cases</h2>
 <h3 id="1-ai-assistant-context">1. AI Assistant Context</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># AI can now query structure instantly</span>
-<span class="c1"># &quot;Show me all functions that use numpy.linalg&quot;</span>
+<span class="c1"># "Show me all functions that use numpy.linalg"</span>
 </code></pre></div>
 <h3 id="2-code-analysis-pipelines">2. Code Analysis Pipelines</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># CI/CD: Load pre-indexed dependencies</span>
@@ -1042,14 +1042,14 @@ unzip<span class="w"> </span>-p<span class="w"> </span>bundle.cgc<span class="w"
 
 <span class="c1"># Export</span>
 <span class="n">success</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="n">export_to_bundle</span><span class="p">(</span>
-    <span class="n">output_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my-bundle.cgc&quot;</span><span class="p">),</span>
-    <span class="n">repo_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/path/to/repo&quot;</span><span class="p">),</span>
+    <span class="n">output_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">"my-bundle.cgc"</span><span class="p">),</span>
+    <span class="n">repo_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">"/path/to/repo"</span><span class="p">),</span>
     <span class="n">include_stats</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
 <span class="c1"># Import</span>
 <span class="n">success</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="n">import_from_bundle</span><span class="p">(</span>
-    <span class="n">bundle_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;my-bundle.cgc&quot;</span><span class="p">),</span>
+    <span class="n">bundle_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">"my-bundle.cgc"</span><span class="p">),</span>
     <span class="n">clear_existing</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
 </code></pre></div>
