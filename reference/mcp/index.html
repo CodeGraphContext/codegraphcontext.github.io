@@ -771,9 +771,9 @@
     - <code>module_deps</code>: Identifies dependencies between modules.
     - <code>variable_scope</code>: Tracks variable bindings.
     - <code>find_complexity</code>: Returns cyclomatic complexity score.
-    - <code>find_functions_by_argument</code>: Searches for functions declaring target parameter.
+    - <code>find_functions_by_argument</code>: Searches for functions declaring the target parameter name or type.
     - <code>find_functions_by_decorator</code>: Searches for functions decorated with target.
-  - <code>target</code> (string, required): The identifier name to analyze.
+  - <code>target</code> (string, required): The identifier to analyze. For <code>find_functions_by_argument</code>, this may be a parameter name or type.
   - <code>context</code> (string, optional): Specific file path to resolve target namespace conflicts.
   - <code>repo_path</code> (string, optional): Restricts search scope.</p>
 <h3 id="calculate_cyclomatic_complexity"><code>calculate_cyclomatic_complexity</code></h3>
