@@ -872,6 +872,78 @@ rm<span class="w"> </span>-rf<span class="w"> </span><span class="s2">"</span><s
 <h3 id="emacs-lisp-scip-follow-up">Emacs Lisp SCIP follow-up</h3>
 <p>The initial Emacs Lisp implementation intentionally stays on the Tree-sitter pipeline. There is no standard <code>scip-elisp</code> indexer to register in <code>EXTENSION_TO_SCIP</code>, and the commonly used <code>elisp-refs</code> package is designed as an interactive Emacs reference finder rather than a batch indexer: it searches files recorded in the running Emacs <code>load-history</code>, renders results in a special buffer instead of emitting JSON or SCIP data, and exposes useful Lisp-2 function/variable heuristics only through internal APIs.</p>
 <p>A future semantic indexer could reuse those heuristics in a dedicated batch wrapper, but it would still need directory discovery, side-effect-safe loading or buffer creation, line/column conversion from character offsets, structured output, and explicit handling for macro expansion and indirect calls. Until that exists, <code>.el</code> files should continue to use Tree-sitter indexing with documented limitations around arbitrary macro semantics and dynamic dispatch.</p>
+<h3 id="hcl-smoke-check">HCL smoke check</h3>
+<p><code>.tf</code>, <code>.tfvars</code> and <code>.hcl</code> are parsed by <code>languages/hcl.py</code> (Terraform, OpenTofu, Terragrunt).
+The <code>hcl</code> grammar ships with every <code>tree-sitter-language-pack</code> release in the declared range.</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>index<span class="w"> </span>./tests/fixtures/sample_projects/sample_project_hcl<span class="w"> </span>--force
+cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (c:Class) WHERE c.lang = 'hcl' RETURN c.name, c.node_type"</span>
+cgc<span class="w"> </span>query<span class="w"> </span><span class="s2">"MATCH (f:File)-[:IMPORTS]-&gt;(m:Module) RETURN f.relative_path, m.name"</span>
+</code></pre></div>
+<p>Expect blocks under their Terraform address (<code>aws_s3_bucket.artifacts</code>,
+<code>data.aws_caller_identity.current</code>, <code>module.logs</code>), variables as they are referenced
+(<code>var.bucket_name</code>, <code>output.bucket_arn</code>, <code>local.tags</code>) and one import per literal module source,
+<code>include</code> path, <code>dependency</code> config path and <code>dependencies</code> path. <code>modules/bucket</code> is imported
+by both <code>main.tf</code> and <code>live/app/terragrunt.hcl</code>; the <code>.terraform.lock.hcl</code> is not indexed. The
+graph is pinned by <code>tests/fixtures/goldens/sample_project_hcl</code> and
+<code>tests/integration/test_hcl_indexing_smoke.py</code>.</p>
+<h3 id="hcl-graph-schema">HCL graph schema</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Graph element</th>
+<th style="text-align: left;">HCL source</th>
+<th style="text-align: left;">Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>File</code></td>
+<td style="text-align: left;"><code>.tf</code>, <code>.tfvars</code>, <code>.hcl</code></td>
+<td style="text-align: left;"><code>language = 'hcl'</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Class</code></td>
+<td style="text-align: left;">every labelled block other than <code>variable</code> and <code>output</code></td>
+<td style="text-align: left;"><code>name</code> = Terraform address, <code>node_type</code> = block type, <code>docstring</code> = literal or heredoc <code>description</code>, <code>line_number</code>, <code>end_line</code>, <code>lang = 'hcl'</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Variable</code></td>
+<td style="text-align: left;"><code>variable</code>, <code>output</code>, each <code>locals</code> entry, bare top-level assignments (<code>.tfvars</code>, Terragrunt <code>inputs</code>)</td>
+<td style="text-align: left;"><code>name</code> = <code>var.x</code> / <code>output.x</code> / <code>local.x</code> / <code>x</code>, <code>value</code> = default or value as written, <code>docstring</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Module</code></td>
+<td style="text-align: left;">the target of a literal reference</td>
+<td style="text-align: left;"><code>name</code> = registry or git address as written, or the absolute path of a local one, which equals that directory's <code>Directory.path</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(File)-[:CONTAINS]-&gt;(Class\|Variable)</code></td>
+<td style="text-align: left;">every extracted block and variable</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>(File)-[:IMPORTS]-&gt;(Module)</code></td>
+<td style="text-align: left;"><code>module { source }</code>, Terragrunt <code>terraform { source }</code>, <code>include { path }</code>, <code>dependency { config_path }</code>, <code>dependencies { paths }</code></td>
+<td style="text-align: left;"><code>line_number</code> of the block</td>
+</tr>
+</tbody>
+</table>
+<p><code>Advanced_language_query</code> serves these through <code>query_tool_languages/hcl_toolkit.py</code>.</p>
+<h3 id="hcl-limitations-v1">HCL limitations (v1)</h3>
+<ul>
+<li>No reference extraction, so no <code>function_calls</code> and no edges from a block to the variables it
+  reads. "Which configurations consume this module" works; "what breaks if I change
+  <code>var.location</code>" does not yet.</li>
+<li>Only a reference written as a quoted string becomes an import. One built by a function call,
+  such as Terragrunt's <code>find_in_parent_folders("root.hcl")</code>, names no single target, and imports
+  merge into <code>Module</code> nodes by name alone, so keeping it would merge every configuration using
+  that idiom onto one node.</li>
+<li>A reference relative to the file that writes it is resolved against that file, including
+  <code>${get_terragrunt_dir()}</code>. Other interpolations are kept as written: <code>${get_repo_root()}/x</code>
+  names the same file from everywhere, so those configurations should meet on one node.</li>
+<li><code>.hcl</code> is also used by Packer, Nomad, Consul and Vault. Those files parse, but their block
+  vocabularies are not modelled, so addresses fall back to <code>&lt;block type&gt;.&lt;label&gt;</code>.</li>
+</ul>
       </div>
     </main>
   </div>

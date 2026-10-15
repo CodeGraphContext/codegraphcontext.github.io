@@ -810,7 +810,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <tr>
 <td style="text-align: left;"><strong><code>PARALLEL_WORKERS</code></strong></td>
 <td style="text-align: left;"><code>4</code></td>
-<td style="text-align: left;">Max thread pool size for parsing code files concurrently.</td>
+<td style="text-align: left;">Max thread pool size for parsing code files concurrently. Shared by full indexing and the file watcher. Values above 32 are clamped. An empty or invalid value falls back to 10 for a full index and 4 for the watcher.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>CACHE_ENABLED</code></strong></td>
