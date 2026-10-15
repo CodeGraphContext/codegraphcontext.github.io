@@ -736,6 +736,7 @@
 </code></pre></div>
 <h3 id="project-local-env-files">Project-local <code>.env</code> files</h3>
 <p>Repository <code>.codegraphcontext/.env</code> and <code>.env</code> files are loaded <strong>only in per-repo context mode</strong> (or when <code>CGC_LOAD_PROJECT_ENV=1</code>). In <strong>global</strong> or <strong>named</strong> mode, <code>~/.codegraphcontext/.env</code> wins so cloned repos cannot override your credentials. Set <code>CGC_IGNORE_PROJECT_ENV=1</code> to force-skip project env.</p>
+<p>Project files are resolved in the <strong>current working directory only</strong>; parent directories are never searched. Run CGC from the project root, or put the shared setting in your global configuration. <code>CGC_LOAD_PROJECT_ENV=1</code> enables local loading without expanding this boundary.</p>
 <p>See <a href="#project-local-environment-files">Project-Local Environment Files</a> below for the full precedence table.</p>
 <hr />
 <h2 id="the-cgc-config-cli-utility">The <code>cgc config</code> CLI Utility</h2>
@@ -1048,7 +1049,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 </tr>
 <tr>
 <td style="text-align: left;"><code>&lt;repo&gt;/.env</code></td>
-<td style="text-align: left;"><strong>Per-repo mode only</strong> (searched up to 5 parent directories)</td>
+<td style="text-align: left;"><strong>Per-repo mode only</strong> (current working directory only)</td>
 </tr>
 </tbody>
 </table>
