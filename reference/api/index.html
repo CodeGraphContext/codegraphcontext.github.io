@@ -739,7 +739,24 @@ cgc<span class="w"> </span>api<span class="w"> </span>start<span class="w"> </sp
 </tr>
 </tbody>
 </table>
-<h3 id="mcp-over-sse">MCP-over-SSE</h3>
+<h3 id="mcp-streamable-http">MCP (Streamable HTTP)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Path</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>POST</code></td>
+<td style="text-align: left;"><code>/api/v1/mcp</code></td>
+<td style="text-align: left;">MCP endpoint (Streamable HTTP, spec 2026-07-28). Single endpoint for all MCP clients; each request is answered with a JSON response or a request-scoped SSE stream.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mcp-over-sse-deprecated">MCP-over-SSE (deprecated)</h3>
 <table>
 <thead>
 <tr>
@@ -752,12 +769,12 @@ cgc<span class="w"> </span>api<span class="w"> </span>start<span class="w"> </sp
 <tr>
 <td style="text-align: left;"><code>GET</code></td>
 <td style="text-align: left;"><code>/api/v1/mcp/sse</code></td>
-<td style="text-align: left;">Server-Sent Events stream for MCP clients.</td>
+<td style="text-align: left;">Server-Sent Events stream for MCP clients using the deprecated HTTP+SSE transport (protocol version 2024-11-05). Kept for existing client configurations; new integrations should use <code>/api/v1/mcp</code>.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>POST</code></td>
 <td style="text-align: left;"><code>/api/v1/mcp/messages</code></td>
-<td style="text-align: left;">MCP message ingress for SSE transport.</td>
+<td style="text-align: left;">MCP message ingress for the deprecated SSE transport.</td>
 </tr>
 </tbody>
 </table>
