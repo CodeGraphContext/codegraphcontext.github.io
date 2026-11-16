@@ -753,6 +753,39 @@ Cheaper Inference retain their existing priority over API Route. Use only the
 API Route key for this server process to select it. AI queries send the question,
 graph schema and query results to the selected provider to generate and explain
 read-only Cypher queries.</p>
+<h3 id="natural-language-graph-queries-with-standard-compute">Natural-language graph queries with Standard Compute</h3>
+<p>The visualizer's AI query feature can also use
+<a href="https://standardcompute.com">Standard Compute</a>, an OpenAI-compatible gateway.
+Set your key before starting the server:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">STANDARDCOMPUTE_API_KEY</span><span class="o">=</span><span class="s2">"your-standard-compute-key"</span>
+cgc<span class="w"> </span>visualize
+</code></pre></div>
+<p>The default endpoint is <code>https://api.stdcmpt.com/v1</code> and the default model is
+<code>StandardCompute</code>. To pin a specific model, set
+<code>STANDARDCOMPUTE_MODEL</code> to any id listed by
+<code>GET https://api.stdcmpt.com/v1/models</code>. Set <code>STANDARDCOMPUTE_API_BASE</code> to
+override the endpoint.</p>
+<p>When multiple provider keys are configured, Gemini, OpenAI, Atlas Cloud,
+Cheaper Inference and API Route retain their existing priority over Standard
+Compute. An explicit <code>LITELLM_MODEL</code> takes precedence over all provider keys.
+Use only the Standard Compute key and unset <code>LITELLM_MODEL</code> to select it.
+AI queries send the question, graph schema and query results to the selected
+provider to generate and explain read-only Cypher queries.</p>
+<h3 id="natural-language-graph-queries-with-runcrate">Natural-language graph queries with Runcrate</h3>
+<p>The AI query feature can also use <a href="https://www.runcrate.ai/">Runcrate</a>,
+an OpenAI-compatible API.
+Set your key before starting the server:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">RUNCRATE_API_KEY</span><span class="o">=</span><span class="s2">"your-runcrate-key"</span>
+cgc<span class="w"> </span>visualize
+</code></pre></div>
+<p>The default endpoint is <code>https://api.runcrate.ai/v1</code> and the default model is
+<code>deepseek-ai/DeepSeek-V4.1-Flash</code>. Set <code>RUNCRATE_API_BASE</code> or <code>RUNCRATE_MODEL</code> to
+override them, for example <code>RUNCRATE_MODEL=openai/gpt-oss-120b</code>.</p>
+<p>Gemini, OpenAI, Atlas Cloud, Cheaper Inference, API Route and Standard Compute
+keep their priority over Runcrate. An explicit <code>LITELLM_MODEL</code> takes precedence
+over all provider keys. Use only the Runcrate key and unset <code>LITELLM_MODEL</code> to select it.
+AI queries send the question, graph schema and query results to the selected
+provider to generate and explain read-only Cypher queries.</p>
 <hr />
 <h2 id="3-neo4j-browser-visualizations-neo4j-backend-only">3. Neo4j Browser Visualizations (Neo4j Backend Only)</h2>
 <p>If you are using Neo4j as your active database backend, you can leverage the native <strong>Neo4j Browser Console</strong> for complex Cypher queries.</p>
