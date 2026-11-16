@@ -752,6 +752,7 @@
 <hr />
 <h2 id="core-index-lifecycle">Core Index &amp; Lifecycle</h2>
 <p>The <code>clean</code>, <code>delete</code>, and <code>rm</code> commands are disabled by default because they remove data. Before using them, enable <code>ALLOW_DB_DELETION</code> as described in <a href="../config/#destructive-operation-safety">Destructive Operation Safety</a>.</p>
+<p>Run <code>cgc delete</code> (or <code>cgc rm</code>) in an interactive terminal to search the indexed repository names and paths, select one, and confirm its deletion. Escape, Ctrl-C, or EOF cancels without deleting. Selection uses the stored graph path, so moved or missing repositories can still be removed. Scripts must supply an explicit path or <code>--all</code>; <code>--yes</code> without a path does not select a target. Existing explicit-path and <code>--all</code> confirmations are unchanged.</p>
 <table>
 <thead>
 <tr>
@@ -778,8 +779,8 @@
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>delete</code></strong></td>
-<td style="text-align: left;"><code>cgc delete &lt;repo_path&gt;</code></td>
-<td style="text-align: left;">Shortcut: <code>cgc rm</code>. Removes one indexed repository.</td>
+<td style="text-align: left;"><code>cgc delete [repo_path]</code></td>
+<td style="text-align: left;">Shortcut: <code>cgc rm</code>. Removes one indexed repository; omit the path in a terminal to select by name and full indexed path.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>list</code></strong></td>
