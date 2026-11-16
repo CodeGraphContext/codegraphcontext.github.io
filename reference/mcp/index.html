@@ -12,7 +12,7 @@
         <link rel="prev" href="../api/">
       
       
-        <link rel="next" href="../config/">
+        <link rel="next" href="../mcp-catalog/">
       
       
         
@@ -23,7 +23,7 @@
     
     
       
-        <title>MCP Tool Reference - CodeGraphContext</title>
+        <title>MCP Workflows - CodeGraphContext</title>
       
     
     
@@ -211,7 +211,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mcp-tool-reference" class="md-skip">
+        <a href="#mcp-workflows-and-result-interpretation" class="md-skip">
           Skip to content
         </a>
       
@@ -244,7 +244,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              MCP Tool Reference
+              MCP Workflows
             
           </span>
         </div>
@@ -641,7 +641,17 @@
         
         <a href="./"
           class="rw-sidebar__link rw-sidebar__link--active">
-          MCP Tool Reference
+          MCP Workflows
+        </a>
+        
+        <a href="../mcp-catalog/"
+          class="rw-sidebar__link ">
+          MCP Input Schemas
+        </a>
+        
+        <a href="../mcp-operating-notes/"
+          class="rw-sidebar__link ">
+          MCP Operating Notes
         </a>
         
         <a href="../config/"
@@ -696,164 +706,149 @@
         
         
         <span class="rw-breadcrumb__sep">›</span>
-        MCP Tool Reference
+        MCP Workflows
       </div>
 
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
-        <h1 id="mcp-tool-reference">MCP Tool Reference</h1>
-<p>When running the CodeGraphContext (CGC) MCP server, it registers a suite of <strong>25 JSON-RPC tools</strong> that AI assistants can use to analyze and query the code graph.</p>
-<hr />
-<h2 id="code-ingestion-system-control">Code Ingestion &amp; System Control</h2>
-<h3 id="add_code_to_graph"><code>add_code_to_graph</code></h3>
-<p>Indexes a local directory or file into the active database context.
-- <strong>Parameters</strong>:
-  - <code>path</code> (string, required): Absolute filesystem path.
-  - <code>is_dependency</code> (boolean, optional): Marks the code as an external library.</p>
-<h3 id="add_package_to_graph"><code>add_package_to_graph</code></h3>
-<p>Discovers, downloads (if needed), and indexes a third-party package.
-- <strong>Parameters</strong>:
-  - <code>package_name</code> (string, required): Name of the package (e.g., <code>requests</code>, <code>express</code>).
-  - <code>language</code> (string, required): Language syntax parser (<code>python</code>, <code>javascript</code>, <code>typescript</code>, <code>java</code>, <code>c</code>, <code>go</code>, <code>ruby</code>, <code>php</code>, <code>cpp</code>).
-  - <code>is_dependency</code> (boolean, optional): Marks the package as an external library (default: true).</p>
-<h3 id="watch_directory"><code>watch_directory</code></h3>
-<p>Launches a directory watcher for incremental updates.
-- <strong>Parameters</strong>:
-  - <code>path</code> (string, required): Directory path to watch.</p>
-<h3 id="unwatch_directory"><code>unwatch_directory</code></h3>
-<p>Stops file monitoring on a folder path.
-- <strong>Parameters</strong>:
-  - <code>path</code> (string, required): Directory path.</p>
-<h3 id="list_watched_paths"><code>list_watched_paths</code></h3>
-<p>Lists all directories currently monitored by watchers.</p>
-<h3 id="delete_repository"><code>delete_repository</code></h3>
-<p>Removes a repository's code structures from the graph.
-- <strong>Parameters</strong>:
-  - <code>repo_path</code> (string, required): Repository path.</p>
-<h3 id="list_indexed_repositories"><code>list_indexed_repositories</code></h3>
-<p>Returns a list of all repositories stored in the active database.</p>
-<h3 id="get_repository_stats"><code>get_repository_stats</code></h3>
-<p>Retrieves ingestion metrics (counts of files, functions, classes, modules).
-- <strong>Parameters</strong>:
-  - <code>repo_path</code> (string, optional): Restricts stats to a specific repository.</p>
-<hr />
-<h2 id="background-job-controller">Background Job Controller</h2>
-<p>Some operations (like indexing large codebases) execute as background tasks. Use these tools to monitor task states:</p>
-<h3 id="list_jobs"><code>list_jobs</code></h3>
-<p>Lists all background jobs and their execution states.</p>
-<h3 id="check_job_status"><code>check_job_status</code></h3>
-<p>Queries progress and logs for a specific job.
-- <strong>Parameters</strong>:
-  - <code>job_id</code> (string, required): Target job ID.</p>
-<hr />
-<h2 id="code-search-relationship-analysis">Code Search &amp; Relationship Analysis</h2>
-<h3 id="find_code"><code>find_code</code></h3>
-<p>Searches symbol definitions, file names, or source code for keyword matches.
-- <strong>Parameters</strong>:
-  - <code>query</code> (string, required): Target keyword or pattern.
-  - <code>fuzzy_search</code> (boolean, optional): Enables fuzzy matching.
-  - <code>edit_distance</code> (number, optional): Levenshtein distance limit (0-2).
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="analyze_code_relationships"><code>analyze_code_relationships</code></h3>
-<p>The primary tool for traversing structural relationships in the graph.
-- <strong>Parameters</strong>:
-  - <code>query_type</code> (string, required): The traversal type. Must be one of:
-    - <code>find_callers</code>: Find immediate caller functions.
-    - <code>find_callees</code>: Find immediate functions called by target.
-    - <code>find_all_callers</code>: Deep search up the invocation chain.
-    - <code>find_all_callees</code>: Deep search down the execution path.
-    - <code>find_importers</code>: Find files importing the target symbol/module.
-    - <code>who_modifies</code>: Trace variables or structures written to.
-    - <code>class_hierarchy</code>: Resolves superclass and subclass trees.
-    - <code>overrides</code>: Finds functions overriding parent methods.
-    - <code>dead_code</code>: Scans context for unused subroutines.
-    - <code>call_chain</code>: Traces invocation chains between source and destination.
-    - <code>module_deps</code>: Identifies dependencies between modules.
-    - <code>variable_scope</code>: Tracks variable bindings.
-    - <code>find_complexity</code>: Returns cyclomatic complexity score.
-    - <code>find_functions_by_argument</code>: Searches for functions declaring the target parameter name or type.
-    - <code>find_functions_by_decorator</code>: Searches for functions decorated with target.
-  - <code>target</code> (string, required): The identifier to analyze. For <code>find_functions_by_argument</code>, this may be a parameter name or type.
-  - <code>context</code> (string, optional): Specific file path to resolve target namespace conflicts.
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="calculate_cyclomatic_complexity"><code>calculate_cyclomatic_complexity</code></h3>
-<p>Computes the complexity score of a function.
-- <strong>Parameters</strong>:
-  - <code>function_name</code> (string, required): Function identifier.
-  - <code>path</code> (string, optional): File path containing definition.
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="find_most_complex_functions"><code>find_most_complex_functions</code></h3>
-<p>Returns methods with the highest cyclomatic complexity scores.
-- <strong>Parameters</strong>:
-  - <code>limit</code> (integer, optional): Maximum rows to return (default: 10).
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="find_dead_code"><code>find_dead_code</code></h3>
-<p>Scans for unreferenced code declarations.
-- <strong>Parameters</strong>:
-  - <code>exclude_decorated_with</code> (array of strings, optional): Excludes functions carrying specified decorator annotations (e.g., <code>@app.route</code>, or <code>Composable</code> for Kotlin). Matching is by substring, so <code>Preview</code> matches <code>@Preview(showBackground = true)</code>.
-  - <code>repo_path</code> (string, optional): Restricts search scope.
-- For Android codebases, <code>ANDROID_DECORATOR_PRESET</code> (<code>codegraphcontext.tools.code_finder.ANDROID_DECORATOR_PRESET</code>) is a preset tuple of Compose/JUnit/Hilt/Room/tooling annotation names to pass as <code>exclude_decorated_with</code>. Same substring matching applies.</p>
-<hr />
-<h2 id="workspace-context-management">Workspace Context Management</h2>
-<h3 id="discover_codegraph_contexts"><code>discover_codegraph_contexts</code></h3>
-<p>Scans subdirectories for existing <code>.codegraphcontext/</code> directories.
-- <strong>Parameters</strong>:
-  - <code>path</code> (string, optional): Scan root directory.
-  - <code>max_depth</code> (integer, optional): Folder depth limit (default: 1).</p>
-<h3 id="switch_context"><code>switch_context</code></h3>
-<p>Reconnects the MCP session to a different graph database.
-- <strong>Parameters</strong>:
-  - <code>context_path</code> (string, required): Path to the target repository root containing <code>.codegraphcontext/</code>.
-  - <code>save</code> (boolean, optional): Persists configuration mapping (default: true).</p>
-<hr />
-<h2 id="advanced-querying-reporting">Advanced Querying &amp; Reporting</h2>
-<h3 id="execute_cypher_query"><code>execute_cypher_query</code></h3>
-<p>Executes raw Cypher queries directly against the graph database.
-- <strong>Parameters</strong>:
-  - <code>cypher_query</code> (string, required): Cypher statement.</p>
-<h3 id="visualize_graph_query"><code>visualize_graph_query</code></h3>
-<p>Generates a Neo4j visualization link.
-- <strong>Parameters</strong>:
-  - <code>cypher_query</code> (string, required): Cypher statement to render.</p>
-<h3 id="generate_report"><code>generate_report</code></h3>
-<p>Compiles a markdown quality report (<code>CGC_REPORT.md</code>).
-- <strong>Parameters</strong>:
-  - <code>output_path</code> (string, optional): Output report path.
-  - <code>include_java</code> (boolean, optional): Appends Spring endpoints and bean tables.
-  - <code>god_node_limit</code> (integer, optional): Limit for high fan-in symbol rows.
-  - <code>complexity_limit</code> (integer, optional): Limit for complex method rows.
-  - <code>cross_module_limit</code> (integer, optional): Limit for module coupling rows.</p>
-<hr />
-<h2 id="portability-registries">Portability &amp; Registries</h2>
-<h3 id="load_bundle"><code>load_bundle</code></h3>
-<p>Imports a portable <code>.cgc</code> file, downloading it from the registry if needed.
-- <strong>Parameters</strong>:
-  - <code>bundle_name</code> (string, required): Package name (e.g., <code>requests</code>) or file name.
-  - <code>clear_existing</code> (boolean, optional): Purges active context before loading.</p>
-<h3 id="search_registry_bundles"><code>search_registry_bundles</code></h3>
-<p>Searches the public CGC bundle server database.
-- <strong>Parameters</strong>:
-  - <code>query</code> (string, optional): Name or description keywords.
-  - <code>unique_only</code> (boolean, optional): Returns only the latest version of packages.</p>
-<hr />
-<h2 id="frameworks-datasource-extensions">Frameworks &amp; Datasource Extensions</h2>
-<h3 id="find_java_spring_endpoints"><code>find_java_spring_endpoints</code></h3>
-<p>Searches Spring controller REST mappings.
-- <strong>Parameters</strong>:
-  - <code>http_method</code> (string, optional): Method filter (<code>GET</code>, <code>POST</code>, etc.).
-  - <code>path_pattern</code> (string, optional): URL path substring.
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="find_java_spring_beans"><code>find_java_spring_beans</code></h3>
-<p>Returns registered Spring stereotype beans.
-- <strong>Parameters</strong>:
-  - <code>stereotype</code> (string, optional): Stereotype filter (<code>SERVICE</code>, <code>REPOSITORY</code>, etc.).
-  - <code>repo_path</code> (string, optional): Restricts search scope.</p>
-<h3 id="find_datasource_nodes"><code>find_datasource_nodes</code></h3>
-<p>Returns ingested MySQL, Cassandra, or Redis schema nodes.
-- <strong>Parameters</strong>:
-  - <code>kind</code> (string, optional): Datasource kind (<code>mysql</code>, <code>cassandra</code>, <code>redis</code>).
-  - <code>name</code> (string, optional): Substring filter for names.
-  - <code>include_columns</code> (boolean, optional): Appends table columns/key patterns (default: false).</p>
+        <h1 id="mcp-workflows-and-result-interpretation">MCP workflows and result interpretation</h1>
+<p>CodeGraphContext's MCP server is an interface to the same Python package used
+by the CLI. It accepts tool calls, schedules indexing jobs, and delegates
+parsing, graph writes and queries to shared components. It is not a CSV model
+training or forecasting service. Source repositories and portable graph
+bundles are its primary inputs.</p>
+<h2 id="discover-the-installed-contract">Discover the installed contract</h2>
+<p>Use <code>tools/list</code> on the running server. The <a href="../mcp-catalog/">generated catalog</a>
+is rebuilt from the complete source registry on every documentation build and
+shows the source package version, all tools, every input property, required
+arguments, defaults, enums and nested constraints. It replaces manually
+maintained tool counts and old version labels. The connected server remains
+authoritative for its installed version and <code>disabledTools</code> configuration.</p>
+<p>See <a href="../../getting-started/mcp-setup/">MCP setup</a> for client configuration and
+<a href="../mcp-operating-notes/">operating notes</a> for backend, memory, offline and
+lifecycle limitations.</p>
+<h2 id="index-wait-query-watch">Index, wait, query, watch</h2>
+<ol>
+<li>Start the server with <code>cgc start</code> from your workspace. Verify the actual
+   backend in server diagnostics; a requested engine can fall back.</li>
+<li>Discover <code>tools/list</code> and use its exact argument names.</li>
+<li>Call <code>add_code_to_graph</code> with <code>repo_path</code>. A job ID means accepted work,
+   not completed indexing.</li>
+<li>Poll <code>check_job_status</code> with that ID until completed or failed. Inspect
+   <code>errors</code>, <code>error_type</code> and <code>traceback</code> on failure. Jobs are held in memory;
+   they are not durable across server restarts.</li>
+<li>Call <code>find_code</code>, then <code>analyze_code_relationships</code>, with an explicit
+   <code>repo_path</code> when multiple repositories have matching symbol names.</li>
+<li>Call <code>watch_directory</code> with <code>repo_path</code> for ongoing updates. Allow for the
+   two-second debounce. Check actual query convergence after edits.</li>
+<li>Call <code>unwatch_directory</code> before managing the store externally. Its successful
+   result is a message; it does not promise a <code>success</code> boolean.</li>
+</ol>
+<p>Example tool arguments (MCP clients supply the JSON-RPC envelope):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"add_code_to_graph"</span><span class="p">,</span><span class="nt">"arguments"</span><span class="p">:{</span><span class="nt">"repo_path"</span><span class="p">:</span><span class="s2">"/work/demo"</span><span class="p">}}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"check_job_status"</span><span class="p">,</span><span class="nt">"arguments"</span><span class="p">:{</span><span class="nt">"job_id"</span><span class="p">:</span><span class="s2">"&lt;returned job_id&gt;"</span><span class="p">}}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"analyze_code_relationships"</span><span class="p">,</span><span class="nt">"arguments"</span><span class="p">:{</span><span class="nt">"query_type"</span><span class="p">:</span><span class="s2">"call_chain"</span><span class="p">,</span><span class="nt">"target"</span><span class="p">:</span><span class="s2">"entry-&gt;normalize"</span><span class="p">,</span><span class="nt">"context"</span><span class="p">:</span><span class="s2">"4"</span><span class="p">,</span><span class="nt">"repo_path"</span><span class="p">:</span><span class="s2">"/work/demo"</span><span class="p">}}</span>
+</code></pre></div>
+<p>Check returned path rows against source. An echoed target or a successful empty
+collection is not proof that the expected path was found. Results can carry
+truncation and result-limit metadata. Backend errors and input errors must be
+treated as failures, including on older versions that wrap an inner error in
+an outer success object.</p>
+<h2 id="relationship-analysis">Relationship analysis</h2>
+<p>The generated schema enumerates all supported modes. <code>context</code> here is
+query-specific: for a call chain it is a depth string; for other modes it can
+be a class/module disambiguator. It is not a database-context switch.</p>
+<table>
+<thead>
+<tr>
+<th>Mode family</th>
+<th>Target and interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct callers/callees</td>
+<td>A symbol name; inspect returned paths and source lines.</td>
+</tr>
+<tr>
+<td>Transitive callers/callees</td>
+<td>A symbol name plus bounded <code>depth</code>; recursive queries require more memory.</td>
+</tr>
+<tr>
+<td>Call chain</td>
+<td><code>start_function-&gt;end_function</code>; results contain ordered functions and call-site data.</td>
+</tr>
+<tr>
+<td>Class hierarchy/overrides</td>
+<td>A class or method with its class context.</td>
+</tr>
+<tr>
+<td>Importers/module dependencies</td>
+<td>A module name, with repository scope when needed.</td>
+</tr>
+<tr>
+<td>Argument/decorator lookup</td>
+<td>Stored argument/decorator text; decorators use forms such as <code>@route</code>. Exact annotation membership differs from dead-code substring exclusions.</td>
+</tr>
+<tr>
+<td><code>who_modifies</code></td>
+<td>Legacy name for stored variable bindings and their containing scopes. It does not perform general write-site, alias or dataflow analysis.</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Stored per-function scores and rankings; inspect the language's decision model.</td>
+</tr>
+<tr>
+<td>Dead code</td>
+<td>A heuristic candidate list with confidence/reason, not permission to delete a function. Dynamic/framework/external uses can be missing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-tool-families">Other tool families</h2>
+<ul>
+<li><strong>Jobs and lifecycle:</strong> <code>list_jobs</code>, <code>list_watched_paths</code>,
+  <code>list_indexed_repositories</code>, <code>delete_repository</code>. Deletion is destructive,
+  requires explicit server opt-in, and should be scoped to the intended repo.</li>
+<li><strong>Dependencies and portability:</strong> <code>add_package_to_graph</code>, <code>load_bundle</code>,
+  <code>search_registry_bundles</code>. Package discovery depends on the language resolver
+  and installed tooling. A registry search can legitimately return no match.
+  Test a known bundle identifier before claiming registry download success.</li>
+<li><strong>Contexts:</strong> <code>discover_codegraph_contexts</code>, <code>switch_context</code>, <code>list_graphs</code>.
+  <code>repo_path</code> filters data in the active store; it does not select another
+  store. <code>list_graphs</code> can return an explicit unsupported message on a
+  single-graph engine. Context switching is blocked while indexing is active.</li>
+<li><strong>Reports and visualization:</strong> <code>get_repository_stats</code>, <code>generate_report</code>,
+  <code>visualize_graph_query</code>. A generated Playground URL does not establish that
+  a visualization server is running. Reports inherit stored graph omissions
+  and metric limitations; report output paths obey the root policy.</li>
+<li><strong>Java and datasources:</strong> <code>find_java_spring_endpoints</code>,
+  <code>find_java_spring_beans</code>, <code>find_datasource_nodes</code>. These query stored graph
+  metadata. They do not establish live MySQL/Cassandra/Redis connectivity.
+  Spring query rows have a cap and expose truncation metadata. The current
+  parser uses one route literal per mapping; array/composed-annotation and
+  general dependency-injection semantics are not complete.</li>
+<li><strong>Architecture:</strong> <code>simulate_metrics</code>, <code>simulate_architectural_change</code>,
+  <code>analyze_architectural_evolution</code>. Metrics are implementation-defined.
+  Simulations use in-memory graph copies. Inspect mutation match/change counts;
+  missing or ambiguous references need explicit IDs. Use <code>switch_context</code>
+  explicitly before a simulation rather than relying on an ignored optional
+  <code>context</code> argument in older versions. Evolution requires a real Git history;
+  commit counts do not establish merge/churn semantics for every workflow.</li>
+</ul>
+<h2 id="errors-and-output-size">Errors and output size</h2>
+<p>Current input schemas are the client contract. Missing required fields,
+incorrect types and unknown enum values must be corrected before retrying.
+MCP tool failures use <code>isError</code>; JSON-RPC parsing/request failures are a
+separate protocol layer. Older releases have transport-specific envelopes,
+so inspect error payloads as well as the outer status.</p>
+<p>The serialized-budget fix in <a href="https://github.com/CodeGraphContext/CodeGraphContext/pull/1836">PR #1836</a> makes <code>MAX_PROMPT_CHARS</code> include its wrapper and escaping. Earlier versions can exceed the configured maximum. <code>MAX_TOOL_RESPONSE_TOKENS</code>
+uses a four-characters-per-token approximation; it is not an exact tokenizer
+budget. The stricter nonzero value wins. A truncated preview is not the full
+result; narrow the query or increase the configured budget. Optional GCF
+encoding applies to stdio, while HTTP returns JSON. Size savings vary with
+response shape; no fixed token reduction or model-accuracy benefit is implied.</p>
       </div>
     </main>
   </div>
