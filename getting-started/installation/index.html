@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -729,34 +729,20 @@
 </code></pre></div>
 <hr />
 <h2 id="2-database-driver-setup">2. Database Driver Setup</h2>
-<p>CGC requires Python driver bindings for your selected database backend. On <strong>Unix with Python 3.12+</strong>, FalkorDB Lite is the default when <code>falkordblite</code> is installed; on <strong>Windows</strong> (or when FalkorDB Lite is unavailable), CGC falls back to <strong>KuzuDB</strong>. See <a href="../../reference/config/#important-defaults-read-this-first">Important defaults</a>.</p>
-<h3 id="installing-kuzudb-drivers">Installing KuzuDB Drivers</h3>
-<p>KuzuDB is embedded and runs directly inside the Python process.
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>kuzu
-</code></pre></div></p>
-<h3 id="installing-falkordb-drivers-optional">Installing FalkorDB Drivers (Optional)</h3>
-<p>If using the FalkorDB backend:
-- <strong>Embedded Lite</strong> (Unix and Python 3.12+ only):
-  <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>falkordblite
-</code></pre></div>
-- <strong>Remote Server Client</strong>:
-  <div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>falkordb
-</code></pre></div></p>
-<h3 id="installing-neo4j-drivers-optional">Installing Neo4j Drivers (Optional)</h3>
-<p>If connecting to a standalone Neo4j instance:
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>neo4j
-</code></pre></div></p>
+<p>A standard CGC installation resolves the drivers permitted by its Python and platform dependency markers. Avoid independently upgrading native drivers past CGC's declared bounds; <a href="https://github.com/CodeGraphContext/CodeGraphContext/blob/main/pyproject.toml">pyproject.toml</a> is authoritative.</p>
+<p>On Unix with Python 3.12+, CGC tries available FalkorDB Lite first. It then considers available KuzuDB and LadybugDB engines before configured graph servers. Kuzu is excluded from CGC installs on macOS/Windows with Python 3.14+, where Ladybug provides an embedded alternative. An explicit configuration can change this selection. See <a href="../../concepts/backends/">Database Backends</a> and run <code>cgc doctor</code> to verify the actual engine.</p>
+<p>Native parser grammars can require a first-use download. Prepare them before an offline demo using the <a href="../../reference/mcp-operating-notes/#first-use-grammars-and-offline-work">grammar cache guidance</a>.</p>
 <hr />
 <h2 id="3-configuring-the-default-backend">3. Configuring the Default Backend</h2>
 <p>Set your preferred default database backend in the global configuration:</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb<span class="w">          </span><span class="c1"># FalkorDB Lite (default on Unix when falkordblite is installed)</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">          </span><span class="c1"># KuzuDB (cross-platform fallback)</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb<span class="w">          </span><span class="c1"># KuzuDB (where a compatible driver is available)</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb<span class="w">       </span><span class="c1"># LadybugDB</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb-remote<span class="w"> </span><span class="c1"># Remote FalkorDB server</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j<span class="w">           </span><span class="c1"># Neo4j</span>
 cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>nornic<span class="w">          </span><span class="c1"># Nornic (Neo4j-compatible)</span>
 </code></pre></div>
-<p>For remote databases (FalkorDB Remote, Neo4j), refer to the database connection properties in the <a href="../../reference/config/">Configuration Reference</a>.</p>
+<p>For server databases (FalkorDB Remote, Neo4j, Nornic), refer to the database connection properties in the <a href="../../reference/config/">Configuration Reference</a>.</p>
 <hr />
 <h2 id="4-validating-the-installation">4. Validating the Installation</h2>
 <p>Verify that the CLI and its database bindings are correctly loaded using the diagnostics tool:</p>
@@ -776,7 +762,7 @@ cgc<span class="w"> </span>doctor
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">

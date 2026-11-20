@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -745,7 +745,7 @@ cgc<span class="w"> </span>add-package<span class="w"> </span>requests<span clas
 <p>C and C++ SCIP requires a <code>compile_commands.json</code> in the project (or under <code>build/</code> / <code>cmake-build-*/</code>). Without it, CGC logs a warning and falls back to Tree-sitter for those files.</p>
 <hr />
 <h2 id="4-real-time-directory-watchers">4. Real-Time Directory Watchers</h2>
-<p>For active development, run a filesystem watcher in the background to capture file writes and incrementally sync the graph.</p>
+<p>For active development, run a foreground filesystem watcher to capture file writes and incrementally sync the graph.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Start watching the active workspace</span>
 cgc<span class="w"> </span>watch
 </code></pre></div>
@@ -763,14 +763,8 @@ cgc<span class="w"> </span>watch
 
     FileSystem--&gt;&gt;Watch: Another change
     Watch-&gt;&gt;ParsingQueue: Queue updated file</code></pre>
-<ul>
-<li><strong>Listing Watchers</strong>: View active file monitors with:
-  <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watching
-</code></pre></div></li>
-<li><strong>Stopping Watchers</strong>: Terminate directory monitoring using:
-  <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>unwatch<span class="w"> </span>/path/to/project
-</code></pre></div></li>
-</ul>
+<p><code>cgc watch</code> runs in the foreground. Press <strong>Ctrl+C in its terminal</strong> to stop monitoring and close the embedded database cleanly. Separate CLI processes cannot manage its watcher: <code>cgc watching</code> and <code>cgc unwatch</code> currently return an unsupported-operation error.</p>
+<p>For watchers owned by the MCP server, call <code>list_watched_paths</code> or <code>unwatch_directory</code> through that same running server.</p>
 <p>On startup, each watcher can <strong>reconcile</strong> the graph with disk: files present on disk but missing from the graph are indexed, and graph entries for deleted files are removed before live monitoring begins.</p>
 <p>This is <strong>off by default</strong> — pass <code>--sync-on-start</code> to enable it. Without it, changes made while the watcher was not running are not picked up for an already-indexed repository.</p>
 <hr />
@@ -807,7 +801,7 @@ env/
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">

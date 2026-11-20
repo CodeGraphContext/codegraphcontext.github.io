@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -712,232 +712,112 @@
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
         <h1 id="database-backends">Database Backends</h1>
-<p>CodeGraphContext (CGC) implements a pluggable database architecture. A common interface abstracts graph creation, updates, and traversals, allowing you to choose the database engine that best fits your scale, operating system, and visualization needs.</p>
-<hr />
-<h2 id="backend-comparison-matrix">Backend Comparison Matrix</h2>
+<p>CGC can keep a code graph in a local engine or connect to a graph server. Choose based on your environment, ownership model and workload. Query features and operational requirements vary by backend.</p>
+<h2 id="supported-backends">Supported backends</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Feature / Metric</th>
-<th style="text-align: left;">FalkorDB (Lite, Default)</th>
-<th style="text-align: left;">KuzuDB</th>
-<th style="text-align: left;">LadybugDB</th>
-<th style="text-align: left;">FalkorDB (Remote)</th>
-<th style="text-align: left;">Neo4j</th>
+<th>Backend</th>
+<th>CGC identifier</th>
+<th>Deployment</th>
+<th>Practical notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Type</strong></td>
-<td style="text-align: left;">Embedded In-Memory</td>
-<td style="text-align: left;">Embedded C++</td>
-<td style="text-align: left;">Embedded SQL</td>
-<td style="text-align: left;">Remote Client</td>
-<td style="text-align: left;">Remote Client</td>
+<td>FalkorDB Lite</td>
+<td><code>falkordb</code></td>
+<td>Local engine managed by CGC</td>
+<td>Unix, Python 3.12+; requires a usable native worker.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Operating System</strong></td>
-<td style="text-align: left;">Linux / macOS</td>
-<td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Cross-Platform</td>
+<td>KuzuDB</td>
+<td><code>kuzudb</code></td>
+<td>Native in-process property graph</td>
+<td>Driver availability depends on Python and platform. CGC excludes Kuzu on macOS/Windows with Python 3.14+.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Setup Overhead</strong></td>
-<td style="text-align: left;">None</td>
-<td style="text-align: left;">None</td>
-<td style="text-align: left;">None</td>
-<td style="text-align: left;">Low (Docker)</td>
-<td style="text-align: left;">Medium (Docker/Aura)</td>
+<td>LadybugDB</td>
+<td><code>ladybugdb</code></td>
+<td>Native in-process property graph</td>
+<td>Embedded alternative when a compatible native library is available; use CGC's declared package bounds.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Read Latency</strong></td>
-<td style="text-align: left;">Extremely Low</td>
-<td style="text-align: left;">Very Low</td>
-<td style="text-align: left;">Low</td>
-<td style="text-align: left;">Low</td>
-<td style="text-align: left;">Medium</td>
+<td>FalkorDB Remote</td>
+<td><code>falkordb-remote</code></td>
+<td>Redis-compatible graph server</td>
+<td>Configure <code>FALKORDB_HOST</code> and connection settings.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Max Capacity</strong></td>
-<td style="text-align: left;">RAM-Bounded</td>
-<td style="text-align: left;">Large</td>
-<td style="text-align: left;">Medium</td>
-<td style="text-align: left;">Unlimited</td>
-<td style="text-align: left;">Unlimited</td>
+<td>Neo4j</td>
+<td><code>neo4j</code></td>
+<td>Bolt graph server</td>
+<td>Configure URI, username and password, or use <code>cgc neo4j setup</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Visualization</strong></td>
-<td style="text-align: left;">CLI / Custom Web UI</td>
-<td style="text-align: left;">CLI / Custom Web UI</td>
-<td style="text-align: left;">CLI / Custom Web UI</td>
-<td style="text-align: left;">Neo4j Client (via Cypher)</td>
-<td style="text-align: left;">Neo4j Browser Console</td>
+<td>Nornic DB</td>
+<td><code>nornic</code></td>
+<td>Neo4j-compatible Bolt server</td>
+<td>CGC connects through the Neo4j Python driver using <code>NORNIC_*</code> settings.</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="1-kuzudb">1. KuzuDB</h2>
-<p>KuzuDB is an in-process property graph database management system. It requires zero configuration and stores graph data inside a directory on your filesystem.</p>
-<ul>
-<li><strong>OLAP Optimized</strong>: Designed for structured graph analysis and multi-hop queries.</li>
-<li><strong>Cross-Platform</strong>: Natively supports Windows, Linux, and macOS on Python 3.10+.</li>
-<li><strong>Data Directory</strong>: Graphs are saved inside the local <code>.codegraphcontext/</code> directory within the workspace.</li>
-</ul>
-<h3 id="version-compatibility">Version Compatibility</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
-<th style="text-align: left;">Versions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>kuzu</code></td>
-<td style="text-align: left;">Not declared</td>
-<td style="text-align: left;"><code>0.10.0</code>, <code>0.11.0</code>, <code>0.11.1</code>, <code>0.11.2</code>, <code>0.11.3</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="setup">Setup</h3>
-<p>Ensure the driver is installed:
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>kuzu
+<p>Performance and graph size depend on repository structure, query shape, memory, disk and server configuration. Measure latency and capacity with your repository and target resources. See <a href="../../reference/mcp-operating-notes/">MCP operating notes</a> for measured examples and limitations.</p>
+<h2 id="installation-and-dependency-bounds">Installation and dependency bounds</h2>
+<p>Install CGC so the package resolver applies the project's driver constraints:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>codegraphcontext
+cgc<span class="w"> </span>version
+cgc<span class="w"> </span>doctor
 </code></pre></div>
-Select KuzuDB as the default backend:
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb
-</code></pre></div></p>
-<hr />
-<h2 id="2-ladybugdb">2. LadybugDB</h2>
-<p>LadybugDB is an embedded graph database engine implemented over relational SQL drivers.</p>
-<ul>
-<li><strong>Concurreny Safe</strong>: Thread-safe operations suitable for concurrent watcher tasks.</li>
-<li><strong>Relational Backend</strong>: Uses SQLite/relational queries underneath to simulate property graph operations.</li>
-</ul>
-<h3 id="setup_1">Setup</h3>
-<p>Select LadybugDB as the default backend:
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb
-</code></pre></div></p>
-<hr />
-<h2 id="3-falkordb-lite-remote">3. FalkorDB (Lite &amp; Remote)</h2>
-<p>FalkorDB is a low-latency, high-performance graph database. It supports two execution modes.</p>
-<h3 id="falkordb-lite">FalkorDB Lite</h3>
-<p>An embedded, in-memory graph engine that uses local shared memory drivers.
-- <strong>Limitation</strong>: Unix-only (Linux and macOS) and requires Python 3.12+.
-- <strong>Speed</strong>: Optimal traversal latency due to in-memory index layouts.
-- <strong>Content search</strong>: <code>cgc find content</code> uses portable substring matching on <code>source</code> and <code>docstring</code> fields (no Neo4j Lucene index required).</p>
-<h3 id="falkordb-remote">FalkorDB Remote</h3>
-<p>Connects to an external Redis-compatible FalkorDB server instance running in a Docker container or network host.</p>
-<h3 id="version-compatibility_1">Version Compatibility</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
-<th style="text-align: left;">Versions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>falkordblite</code></td>
-<td style="text-align: left;"><code>&gt;=0.7, &lt;0.10</code></td>
-<td style="text-align: left;"><code>0.7.0</code>, <code>0.8.0</code>, <code>0.9.0</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>falkordb</code></td>
-<td style="text-align: left;"><code>&gt;=1.0, &lt;1.6</code></td>
-<td style="text-align: left;"><code>1.5.0</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>redis</code></td>
-<td style="text-align: left;"><code>&gt;=5, &lt;6</code></td>
-<td style="text-align: left;"><code>5.3.1</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="setup_2">Setup</h3>
-<p>Install the target drivers:
-<div class="highlight"><pre><span></span><code><span class="c1"># For FalkorDB Lite</span>
-pip<span class="w"> </span>install<span class="w"> </span>falkordblite
-
-<span class="c1"># For FalkorDB Remote</span>
-pip<span class="w"> </span>install<span class="w"> </span>falkordb
+<p>The declared bounds and environment markers in <a href="https://github.com/CodeGraphContext/CodeGraphContext/blob/main/pyproject.toml">pyproject.toml</a> are authoritative. A separately released driver version is not automatically supported by CGC. Ladybug's current upper bound is deliberate; <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues/1708">issue #1708</a> tracks the native Python 3.14 validation gate.</p>
+<p>Native grammars may download on first use. For offline use, follow the <a href="../../reference/mcp-operating-notes/#first-use-grammars-and-offline-work">grammar cache instructions</a>.</p>
+<h2 id="local-engines-and-process-ownership">Local engines and process ownership</h2>
+<p>KuzuDB and LadybugDB are native graph engines. Ladybug uses a property graph model, Cypher and columnar storage. See the <a href="https://docs.ladybugdb.com/">Ladybug documentation</a> for its engine model.</p>
+<p>Use one owner for an embedded store. Multiple connections within an owning process differ from independent processes opening the same on-disk database. A running gateway or watcher can own the database lock. See <a href="https://docs.ladybugdb.com/concurrency/">Ladybug's concurrency model</a> and CGC's <a href="../../reference/mcp-operating-notes/#memory-response-limits-and-ownership">ownership guidance</a>.</p>
+<p>CGC can delegate supported read-only <code>list</code>/<code>stats</code> commands to an authoritative local gateway. This does not provide general write delegation for <code>cgc update</code>; <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues/1683">issue #1683</a> remains open for that workflow.</p>
+<p>Storage locations depend on the active configuration context and database path. See <a href="../../guides/contexts/">Configuration Contexts</a> before changing paths or moving stores.</p>
+<p>Select one local backend:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb
+<span class="c1"># Or, when the corresponding native driver is available:</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>kuzudb
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>ladybugdb
 </code></pre></div>
-Configure FalkorDB:
-<div class="highlight"><pre><span></span><code><span class="c1"># Switch default database</span>
-cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb
-
-<span class="c1"># For Remote: configure connections</span>
+<h2 id="server-connections">Server connections</h2>
+<p>Server backends use a network connection, even when the server runs on the same machine.</p>
+<p>For FalkorDB Remote:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>falkordb-remote
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FALKORDB_HOST<span class="w"> </span><span class="m">127</span>.0.0.1
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>FALKORDB_PORT<span class="w"> </span><span class="m">6379</span>
-</code></pre></div></p>
-<hr />
-<h2 id="4-neo4j-enterprise-shared">4. Neo4j (Enterprise &amp; Shared)</h2>
-<p>Neo4j is the enterprise standard for graph database clustering, management, and analysis.</p>
-<ul>
-<li><strong>Neo4j Browser</strong>: Connect to <code>http://localhost:7474</code> to visualize and interact with your code graph using Neo4j's query visualizer.</li>
-<li><strong>Scale</strong>: Handles repositories containing millions of lines of code.</li>
-</ul>
-<h3 id="version-compatibility_2">Version Compatibility</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Package</th>
-<th style="text-align: left;">Declared bounds (<code>pyproject.toml</code>)</th>
-<th style="text-align: left;">Versions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>neo4j</code></td>
-<td style="text-align: left;"><code>&gt;=5.15.0</code></td>
-<td style="text-align: left;"><code>6.2.0</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="setup_3">Setup</h3>
-<p>Start a Neo4j server (e.g., using Docker):
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>neo4j-cgc<span class="w"> </span>-p<span class="w"> </span><span class="m">7474</span>:7474<span class="w"> </span>-p<span class="w"> </span><span class="m">7687</span>:7687<span class="w"> </span>-e<span class="w"> </span><span class="nv">NEO4J_AUTH</span><span class="o">=</span>neo4j/password<span class="w"> </span>neo4j:latest
 </code></pre></div>
-Install the Neo4j client library:
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>neo4j
-</code></pre></div>
-Configure CGC to connect to Neo4j:
-<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j
+<p>For Neo4j, run the interactive setup or configure an existing server:</p>
+<div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>neo4j<span class="w"> </span>setup
+<span class="c1"># Alternatively:</span>
+cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>neo4j
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_URI<span class="w"> </span>bolt://localhost:7687
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_USERNAME<span class="w"> </span>neo4j
-cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_PASSWORD<span class="w"> </span>password
-</code></pre></div></p>
-<p>Or run the interactive wizard: <code>cgc neo4j setup</code>.</p>
-<hr />
-<h2 id="5-nornic-db">5. Nornic DB</h2>
-<p>Nornic is a Neo4j-compatible embedded graph driver. Configure it when you want Bolt/Cypher semantics without a standalone Neo4j server.</p>
+cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_PASSWORD<span class="w"> </span>&lt;password&gt;
+</code></pre></div>
+<p>For an existing Nornic server:</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span>db<span class="w"> </span>nornic
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_URI<span class="w"> </span>bolt://localhost:7687
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_USERNAME<span class="w"> </span>nornic
 cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NORNIC_PASSWORD<span class="w"> </span>&lt;password&gt;
 </code></pre></div>
-<p>Connection keys mirror the Neo4j section in <a href="../../reference/config/">Configuration Reference</a>.</p>
-<hr />
-<h2 id="backend-selection-logic">Backend Selection Logic</h2>
-<p>When executing commands, CGC automatically resolves the active database connection using the following precedence:</p>
+<p>Use the appropriate authentication and transport settings for your deployment. See the <a href="../../reference/config/">Configuration Reference</a> for supported keys.</p>
+<h2 id="selection-and-fallback-order">Selection and fallback order</h2>
 <ol>
-<li><strong>CLI Flag Override</strong>: Explicitly set using <code>--database</code> or <code>-db</code> (e.g., <code>cgc index --database neo4j</code>).</li>
-<li><strong>Environment Variable</strong>: Resolves via <code>CGC_RUNTIME_DB_TYPE</code> settings.</li>
-<li><strong>Global Config File</strong>: Reads the value set via <code>cgc config db</code>.</li>
-<li><strong>Fallback Auto-Detection</strong>:</li>
-<li>If <code>FALKORDB_HOST</code> env is present, connects to FalkorDB Remote.</li>
-<li>On Unix: Tries to initialize FalkorDB Lite -&gt; KuzuDB -&gt; Neo4j.</li>
-<li>On Windows: Tries to initialize KuzuDB -&gt; Neo4j.</li>
+<li><code>CGC_RUNTIME_DB_TYPE</code> selects a per-invocation backend, including CLI <code>--database</code> choices.</li>
+<li><code>DEFAULT_DATABASE</code> selects the configured default (<code>cgc config db</code>).</li>
+<li>Without either override, <code>FALKORDB_HOST</code> selects remote FalkorDB.</li>
+<li>Otherwise CGC tries usable FalkorDB Lite, available KuzuDB, available LadybugDB, configured Neo4j, then configured Nornic.</li>
 </ol>
+<p>This follows <code>get_database_manager</code> in <a href="https://github.com/CodeGraphContext/CodeGraphContext/blob/main/src/codegraphcontext/core/__init__.py">the backend selector</a>. Some explicit selections can also fall back when their backend is unavailable. A requested backend name does not prove that it supplied the results: inspect startup diagnostics and <code>cgc doctor</code> when validating backend behavior.</p>
       </div>
     </main>
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">

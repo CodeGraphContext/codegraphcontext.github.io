@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -758,7 +758,7 @@
 </tr>
 </tbody>
 </table>
-<p>Use <code>cgc version</code> (or <code>cgc --version</code>) to print the installed release (currently <strong>0.5.0</strong>).</p>
+<p>Use <code>cgc version</code> (or <code>cgc --version</code>) to print your installed package version. This may differ from the documentation source version shown in the header.</p>
 <hr />
 <h2 id="core-index-lifecycle">Core Index &amp; Lifecycle</h2>
 <p>The <code>clean</code>, <code>delete</code>, and <code>rm</code> commands are disabled by default because they remove data. Before using them, enable <code>ALLOW_DB_DELETION</code> as described in <a href="../config/#destructive-operation-safety">Destructive Operation Safety</a>.</p>
@@ -882,7 +882,7 @@ in a later release.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code>analyze chain &lt;source&gt; &lt;target&gt;</code></td>
-<td style="text-align: left;">Shortest call path between two symbols.</td>
+<td style="text-align: left;">Call paths between two symbols; depth and result limits apply.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>analyze deps &lt;module&gt;</code></td>
@@ -898,7 +898,7 @@ in a later release.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code>analyze dead-code</code></td>
-<td style="text-align: left;">Unreferenced functions/files (with optional filters).</td>
+<td style="text-align: left;">Functions without indexed callers, as candidates for review (with optional filters).</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>analyze overrides &lt;function&gt;</code></td>
@@ -976,9 +976,9 @@ cgc<span class="w"> </span>registry<span class="w"> </span>request<span class="w
 <hr />
 <h2 id="real-time-watchers">Real-Time Watchers</h2>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>watch<span class="w"> </span><span class="o">[</span>PATH<span class="o">]</span><span class="w">          </span><span class="c1"># Shortcut: cgc w</span>
-cgc<span class="w"> </span>unwatch<span class="w"> </span>&lt;PATH&gt;
-cgc<span class="w"> </span>watching
+<span class="c1"># Press Ctrl+C in this terminal to stop.</span>
 </code></pre></div>
+<p><code>cgc watch</code> runs in the foreground. <code>cgc unwatch</code> and <code>cgc watching</code> cannot reach another process's watcher and currently exit with an unsupported-operation error. For MCP-owned watchers, use <code>unwatch_directory</code> and <code>list_watched_paths</code> on the same running server.</p>
 <p>With <code>--sync-on-start</code>, watchers reconcile the graph with the filesystem (add missing files, remove deleted paths) before monitoring changes. This is off by default.</p>
 <hr />
 <h2 id="git-hooks-hook">Git Hooks (<code>hook</code>)</h2>
@@ -1061,7 +1061,7 @@ cgc<span class="w"> </span>datasource<span class="w"> </span>redis
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">

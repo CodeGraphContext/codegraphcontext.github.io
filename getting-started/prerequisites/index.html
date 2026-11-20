@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -712,7 +712,7 @@
       <!-- The actual markdown content -->
       <div class="rw-main-content md-typeset">
         <h1 id="system-prerequisites">System Prerequisites</h1>
-<p>CodeGraphContext (CGC) is designed as a client-server architecture. To ensure a successful installation, understand the primary roles and requirements of the environment.</p>
+<p>CodeGraphContext (CGC) can run locally with an embedded graph engine or connect to a graph server. To ensure a successful installation, understand the primary roles and requirements of the environment.</p>
 <hr />
 <h2 id="architecture-components">Architecture Components</h2>
 <ol>
@@ -730,79 +730,32 @@
 <thead>
 <tr>
 <th style="text-align: left;">Resource</th>
-<th style="text-align: left;">Minimum Requirement</th>
+<th style="text-align: left;">Requirement</th>
 <th style="text-align: left;">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><strong>Operating System</strong></td>
+<td style="text-align: left;"><strong>Operating system</strong></td>
 <td style="text-align: left;">Linux, macOS, or Windows</td>
-<td style="text-align: left;">Windows WSL is supported but native installation works via KuzuDB.</td>
+<td style="text-align: left;">Native engine and parser wheels must support your OS and architecture.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Python Version</strong></td>
+<td style="text-align: left;"><strong>Python</strong></td>
 <td style="text-align: left;">Python 3.10 or higher</td>
-<td style="text-align: left;">Python 3.10+ is required for the core package and KuzuDB.</td>
+<td style="text-align: left;">Backend availability varies. FalkorDB Lite requires Unix and Python 3.12+; CGC excludes Kuzu on macOS/Windows with Python 3.14+.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><strong>Memory</strong></td>
-<td style="text-align: left;">4 GB RAM</td>
-<td style="text-align: left;">Large repositories benefit from 8 GB+ memory during initial scans.</td>
+<td style="text-align: left;"><strong>Memory and disk</strong></td>
+<td style="text-align: left;">Depend on repository size, queries and backend</td>
+<td style="text-align: left;">The embedded buffer-pool setting does not cap total process RSS. See <a href="../../reference/mcp-operating-notes/#memory-response-limits-and-ownership">operating notes</a>.</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="database-backend-selection">Database Backend Selection</h2>
 <p>CGC supports multiple database engines. You only need to set up the engine that fits your requirements.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Database Backend</th>
-<th style="text-align: left;">Setup Type</th>
-<th style="text-align: left;">Target Platform</th>
-<th style="text-align: left;">Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>FalkorDB Lite (Default)</strong></td>
-<td style="text-align: left;">In-process (Embedded)</td>
-<td style="text-align: left;">Unix (Linux/macOS), Python 3.12+</td>
-<td style="text-align: left;">Default when <code>falkordblite</code> is installed. In-memory, extremely low latency.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>KuzuDB</strong></td>
-<td style="text-align: left;">In-process (Embedded)</td>
-<td style="text-align: left;">Cross-Platform (Linux/macOS/Windows)</td>
-<td style="text-align: left;">Automatic fallback on Windows or when FalkorDB Lite is unavailable. Python 3.10+.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>LadybugDB</strong></td>
-<td style="text-align: left;">In-process (Embedded)</td>
-<td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Alternative embedded engine; <code>pip install ladybug</code>.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>FalkorDB Remote</strong></td>
-<td style="text-align: left;">Networked Server</td>
-<td style="text-align: left;">Cross-Platform Client</td>
-<td style="text-align: left;">Connects to a remote FalkorDB/Redis-compatible server.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Neo4j</strong></td>
-<td style="text-align: left;">Networked Server</td>
-<td style="text-align: left;">Cross-Platform Client</td>
-<td style="text-align: left;">Enterprise clustering, Neo4j Browser, AuraDB.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Nornic DB</strong></td>
-<td style="text-align: left;">Embedded / Bolt client</td>
-<td style="text-align: left;">Cross-Platform</td>
-<td style="text-align: left;">Neo4j-compatible driver without a full Neo4j deployment.</td>
-</tr>
-</tbody>
-</table>
+<p>Choose an embedded engine for local use or configure a server connection. <a href="../../concepts/backends/">Database Backends</a> describes all six supported identifiers, platform constraints and the actual fallback order. Install CGC with its declared dependency constraints rather than upgrading native drivers independently.</p>
 <hr />
 <h2 id="development-environment-interfaces">Development Environment Interfaces</h2>
 <p>To use CodeGraphContext inside your coding workflow, ensure you have an MCP-compliant workspace interface, such as:</p>
@@ -817,7 +770,7 @@
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">

@@ -487,11 +487,11 @@
                 stroke-width="2.5">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
                 <line x1="7" y1="7" x2="7.01" y2="7" />
-              </svg> <span id="git-version">v0.5.0</span></span>
+              </svg> <span id="git-version" title="Documentation source version">v0.6.13</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg> <span id="git-stars">3.2k</span></span>
+              </svg> <span id="git-stars">...</span></span>
             <span class="rw-stat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2.5">
                 <circle cx="18" cy="5" r="3" />
@@ -499,7 +499,7 @@
                 <circle cx="18" cy="19" r="3" />
                 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
                 <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-              </svg> <span id="git-forks">564</span></span>
+              </svg> <span id="git-forks">...</span></span>
           </div>
         </div>
       </div>
@@ -717,29 +717,15 @@
 <h2 id="important-defaults-read-this-first">Important defaults (read this first)</h2>
 <p>These three points are the most common sources of confusion in older docs and issue reports:</p>
 <h3 id="default-database-backend">Default database backend</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Platform</th>
-<th style="text-align: left;">What CGC uses by default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Unix (Linux/macOS), Python 3.12+</strong></td>
-<td style="text-align: left;"><strong>FalkorDB Lite</strong> when <code>falkordblite</code> is installed (<code>DEFAULT_DATABASE=falkordb</code>)</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Windows</strong>, or FalkorDB Lite unavailable</td>
-<td style="text-align: left;"><strong>KuzuDB</strong> as the automatic fallback</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Any platform</strong></td>
-<td style="text-align: left;">Override anytime with <code>cgc config db &lt;backend&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<p>KuzuDB is <strong>not</strong> the universal default—it is the cross-platform fallback when FalkorDB Lite cannot run.</p>
+<p>An explicit <code>CGC_RUNTIME_DB_TYPE</code> override takes precedence over <code>DEFAULT_DATABASE</code> (<code>cgc config db</code>). Without either, CGC considers:</p>
+<ol>
+<li>FalkorDB Remote when <code>FALKORDB_HOST</code> is configured.</li>
+<li>FalkorDB Lite when usable (Unix and Python 3.12+).</li>
+<li>KuzuDB when available.</li>
+<li>LadybugDB when available.</li>
+<li>Configured Neo4j, then configured Nornic.</li>
+</ol>
+<p>Python/platform dependency markers affect which drivers exist. In particular, CGC excludes Kuzu on macOS/Windows with Python 3.14+, so Ladybug can become the embedded fallback there. Some explicitly requested backends can also fall back when unavailable. Check diagnostics for the engine actually selected. See <a href="../../concepts/backends/">Database Backends</a>.</p>
 <h3 id="neo4j-username-key">Neo4j username key</h3>
 <p>Use <strong><code>NEO4J_USERNAME</code></strong>, not <code>NEO4J_USER</code>. The latter is not a valid <code>cgc config set</code> key.</p>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>NEO4J_USERNAME<span class="w"> </span>neo4j
@@ -811,7 +797,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <tr>
 <td style="text-align: left;"><strong><code>DEFAULT_DATABASE</code></strong></td>
 <td style="text-align: left;"><code>falkordb</code></td>
-<td style="text-align: left;">Active database engine. Options: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code>, <code>falkordb-remote</code>, <code>neo4j</code>.</td>
+<td style="text-align: left;">Active database engine. Options: <code>kuzudb</code>, <code>ladybugdb</code>, <code>falkordb</code>, <code>falkordb-remote</code>, <code>neo4j</code>, <code>nornic</code>.</td>
 </tr>
 <tr>
 <td style="text-align: left;"><strong><code>ENABLE_AUTO_WATCH</code></strong></td>
@@ -826,7 +812,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
 <tr>
 <td style="text-align: left;"><strong><code>CACHE_ENABLED</code></strong></td>
 <td style="text-align: left;"><code>true</code></td>
-<td style="text-align: left;">Caches file hashes to support fast incremental scans.</td>
+<td style="text-align: left;">Compatibility setting; current indexing does not consume this flag. Watcher parse reuse is in memory; persistent parsing cache is tracked in <a href="https://github.com/CodeGraphContext/CodeGraphContext/issues/1288">#1288</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -1084,7 +1070,7 @@ cgc<span class="w"> </span>config<span class="w"> </span><span class="nb">set</s
   </div>
 
   <footer class="rw-footer">
-    <div class="rw-footer__left">CodeGraphContext v0.1.0 · Documentation</div>
+    <div class="rw-footer__left">CodeGraphContext · Documentation</div>
     <div class="rw-footer__right">
       <a href="https://github.com/CodeGraphContext/CodeGraphContext" target="_blank" rel="noopener">
         <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
