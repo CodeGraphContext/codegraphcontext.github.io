@@ -804,6 +804,20 @@
 </tr>
 </tbody>
 </table>
+<h4 id="index-summary">Index summary</h4>
+<p>A full index (<code>cgc index</code>, <code>cgc update</code>, <code>cgc add-package</code>) ends with the <strong>CGC Index Execution
+Summary</strong> (files, function / class nodes, CALLS edges, <strong>Index seconds (total)</strong>) followed by an
+<strong>Index phase timings</strong> table: one row per phase that ran, in pipeline order, with its seconds and
+share of the total — <code>discover</code>, <code>pre_scan</code>, <code>parse</code> (concurrent wall time), <code>write_nodes</code>,
+<code>write_imports</code>, <code>inheritance</code>, <code>type_links</code>, <code>decorated_by</code>, <code>calls_resolve</code>, <code>calls_write</code>,
+<code>framework_links</code> and the opt-in resolution passes when enabled (<code>embeddings</code>,
+<code>inherit_reresolve</code>); a SCIP run reports <code>scip_index</code>, <code>supplement</code> and <code>scip_calls</code>
+instead of <code>parse</code>. Phases are exclusive: <code>write_imports</code> is not part of <code>write_nodes</code>, and the rows
+never add up to more than the total (the remainder is untimed bookkeeping between phases).</p>
+<p>The former "Serialization seconds" row is gone: it measured everything after parsing (writes,
+inheritance, CALLS, framework passes), not serialization. The summary dict keeps that
+window as <code>post_parse_seconds</code>; <code>serialization_seconds</code> is a deprecated alias of it, to be removed
+in a later release.</p>
 <hr />
 <h2 id="search-find">Search (<code>find</code>)</h2>
 <div class="highlight"><pre><span></span><code>cgc<span class="w"> </span>find<span class="w"> </span>&lt;subcommand&gt;<span class="w"> </span><span class="o">[</span>args<span class="o">]</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>

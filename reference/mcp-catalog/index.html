@@ -776,7 +776,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="check_job_status">check_job_status</h2>
-<p>Check the status and progress of a background job.</p>
+<p>Check the status and progress of a background job. A completed index job carries its summary in job.result.index_summary: file / node / CALLS counts and per-phase timings (phase_seconds, total_seconds).</p>
 <table>
 <thead>
 <tr>
@@ -813,7 +813,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="list_jobs">list_jobs</h2>
-<p>List all background jobs and their current status.</p>
+<p>List all background jobs and their current status. A row's <code>result</code> only names what check_job_status returns for that job (e.g. an index job's index_summary).</p>
 <table>
 <thead>
 <tr>

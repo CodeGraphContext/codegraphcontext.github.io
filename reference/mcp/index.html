@@ -735,8 +735,10 @@ lifecycle limitations.</p>
 <li>Call <code>add_code_to_graph</code> with <code>repo_path</code>. A job ID means accepted work,
    not completed indexing.</li>
 <li>Poll <code>check_job_status</code> with that ID until completed or failed. Inspect
-   <code>errors</code>, <code>error_type</code> and <code>traceback</code> on failure. Jobs are held in memory;
-   they are not durable across server restarts.</li>
+   <code>errors</code>, <code>error_type</code> and <code>traceback</code> on failure; a completed full index
+   carries its summary (counts and per-phase timings, <code>phase_seconds</code>) in
+   <code>job.result.index_summary</code>. Jobs are held in memory; they are not durable
+   across server restarts.</li>
 <li>Call <code>find_code</code>, then <code>analyze_code_relationships</code>, with an explicit
    <code>repo_path</code> when multiple repositories have matching symbol names.</li>
 <li>Call <code>watch_directory</code> with <code>repo_path</code> for ongoing updates. Allow for the
